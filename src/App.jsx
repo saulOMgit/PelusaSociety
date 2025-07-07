@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from 'react';
+import { getPets } from '../src/services/PetService';
 
-function App() {
-  const [count, setCount] = useState(0)
+function PetList() {
+  const [pets, setPets] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    async function fetchPets() {
+      try {
+        const data = await getPets();
+        setPets(data);
+      } catch (err) {
+        setError('No se pudieron cargar las mascotas.');
+      }
+    }
+
+    fetchPets();
+  }, []);
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h2>Lista de Mascotas</h2>
+      <ul>
+        {pets.map((pet) => (
+          <li key={pet.id}>
+            {pet.nombre}
+            <img src={pet.imagen} alt={pet.nombre} width="150" />
+
+          </li>
+        ))}
+      </ul>
+
+    </div>
+  );
 }
 
-export default App
+export default PetList;
