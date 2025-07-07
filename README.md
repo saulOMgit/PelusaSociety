@@ -1,12 +1,21 @@
-# React + Vite
+# 🐾 Pelusa Society - Adopción responsable de perros y gatos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Pelusa Society** es un proyecto web desarrollado en React para la adopción de perros y gatos. 
+Utiliza sliders interactivos al estilo Tinder para presentar a los amigos peludos que necesitan adopción.
 
-Currently, two official plugins are available:
+Se trata de un proyecto de clase en desarrollo para el **bootcamp** impartido por **Factoría F5**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Características Principales
 
-## Expanding the ESLint configuration
+- **Slider Tinder-like**: Interfaz dinámica para hacer swipe y descubrir perros o gatos.
+- **Formulario de Adopción**: En proceso de valoración.
+- **Diseño Responsive**: Compatible con móviles, tablets y desktop.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Tecnologías Utilizadas
+
+- **Frontend**: 
+  ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)
+  ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=flat&logo=vite&logoColor=FFD62E)
+
+- **Backend**:
+  🐶 Conexión con la API Huachitos (https://huachitos.cl/docs)
