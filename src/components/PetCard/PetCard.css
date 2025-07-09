@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 /* Grid layout for multiple cards */
 .pets-grid {
     display: grid;
@@ -19,6 +21,7 @@
 /* Image container with relative positioning for overlays */
 .image-container {
     position: relative;
+    border-radius: 10px;
 }
 
 .dog-image-background {
@@ -36,25 +39,24 @@
     width: 220px;
     object-fit: cover;
     display: block;
+    border-radius: 10px;
+    background-color: none;
 }
 
 
 /* Heart button positioning and styling */
 .heart-button {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    backdrop-filter: blur(4px);
+    top: 10px;
+    right: 10px;
+    background: none;
     border: none;
-    border-radius: 50%;
     padding: 8px;
     cursor: pointer;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
 }
 
 .heart-button:hover {
-    background: rgba(255, 255, 255, 0.9);
     transform: scale(1.05);
 }
 
@@ -62,13 +64,19 @@
 .heart-icon {
     width: 24px;
     height: 24px;
-    color: #6b7280;
+    color: #ffffff;
+    opacity: 0.7;
     transition: all 0.2s ease;
 }
 
 .heart-icon.liked {
     color: #ef4444;
-    fill: #ef4444;
+    border: none;
+    opacity: 1;
+}
+
+.heart-button:focus {
+    outline: none;
 }
 
 /* Text overlay at bottom of image */
@@ -77,7 +85,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
     padding: 10px;
 }
 
@@ -125,6 +132,7 @@
     justify-content: center;
     gap: 8px;
     font-size: 16px;
+    
     transition: background-color 0.2s ease;
     height: 40px;
     width: 127px;

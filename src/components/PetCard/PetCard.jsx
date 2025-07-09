@@ -1,6 +1,10 @@
 import React, { useState} from "react";
 import './PetCard.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaw, faHeart } from '@fortawesome/free-solid-svg-icons'; 
+
+
 const PetCard = ({ 
     name, 
     image, 
@@ -42,16 +46,8 @@ const PetCard = ({
                 />
 
                 <button onClick={handleLikeClick} className="heart-button">
-                    <svg className={`heart-icon ${isLiked ? 'liked' :''}`}
-                    width="24" 
-                    height="24" 
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    >
-                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 20.3l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
+                    <FontAwesomeIcon icon={faHeart} className={`heart-icon ${isLiked ? 'liked' :''}`} />
+                    
                 </button>
 
                 <div className="text-overlay">
@@ -67,7 +63,7 @@ const PetCard = ({
             </div>
             <div className="button-container">
                 <button className="adopt-button" onClick={handleAdoptClick}>
-                    <span className="paw-icon">🐾</span>
+                    <FontAwesomeIcon icon={faPaw} className="paw-icon" />
                     ¡Adopta!
                 </button>
             </div>
