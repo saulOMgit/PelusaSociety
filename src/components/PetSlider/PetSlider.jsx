@@ -1,58 +1,39 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './PetSlider.css';
+import { getPets } from '../../services/PetService';
 
-const PetSlider = ({ pets = [] }) => {
+const PetSlider = ({ tipoMascota }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
   const sliderRef = useRef(null);
+  const [petData, setPetData] = useState([]);
 
-  // Datos de ejemplo
-  const defaultPets = [
-    {
-      id: 1,
-      name: "Pepita",
-      age: "4 años",
-      breed: "Pug",
-      gender: "Hembra",
-      image: "/api/placeholder/200/200"
-    },
-    {
-      id: 2,
-      name: "Copito",
-      age: "6 años",
-      breed: "Samoyedo",
-      gender: "Macho",
-      image: "/api/placeholder/200/200"
-    },
-    {
-      id: 3,
-      name: "Luna",
-      age: "2 años",
-      breed: "Golden",
-      gender: "Hembra",
-      image: "/api/placeholder/200/200"
-    },
-    {
-      id: 4,
-      name: "Max",
-      age: "3 años",
-      breed: "Labrador",
-      gender: "Macho",
-      image: "/api/placeholder/200/200"
-    },
-    {
-      id: 5,
-      name: "Bella",
-      age: "5 años",
-      breed: "Husky",
-      gender: "Hembra",
-      image: "/api/placeholder/200/200"
-    }
-  ];
+  // Datos de la API filtrados por tipo
+  useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        const petsFromAPI = await getPets();
+        const mappedPets = petsFromAPI
+          .filter(p => p.tipo === tipoMascota) // Filtrar por tipo
+          .map(p => ({
+            id: p.id,
+            nombre: p.nombre,
+            tipo: p.tipo,
+            edad: p.edad,
+            genero: p.genero,
+            imagen: p.imagen
+          }));
+        console.log(mappedPets);
+        setPetData(mappedPets);
+      } catch (error) {
+        console.error("No se pudieron cargar las mascotas desde la API.", error);
+      }
+    };
 
-  const petData = pets.length > 0 ? pets : defaultPets;
+    fetchPets();
+  }, [tipoMascota]); // Añadir tipoMascota como dependencia
 
   // Navegar a la siguiente ficha
   const nextSlide = () => {
@@ -66,12 +47,19 @@ const PetSlider = ({ pets = [] }) => {
 
   // Manejar inicio de arrastre
   const handleMouseDown = (e) => {
+    // Prevenir el comportamiento por defecto si el objetivo es una imagen
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
     setIsDragging(true);
     setStartX(e.pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
   };
 
   const handleTouchStart = (e) => {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
     setIsDragging(true);
     setStartX(e.touches[0].pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
@@ -124,6 +112,11 @@ const PetSlider = ({ pets = [] }) => {
     }
   }, [currentIndex]);
 
+  // Resetear el índice cuando cambien los datos filtrados
+  useEffect(() => {
+    setCurrentIndex(0);
+  }, [petData]);
+
   return (
     <div className="pet-slider-container">
       {/* Header */}
@@ -154,14 +147,14 @@ const PetSlider = ({ pets = [] }) => {
             >
               <div className="pet-card-inner">
                 <div className="pet-card-image">
-                  <img src={pet.image} alt={pet.name} />
+                  <img src={pet.imagen} alt={pet.nombre} />
                 </div>
                 <div className="pet-card-info">
-                  <h3>{pet.name}</h3>
+                  <h3>{pet.nombre}</h3>
                   <div className="pet-card-details">
-                    <span>{pet.age}</span>
-                    <span>{pet.breed}</span>
-                    <span>{pet.gender}</span>
+                    <span>{pet.tipo}</span>
+                    <span>{pet.edad}</span>
+                    <span>{pet.genero}</span>
                   </div>
                 </div>
               </div>

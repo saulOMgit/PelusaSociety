@@ -5,7 +5,11 @@ const App = () => {
 
   return (
     <div>
-      <PetSlider />
+     <h1>Perritos gorditos</h1>
+<PetSlider tipoMascota="Perro" />
+
+<h1>Gatitos gorditos</h1>
+<PetSlider tipoMascota="Gato" />
     </div>
   );
 };
