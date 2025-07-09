@@ -11,6 +11,10 @@ const pets = [
     gender: "Hembra",
     breed: "Pug",
     type: 'dog',
+    size: 'Mediano',
+    energy: 'Baja energía',
+    description: 'A Pepita le encanta tomar el sol en el parque. Esta pelusa está esperando a ser adoptada.',
+
   },
   {
     name: "Max",
@@ -18,7 +22,9 @@ const pets = [
     age: "2 años",
     gender: "Macho",
     breed: "Golden Retriever",
-    type: 'cat'
+    type: 'cat',
+    size:'Grande',
+    energy: 'Alta energía'
   },
   {
     name: "Luna",
@@ -26,6 +32,7 @@ const pets = [
     age: "3 años",
     gender: "Hembra",
     breed: "Border Collie",
+    type: "dog"
   }
 ];
 
@@ -49,6 +56,9 @@ function App() {
           gender={pet.gender}
           breed={pet.breed}
           type={pet.type}
+          size={pet.size}
+          energy={pet.energy}
+          description={pet.description}
           onAdopt={handleAdopt}
           onToggleLike={handleToggleLike}
           isLiked={false}

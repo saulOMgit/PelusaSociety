@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
-/* Grid layout for multiple cards */
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
 .pets-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -12,16 +15,68 @@
 
 /* Main card container */
 .adoption-card {
-    max-width: 220px;
+    width: 220px;
+    height: 292px;
     margin: 0 auto;
     overflow: hidden;
+    border-radius: 16px; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Usamos flexbox para apilar card-inner y button-container */
+    flex-direction: column;
+}
+
+
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 236px; /* **IMPORTANTE: Le damos la altura fija que tenía la imagen** */
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer; 
+}
+.card-inner.flipped {
+    transform: rotateY(180deg);
+}
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%; /* Ocupan todo el card-inner */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 0; 
+    overflow: hidden; /* Importante para que el contenido de la imagen no se desborde */
+    
+}
+
+.card-front{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 2;
+}
+.card-back {
+    transform: rotateY(180deg);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
 }
 
 /* Image container with relative positioning for overlays */
 .image-container {
     position: relative;
+    width: 100%;
+    height: 100%;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
 .dog-image-background {
@@ -32,19 +87,17 @@
     background-color: #ED7744;
 }
 
-/* Pet image styling */
 .pet-image {
     width: 100%;
     height: 236px;
-    width: 220px;
     object-fit: cover;
     display: block;
     border-radius: 10px;
-    background-color: none;
+
 }
 
 
-/* Heart button positioning and styling */
+
 .heart-button {
     position: absolute;
     top: 10px;
@@ -60,7 +113,7 @@
     transform: scale(1.05);
 }
 
-/* Heart icon styling */
+
 .heart-icon {
     width: 24px;
     height: 24px;
@@ -79,6 +132,7 @@
     outline: none;
 }
 
+
 /* Text overlay at bottom of image */
 .text-overlay {
     position: absolute;
@@ -88,7 +142,6 @@
     padding: 10px;
 }
 
-/* Pet name styling */
 .pet-name {
     color: #003640;
     font-size: 20px;
@@ -103,7 +156,6 @@
     flex-wrap: wrap;
 }
 
-/* Individual tag styling */
 .tag {
     background: #FFFBF8;
     color: #003640;
@@ -143,7 +195,36 @@
     border: none;
 }
 
-/* Paw icon in button */
 .paw-icon {
     font-size: 24px;
+}
+
+/* --- Estilos de la Parte Trasera (back-info) --- */
+.back-info{
+    padding: 10px;
+    flex: 1;
+    
+}
+
+.back-info .pet-name {
+    color: #003640; 
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.back-info .tags {
+    margin-bottom: 15px; 
+}
+
+.back-info .tags .tag {
+    background: #FFFBF8; 
+    color: #003640;
+}
+
+.description-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #003640; 
+    align-items: center;
 }
