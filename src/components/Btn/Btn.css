@@ -13,6 +13,11 @@
   width: 127px;
 }
 
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 @media (max-width: 768px) {
   .btn {
     gap: 10px;
