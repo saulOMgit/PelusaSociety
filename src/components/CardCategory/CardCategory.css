@@ -1,0 +1,9 @@
+.categories {
+    width: 173px;
+    height: 236px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    padding: 20, 12, 20, 12;
+    text-align: center;
+}
