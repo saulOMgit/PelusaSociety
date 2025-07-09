@@ -1,0 +1,141 @@
+/* Grid layout for multiple cards */
+.pets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Main card container */
+.adoption-card {
+    max-width: 220px;
+    margin: 0 auto;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Image container with relative positioning for overlays */
+.image-container {
+    position: relative;
+}
+
+.dog-image-background {
+    background-color: #EAC2CC;
+}
+
+.cat-image-background {
+    background-color: #ED7744;
+}
+
+/* Pet image styling */
+.pet-image {
+    width: 100%;
+    height: 236px;
+    width: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Heart button positioning and styling */
+.heart-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    backdrop-filter: blur(4px);
+    border: none;
+    border-radius: 50%;
+    padding: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.heart-button:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: scale(1.05);
+}
+
+/* Heart icon styling */
+.heart-icon {
+    width: 24px;
+    height: 24px;
+    color: #6b7280;
+    transition: all 0.2s ease;
+}
+
+.heart-icon.liked {
+    color: #ef4444;
+    fill: #ef4444;
+}
+
+/* Text overlay at bottom of image */
+.text-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent);
+    padding: 10px;
+}
+
+/* Pet name styling */
+.pet-name {
+    color: #003640;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+/* Tags container */
+.tags {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+/* Individual tag styling */
+.tag {
+    background: #FFFBF8;
+    color: #003640;
+    padding: 2px 7px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Button container */
+.button-container {
+    padding-top: 16px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Adopt button styling */
+.adopt-button {
+    background-color: #9FCFDF;
+    color: #003640;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    transition: background-color 0.2s ease;
+    height: 40px;
+    width: 127px;
+}
+
+.adopt-button:hover {
+    background: #aee3f5;
+    border: none;
+}
+
+/* Paw icon in button */
+.paw-icon {
+    font-size: 24px;
+}
