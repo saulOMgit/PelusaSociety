@@ -1,24 +1,21 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import './PetCard.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw, faHeart } from '@fortawesome/free-solid-svg-icons';
 
-
 const PetCard = ({
-    name,
-    image,
-    age,
-    breed,
-    gender,
+    nombre,
+    tipo,
+    edad,
+    genero,
+    imagen,
+    desc_fisica,
+    desc_personalidad,
+    region,
     onToggleLike,
     isLiked: initialLiked = false,
-    onAdopt,
-    type,
-    description = "una mascota",
-    size,
-    energy,
-
+    onAdopt
 }) => {
 
     const [isLiked, setIsLiked] = useState(initialLiked);
@@ -29,28 +26,30 @@ const PetCard = ({
         const newLikeState = !isLiked;
         setIsLiked(newLikeState);
         if (onToggleLike) {
-            onToggleLike(name, newLikeState);
+            onToggleLike(nombre, newLikeState);
         }
     };
 
     const handleAdoptClick = (e) => {
         e.stopPropagation();
         if (onAdopt) {
-            onAdopt(name);
+            onAdopt(nombre);
         }
     };
 
     const handleCardClick = () => {
         setIsFlipped(!isFlipped);
-    }
+    };
 
-    const handleBackClick = () => {
+    const handleBackClick = (e) => {
         e.stopPropagation();
         setIsFlipped(false)
-    }
+    };
+
+    
 
     const imageContainerBackgroundClass =
-        type === 'dog' ? 'dog-image-background' : type === 'cat' ? 'cat-image-background' : '';
+        tipo === 'Perro' ? 'dog-image-background' : tipo === 'Gato' ? 'cat-image-background' : '';
 
     return (
         <div className="adoption-card">
@@ -58,44 +57,38 @@ const PetCard = ({
                 <div className="card-front">
                     <div className={`image-container ${imageContainerBackgroundClass}`}>
                         <img
-                            src={image}
-                            alt={`${name} - ${breed}`}
+                            src={imagen}
+                            alt={`${nombre}`}
                             className="pet-image"
                         />
 
                         <button onClick={handleLikeClick} className="heart-button">
                             <FontAwesomeIcon icon={faHeart} className={`heart-icon ${isLiked ? 'liked' : ''}`} />
-
                         </button>
 
                         <div className="text-overlay">
-                            <h2 className="pet-name">{name}</h2>
+                            <h2 className="pet-name">{nombre}</h2>
                             <div className="tags">
-                                <span className="tag">{age}</span>
-                                <span className="tag">{gender}</span>
-                                <span className="tag">{breed}</span>
-
+                                <span className="tag">{edad}</span>
+                                <span className="tag">{genero}</span>
+                                <span className="tag">{region}</span>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
+                
                 <div className="card-back">
                     <div className={`back-info ${imageContainerBackgroundClass}`}>
-                        <h2 className="pet-name">{name}</h2>
+                        <h2 className="pet-name">{nombre}</h2>
                         <div className="tags">
-                            <span className="tag">{age}</span>
-                            <span className="tag">{gender}</span>
-                            <span className="tag">{breed}</span>
-                            <span className="tag">{size}</span>
-                            <span className="tag">{energy}</span>
+                            <span className="tag">{edad}</span>
+                            <span className="tag">{genero}</span>
+                            <span className="tag">{region}</span>
                         </div>
-                        <p className="description-text">{description}</p>
+                        <p className="description-text">{desc_fisica}</p>
+                        <p className="description-text">{desc_personalidad}</p>
                     </div>
                 </div>
-
-
             </div>
 
             <div className="button-container">
@@ -104,9 +97,7 @@ const PetCard = ({
                     ¡Adopta!
                 </button>
             </div>
-
         </div>
-
     )
 }
 
