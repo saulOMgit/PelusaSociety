@@ -1,4 +1,15 @@
+import React from 'react'
+import NavBar from './components/NavBar/NavBar'
 
+const App = () => {
+  return (
+    <>
+    <NavBar />
+    </>
+  )
+}
+
+export default App
 import PetSlider from "./components/PetSlider/PetSlider";
 import React from 'react'
 import CardCategory from './components/CardCategory/CardCategory'
