@@ -17,7 +17,7 @@
     box-sizing: border-box;
 }
 
-.title {
+.card-category__title {
     font-family: "DM Sans", sans-serif;
     font-size: 24px;
     font-weight: 600;
@@ -25,7 +25,7 @@
     margin: 0;
 }
 
-.card-image-container {
+.card-category__image-container {
     flex: 1;
     width: 100%;
     display:flex;
@@ -33,16 +33,16 @@
     align-items: center;
 }
 
-.card-image {
+.card-category__image {
     width: 100%;
     height: auto;
     object-fit: contain;
 }
 
-.card-category.cat {
+.card-category--cat {
     background-color: #ed7744;
 }
 
-.card-category.dog {
+.card-category--dog {
     background-color: #eac2cc;
 }
