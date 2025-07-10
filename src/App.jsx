@@ -3,28 +3,10 @@ import CardCategory from './components/CardCategory/CardCategory'
 import './App.css'
 import img1 from './assets/cat.png'
 import img2 from './assets/dog.png'
+import img3 from './assets/society.png'
 
-const App = () => {
-  return (
-    <>
-      <div className="categories">
-        <CardCategory 
-        title='Gatos'
-        image={img1}
-        category='cat'
-        />
-
-        <CardCategory 
-        title='Perros'
-        image={img2}
-        category='dog'/>
-      </div>
-    </>
-  )
-}
-
-export default App
 import PetCard from "./components/PetCard/PetCard";
+import PetSlider from "./components/PetSlider/PetSlider";
 
 
 
@@ -49,7 +31,7 @@ const pets = [
     gender: "Macho",
     breed: "Golden Retriever",
     type: 'cat',
-    size:'Grande',
+    size: 'Grande',
     energy: 'Alta energía'
   },
   {
@@ -72,44 +54,55 @@ function App() {
   };
 
   return (
-    <div className="pets-grid">
-      {pets.map((pet, index) => (
-        <PetCard
-          key={index}
-          name={pet.name}
-          image={pet.image}
-          age={pet.age}
-          gender={pet.gender}
-          breed={pet.breed}
-          type={pet.type}
-          size={pet.size}
-          energy={pet.energy}
-          description={pet.description}
-          onAdopt={handleAdopt}
-          onToggleLike={handleToggleLike}
-          isLiked={false}
-        />
-      ))}
-    </div>
+    <>
+      <div className="app-container">
+
+        <div className='introduction'>
+          <h1 className='introduction-h1'>¡Hola!</h1>
+          <p className='introduction-p'>Somos Pelusa Society, una protectora de animales que busca conectar animales abandonados con hogares que los cuiden y los quieran ❤️‍🩹</p>
+          <img className='introduction-photo' src={img3} />
+        </div>
+        <div className='election-team'>
+          <h1 className='election-team_h1'>Escoge team</h1>
+          <p className='election-team_p'>¿Qué peludito será el nuevo miembro de tu familia?</p>
+        </div>
+        <div className="categories">
+          
+          <CardCategory
+            title='Gatos'
+            image={img1}
+            category='cat'
+          />
+
+          <CardCategory
+            title='Perros'
+            image={img2}
+            category='dog' />
+        </div>
+        <div className='cat-section'>
+          <div className='cat-section_text'>
+            <h1 className='cat-section_text_h1'>Gatos 🐱</h1>
+            <p className='cat-section_text_p'>Estos michis buscan un hogar tranquilo y seguro con alguna manta suavecita, ¿será el tuyo?</p>
+            <h3 className='cat-section_text_h3'>¡Haz el match perfecto!</h3>
+            <p className='cat-section_text_h3_p'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
+          </div>
+          <PetSlider tipoMascota="Gato" />
+        </div>
+        <div className='dog-section'>
+          <div className='dog-section_text'>
+            <h1 className='dog-section_text_h1'>Perros 🐶</h1>
+            <p className='dog-section_text_p'>Tenemos todo tipo de peludos, desde abueletes hasta cachorros. Todos esperando llenar tu vida de mimos y aventuras.</p>
+            <h3 className='dog-section_text_h3'>¡Haz el match perfecto!</h3>
+            <p className='dog-section_text_h3_p'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
+          </div>
+          <PetSlider tipoMascota="Perro" />
+        </div>
+       
+      </div>
+    </>
   );
 }
 
-
-import PetSlider from "./components/PetSlider/PetSlider";
-
-const App = () => {
-  
-
-  return (
-    <div>
-     <h1>Perritos gorditos</h1>
-<PetSlider tipoMascota="Perro" />
-
-<h1>Gatitos gorditos</h1>
-<PetSlider tipoMascota="Gato" />
-    </div>
-  );
-};
 
 export default App;
 

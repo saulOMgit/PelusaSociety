@@ -1,13 +1,88 @@
+ @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap'); 
+
+*{
+   border: 1px solid red;
+}
+
 #root {
   max-width: 390px;
   margin: 0 auto;
   text-align: center;
+
 }
 
 .categories {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; 
   gap: 16px;
   margin-left: 12px;
   margin-right: 12px;
+}
+
+body{
+  background-color: #FFFBF8;
+  color: #003640;
+}
+
+.introduction{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 12px 12px 32px;
+  
+
+}
+h1 {
+  font-family: 'Instrument Serif';
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 0px;
+
+}
+p{
+  text-align: left;
+}
+.introduction-photo{
+  width: 367px;
+}
+
+.election-team{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 12px;
+}
+
+.election-team_p{
+  margin-bottom: 8px;
+}
+
+.cat-section_text{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px 12px 32px;
+}
+
+.cat-section_text_h3_p{
+  margin-bottom: 0px;
+}
+.cat-section_text_h3{
+  margin-bottom: 0px;
+}
+.cat-section_text_h1{
+  margin-top: 0px;
+}
+
+.dog-section_text{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px 12px 32px;
+}
+
+.dog-section_text_h3_p{
+  margin-bottom: 0px;
+}
+.dog-section_text_h3{
+  margin-bottom: 0px;
+}
+.dog-section_text_h1{
+  margin-top: 0px;
 }
