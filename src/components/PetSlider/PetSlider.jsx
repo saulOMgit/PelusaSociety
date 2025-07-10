@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './PetSlider.css';
 import { getPets } from '../../services/PetService';
+import PetCard from '../PetCard/PetCard';
 
 const PetSlider = ({ tipoMascota }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,9 +24,11 @@ const PetSlider = ({ tipoMascota }) => {
             tipo: p.tipo,
             edad: p.edad,
             genero: p.genero,
-            imagen: p.imagen
+            imagen: p.imagen,
+            vacunas: p.vacunas,
+            esterilizado: p.esterilizado,
+            desc_fisica: p.desc_fisica.replace(/<p>|<\/p>/g, ''),
           }));
-        console.log(mappedPets);
         setPetData(mappedPets);
       } catch (error) {
         console.error("No se pudieron cargar las mascotas desde la API.", error);
@@ -47,19 +50,15 @@ const PetSlider = ({ tipoMascota }) => {
 
   // Manejar inicio de arrastre
   const handleMouseDown = (e) => {
-    // Prevenir el comportamiento por defecto si el objetivo es una imagen
-    if (e.target.tagName === 'IMG') {
-      e.preventDefault();
-    }
+    // Prevenir comportamientos por defecto que pueden interferir con el arrastre
+    e.preventDefault();
     setIsDragging(true);
     setStartX(e.pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
   };
 
   const handleTouchStart = (e) => {
-    if (e.target.tagName === 'IMG') {
-      e.preventDefault();
-    }
+    e.preventDefault();
     setIsDragging(true);
     setStartX(e.touches[0].pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
@@ -117,17 +116,20 @@ const PetSlider = ({ tipoMascota }) => {
     setCurrentIndex(0);
   }, [petData]);
 
+  // Funciones placeholder para like y adopción, eliminar tras integrar la lógica:
+  const handleToggleLike = (nombre, isLiked) => {
+    console.log(`${nombre} ${isLiked ? 'añadido a' : 'eliminado de'} favoritos`);
+  };
+
+  const handleAdopt = (nombre) => {
+    console.log(`Iniciando proceso de adopción para ${nombre}`);
+  };
+
+//
+
   return (
     <div className="pet-slider-container">
-      {/* Header */}
-      <div className="pet-slider-header">
-        <h2 className="pet-slider-title">¡Haz el match perfecto!</h2>
-        <p className="pet-slider-subtitle">
-          ¡Desliza para ver más pelusas!
-        </p>
-      </div>
 
-      {/* Slider */}
       <div className="pet-slider-wrapper">
         <div
           ref={sliderRef}
@@ -145,22 +147,23 @@ const PetSlider = ({ tipoMascota }) => {
               key={pet.id}
               className={`pet-card ${index === currentIndex ? 'active' : ''} ${index === currentIndex + 1 ? 'next' : ''}`}
             >
-              <div className="pet-card-inner">
-                <div className="pet-card-image">
-                  <img src={pet.imagen} alt={pet.nombre} />
-                </div>
-                <div className="pet-card-info">
-                  <h3>{pet.nombre}</h3>
-                  <div className="pet-card-details">
-                    <span>{pet.tipo}</span>
-                    <span>{pet.edad}</span>
-                    <span>{pet.genero}</span>
-                  </div>
-                </div>
-              </div>
+              <PetCard 
+                nombre={pet.nombre} 
+                tipo={pet.tipo} 
+                edad={pet.edad} 
+                genero={pet.genero} 
+                imagen={pet.imagen}
+                desc_fisica={pet.desc_fisica}
+                vacunas={pet.vacunas}
+                esterilizado={pet.esterilizado}
+                onToggleLike={handleToggleLike}
+                onAdopt={handleAdopt}
+                isLiked={false} // Puedes implementar lógica para recordar favoritos
+              />
             </div>
           ))}
         </div>
+
 
         {/* Botones de navegación */}
         <button
@@ -180,12 +183,6 @@ const PetSlider = ({ tipoMascota }) => {
         </button>
       </div>
 
-      {/* Footer */}
-      <div className="pet-slider-footer">
-        <button className="pet-slider-adopt-btn">
-          <span>🐾</span> ¡Adopta!
-        </button>
-      </div>
     </div>
   );
 };
