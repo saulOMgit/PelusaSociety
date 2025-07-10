@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getPets } from '../src/services/PetService';
+import AdoptPage from './pages/AdoptPage';
 
 function PetList() {
   const [pets, setPets] = useState([]);
@@ -23,19 +24,7 @@ function PetList() {
   }
 
   return (
-    <div>
-      <h2>Lista de Mascotas</h2>
-      <ul>
-        {pets.map((pet) => (
-          <li key={pet.id}>
-            {pet.nombre}
-            <img src={pet.imagen} alt={pet.nombre} width="150" />
-
-          </li>
-        ))}
-      </ul>
-
-    </div>
+    <AdoptPage/>
   );
 }
 
