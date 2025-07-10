@@ -1,0 +1,212 @@
+/* Contenedor principal */
+.pet-slider-container {
+  max-width: 350px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Header */
+.pet-slider-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.pet-slider-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.pet-slider-subtitle {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Slider wrapper */
+.pet-slider-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Track del slider */
+.pet-slider-track {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  user-select: none;
+  scroll-behavior: smooth;
+}
+
+.pet-slider-track.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.pet-slider-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tarjetas de mascotas */
+.pet-card {
+  flex: 0 0 auto;
+  width: 220px;
+  margin-right: 20px;
+  opacity: 0.4;
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: scale(0.95);
+  transform-origin: left center;
+}
+
+.pet-card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.pet-card.next {
+  opacity: 0.6;
+}
+
+.pet-card-inner {
+  display: flex;
+  flex-direction: column;
+  background: #f8b4d1;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+  height: 100%;
+}
+
+/* Imagen de la mascota */
+.pet-card-image {
+  width: 100%;
+  height: 200px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  background: #ddd;
+}
+
+.pet-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info de la mascota */
+.pet-card-info {
+  text-align: center;
+}
+
+.pet-card-info h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.pet-card-details {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.pet-card-details span {
+  background: white;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Botones de navegación */
+.pet-slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  font-size: 18px;
+}
+
+.pet-slider-nav:hover {
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.pet-slider-nav.prev {
+  left: -20px;
+}
+
+.pet-slider-nav.next {
+  right: -20px;
+}
+
+/* Footer */
+.pet-slider-footer {
+  text-align: center;
+}
+
+.pet-slider-adopt-btn {
+  background: #87ceeb;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.pet-slider-adopt-btn:hover {
+  background: #7fc8e8;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .pet-slider-container {
+    padding: 15px;
+  }
+  
+  .pet-slider-nav {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .pet-slider-nav.prev {
+    left: -15px;
+  }
+  
+  .pet-slider-nav.next {
+    right: -15px;
+  }
+  
+  .pet-card {
+    width: 240px;
+    margin-right: 15px;
+  }
+}
