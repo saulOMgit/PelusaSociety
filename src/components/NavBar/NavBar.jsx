@@ -8,13 +8,13 @@ const NavBar = () => {
     <>
     <header className="navbar">
         <div className="navbar__container">
-        <div className="logo__container">
-        <img src={img} alt="logotipo" className="logo"/>
-        </div>
-        <div className="buttonFavorites__container">
-            <img src={icon} alt="icono favoritos" className="icon"/>
-        <button className="buttonFavorites">Favoritos</button>
-        </div>
+            <div className="logo__container">
+             <img src={img} alt="logotipo" className="logo"/>
+            </div>
+            <div className="buttonFavorites__container">
+                <img src={icon} alt="icono favoritos" className="icon"/>
+                <button className="buttonFavorites">Favoritos</button>
+            </div>
         </div>
     </header>
     </>
