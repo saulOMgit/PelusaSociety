@@ -11,8 +11,8 @@ const PetCard = ({
     genero,
     imagen,
     desc_fisica,
-    desc_personalidad,
-    region,
+    vacunas,
+    esterilizado,
     onToggleLike,
     isLiked: initialLiked = false,
     onAdopt
@@ -71,7 +71,6 @@ const PetCard = ({
                             <div className="tags">
                                 <span className="tag">{edad}</span>
                                 <span className="tag">{genero}</span>
-                                <span className="tag">{region}</span>
                             </div>
                         </div>
                     </div>
@@ -81,12 +80,10 @@ const PetCard = ({
                     <div className={`back-info ${imageContainerBackgroundClass}`}>
                         <h2 className="pet-name">{nombre}</h2>
                         <div className="tags">
-                            <span className="tag">{edad}</span>
-                            <span className="tag">{genero}</span>
-                            <span className="tag">{region}</span>
+                            {esterilizado ? <span className="tag">Esterilizado</span> : ''}
+                            {vacunas ? <span className="tag">Vacunado</span> : ''}
                         </div>
                         <p className="description-text">{desc_fisica}</p>
-                        <p className="description-text">{desc_personalidad}</p>
                     </div>
                 </div>
             </div>

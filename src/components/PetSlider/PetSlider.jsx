@@ -25,9 +25,10 @@ const PetSlider = ({ tipoMascota }) => {
             edad: p.edad,
             genero: p.genero,
             imagen: p.imagen,
+            vacunas: p.vacunas,
+            esterilizado: p.esterilizado,
             desc_fisica: p.desc_fisica.replace(/<p>|<\/p>/g, ''),
             desc_personalidad: p.desc_personalidad.replace(/<[^>]*>/g, ''),
-            region: p.region || 'Sin especificar' // Agregar región con valor por defecto
           }));
         setPetData(mappedPets);
       } catch (error) {
@@ -154,8 +155,8 @@ const PetSlider = ({ tipoMascota }) => {
                 genero={pet.genero} 
                 imagen={pet.imagen}
                 desc_fisica={pet.desc_fisica}
-                desc_personalidad={pet.desc_personalidad}
-                region={pet.region}
+                vacunas={pet.vacunas}
+                esterilizado={pet.esterilizado}
                 onToggleLike={handleToggleLike}
                 onAdopt={handleAdopt}
                 isLiked={false} // Puedes implementar lógica para recordar favoritos
