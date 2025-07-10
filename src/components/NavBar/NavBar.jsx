@@ -1,6 +1,6 @@
 import React from 'react'
 import './NavBar.css'
-import img from '../../assets/positivo.svg'
+import img from '../../assets/azul.svg'
 import icon from '../../assets/fav.png'
 
 const NavBar = () => {
