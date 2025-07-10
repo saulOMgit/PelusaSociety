@@ -9,15 +9,41 @@
     position: sticky;
 }
 
+.navbar__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .logo {
     width: 100%;
     height: auto;
     object-fit: contain;
-    fill: #003640;
+    filter: brightness(0) saturate(100%) invert(21%) sepia(83%) saturate(1352%) hue-rotate(166deg) brightness(99%) contrast(93%);
+    flex: 1;
 }
     
-
 .logo__container {
     width: 160px;
     height: 32px;
+}
+
+.buttonFavorites__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    height: 32px;
+    width: 32px;
+}
+
+.buttonFavorites {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600px;
+    color: #003640;
+    background-color: transparent;
 }
