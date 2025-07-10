@@ -41,7 +41,7 @@ h1 {
 p{
   text-align: left;
 }
-.introduction-photo{
+.introduction__photo{
   width: 367px;
 }
 
@@ -51,38 +51,38 @@ p{
   margin: 12px;
 }
 
-.election-team_p{
+.election-team__paragrahp{
   margin-bottom: 8px;
 }
 
-.cat-section_text{
+.cat-section__content{
   display: flex;
   flex-wrap: wrap;
   margin: 32px 12px 32px;
 }
 
-.cat-section_text_h3_p{
+.cat-section__instructions-paragraph{
   margin-bottom: 0px;
 }
-.cat-section_text_h3{
+.cat-section__subtitle{
   margin-bottom: 0px;
 }
-.cat-section_text_h1{
+.cat-section__heading{
   margin-top: 0px;
 }
 
-.dog-section_text{
+.dog-section__content{
   display: flex;
   flex-wrap: wrap;
   margin: 32px 12px 32px;
 }
 
-.dog-section_text_h3_p{
+.dog-section__instructions-paragrahp{
   margin-bottom: 0px;
 }
-.dog-section_text_h3{
+.dog-section__subtitle{
   margin-bottom: 0px;
 }
-.dog-section_text_h1{
+.dog-section__heading{
   margin-top: 0px;
 }

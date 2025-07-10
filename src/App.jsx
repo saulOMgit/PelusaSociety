@@ -58,13 +58,13 @@ function App() {
       <div className="app-container">
 
         <div className='introduction'>
-          <h1 className='introduction-h1'>¡Hola!</h1>
-          <p className='introduction-p'>Somos Pelusa Society, una protectora de animales que busca conectar animales abandonados con hogares que los cuiden y los quieran ❤️‍🩹</p>
-          <img className='introduction-photo' src={img3} />
+          <h1 className='introduction__heading'>¡Hola!</h1>
+          <p className='introduction__paragrahp'>Somos Pelusa Society, una protectora de animales que busca conectar animales abandonados con hogares que los cuiden y los quieran ❤️‍🩹</p>
+          <img className='introduction__photo' src={img3} />
         </div>
         <div className='election-team'>
-          <h1 className='election-team_h1'>Escoge team</h1>
-          <p className='election-team_p'>¿Qué peludito será el nuevo miembro de tu familia?</p>
+          <h1 className='election-team__heading'>Escoge team</h1>
+          <p className='election-team__paragrahp'>¿Qué peludito será el nuevo miembro de tu familia?</p>
         </div>
         <div className="categories">
           
@@ -80,20 +80,20 @@ function App() {
             category='dog' />
         </div>
         <div className='cat-section'>
-          <div className='cat-section_text'>
-            <h1 className='cat-section_text_h1'>Gatos 🐱</h1>
-            <p className='cat-section_text_p'>Estos michis buscan un hogar tranquilo y seguro con alguna manta suavecita, ¿será el tuyo?</p>
-            <h3 className='cat-section_text_h3'>¡Haz el match perfecto!</h3>
-            <p className='cat-section_text_h3_p'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
+          <div className='cat-section__content'>
+            <h1 className='cat-section__heading'>Gatos 🐱</h1>
+            <p className='cat-section__paragraph'>Estos michis buscan un hogar tranquilo y seguro con alguna manta suavecita, ¿será el tuyo?</p>
+            <h3 className='cat-section__subtitle'>¡Haz el match perfecto!</h3>
+            <p className='cat-section__instructions-paragraph'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
           </div>
           <PetSlider tipoMascota="Gato" />
         </div>
         <div className='dog-section'>
-          <div className='dog-section_text'>
-            <h1 className='dog-section_text_h1'>Perros 🐶</h1>
-            <p className='dog-section_text_p'>Tenemos todo tipo de peludos, desde abueletes hasta cachorros. Todos esperando llenar tu vida de mimos y aventuras.</p>
-            <h3 className='dog-section_text_h3'>¡Haz el match perfecto!</h3>
-            <p className='dog-section_text_h3_p'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
+          <div className='dog-section__content'>
+            <h1 className='dog-section__heading'>Perros 🐶</h1>
+            <p className='dog-section__paragrahp'>Tenemos todo tipo de peludos, desde abueletes hasta cachorros. Todos esperando llenar tu vida de mimos y aventuras.</p>
+            <h3 className='dog-section__subtitle'>¡Haz el match perfecto!</h3>
+            <p className='dog-section__instructions-paragrahp'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
           </div>
           <PetSlider tipoMascota="Perro" />
         </div>
