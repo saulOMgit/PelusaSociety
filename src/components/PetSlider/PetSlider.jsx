@@ -28,7 +28,6 @@ const PetSlider = ({ tipoMascota }) => {
             vacunas: p.vacunas,
             esterilizado: p.esterilizado,
             desc_fisica: p.desc_fisica.replace(/<p>|<\/p>/g, ''),
-            desc_personalidad: p.desc_personalidad.replace(/<[^>]*>/g, ''),
           }));
         setPetData(mappedPets);
       } catch (error) {
