@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import './PetSlider.css';
 import { getPets } from '../../services/PetService';
 import PetCard from '../PetCard/PetCard';
@@ -11,13 +11,13 @@ const PetSlider = ({ tipoMascota }) => {
   const sliderRef = useRef(null);
   const [petData, setPetData] = useState([]);
 
-  // Datos de la API filtrados por tipo
+  // Obtener mascotas filtradas por tipo
   useEffect(() => {
     const fetchPets = async () => {
       try {
         const petsFromAPI = await getPets();
         const mappedPets = petsFromAPI
-          .filter(p => p.tipo === tipoMascota) // Filtrar por tipo
+          .filter(p => p.tipo === tipoMascota)
           .map(p => ({
             id: p.id,
             nombre: p.nombre,
@@ -36,35 +36,37 @@ const PetSlider = ({ tipoMascota }) => {
     };
 
     fetchPets();
-  }, [tipoMascota]); // Añadir tipoMascota como dependencia
+  }, [tipoMascota]);
 
-  // Navegar a la siguiente ficha
+  // Funciones de navegación
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % petData.length);
   };
 
-  // Navegar a la ficha anterior
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + petData.length) % petData.length);
   };
 
-  // Manejar inicio de arrastre
+  // Calcular y ajustar al índice de carta más cercano
+  const snapToCard = useCallback(() => {
+    const track = sliderRef.current;
+    const card = track.querySelector('.pet-card');
+    if (!card) return;
+
+    const cardStyle = window.getComputedStyle(card);
+    const cardWidth = card.offsetWidth + parseInt(cardStyle.marginRight, 10);
+    const newIndex = Math.round(track.scrollLeft / cardWidth);
+    setCurrentIndex(Math.max(0, Math.min(newIndex, petData.length - 1)));
+  }, [petData.length]);
+
+  // Drag con ratón
   const handleMouseDown = (e) => {
-    // Prevenir comportamientos por defecto que pueden interferir con el arrastre
     e.preventDefault();
     setIsDragging(true);
     setStartX(e.pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
   };
 
-  const handleTouchStart = (e) => {
-    e.preventDefault();
-    setIsDragging(true);
-    setStartX(e.touches[0].pageX - sliderRef.current.offsetLeft);
-    setScrollLeft(sliderRef.current.scrollLeft);
-  };
-
-  // Manejar movimiento durante arrastre
   const handleMouseMove = (e) => {
     if (!isDragging) return;
     e.preventDefault();
@@ -73,37 +75,57 @@ const PetSlider = ({ tipoMascota }) => {
     sliderRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    const x = e.touches[0].pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    sliderRef.current.scrollLeft = scrollLeft - walk;
-  };
-
-  // Manejar fin de arrastre
   const handleMouseUp = () => {
     if (!isDragging) return;
     setIsDragging(false);
     snapToCard();
   };
 
-  const handleTouchEnd = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    snapToCard();
-  };
+  // Drag con táctil (arreglado con listeners manuales)
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
 
-  // Ajustar a la carta más cercana
-  const snapToCard = () => {
-    const cardWidth = 240; // Ancho de cada carta + margen
-    const newIndex = Math.round(sliderRef.current.scrollLeft / cardWidth);
-    setCurrentIndex(Math.max(0, Math.min(newIndex, petData.length - 1)));
-  };
+    const handleTouchStart = (e) => {
+      e.preventDefault();
+      setIsDragging(true);
+      setStartX(e.touches[0].pageX - slider.offsetLeft);
+      setScrollLeft(slider.scrollLeft);
+    };
 
-  // Efecto para mantener sincronizado el scroll con el índice
+    const handleTouchMove = (e) => {
+      if (!isDragging) return;
+      const x = e.touches[0].pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2;
+      slider.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleTouchEnd = () => {
+      if (!isDragging) return;
+      setIsDragging(false);
+      setTimeout(() => snapToCard(), 50); // Da tiempo al scroll antes de hacer snap
+    };
+
+    slider.addEventListener('touchstart', handleTouchStart, { passive: false });
+    slider.addEventListener('touchmove', handleTouchMove, { passive: false });
+    slider.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      slider.removeEventListener('touchstart', handleTouchStart);
+      slider.removeEventListener('touchmove', handleTouchMove);
+      slider.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isDragging, startX, scrollLeft, snapToCard]);
+
+  // Scroll sincronizado al índice actual
   useEffect(() => {
     if (sliderRef.current) {
-      const cardWidth = 240;
+      const card = sliderRef.current.querySelector('.pet-card');
+      if (!card) return;
+
+      const cardStyle = window.getComputedStyle(card);
+      const cardWidth = card.offsetWidth + parseInt(cardStyle.marginRight, 10);
+
       sliderRef.current.scrollTo({
         left: currentIndex * cardWidth,
         behavior: 'smooth'
@@ -111,12 +133,12 @@ const PetSlider = ({ tipoMascota }) => {
     }
   }, [currentIndex]);
 
-  // Resetear el índice cuando cambien los datos filtrados
+  // Resetear índice cuando cambia el tipo
   useEffect(() => {
     setCurrentIndex(0);
   }, [petData]);
 
-  // Funciones placeholder para like y adopción, eliminar tras integrar la lógica:
+  // Placeholder para lógica de favoritos/adopción
   const handleToggleLike = (nombre, isLiked) => {
     console.log(`${nombre} ${isLiked ? 'añadido a' : 'eliminado de'} favoritos`);
   };
@@ -125,11 +147,8 @@ const PetSlider = ({ tipoMascota }) => {
     console.log(`Iniciando proceso de adopción para ${nombre}`);
   };
 
-//
-
   return (
     <div className="pet-slider-container">
-
       <div className="pet-slider-wrapper">
         <div
           ref={sliderRef}
@@ -138,34 +157,29 @@ const PetSlider = ({ tipoMascota }) => {
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
           onMouseLeave={handleMouseUp}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
         >
           {petData.map((pet, index) => (
             <div
               key={pet.id}
               className={`pet-card ${index === currentIndex ? 'active' : ''} ${index === currentIndex + 1 ? 'next' : ''}`}
             >
-              <PetCard 
-                nombre={pet.nombre} 
-                tipo={pet.tipo} 
-                edad={pet.edad} 
-                genero={pet.genero} 
+              <PetCard
+                nombre={pet.nombre}
+                tipo={pet.tipo}
+                edad={pet.edad}
+                genero={pet.genero}
                 imagen={pet.imagen}
                 desc_fisica={pet.desc_fisica}
                 vacunas={pet.vacunas}
                 esterilizado={pet.esterilizado}
                 onToggleLike={handleToggleLike}
                 onAdopt={handleAdopt}
-                isLiked={false} // Puedes implementar lógica para recordar favoritos
+                isLiked={false}
               />
             </div>
           ))}
         </div>
 
-
-        {/* Botones de navegación */}
         <button
           onClick={prevSlide}
           className="pet-slider-nav prev"
@@ -182,7 +196,6 @@ const PetSlider = ({ tipoMascota }) => {
           →
         </button>
       </div>
-
     </div>
   );
 };
