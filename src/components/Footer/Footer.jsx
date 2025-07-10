@@ -6,7 +6,7 @@ import tools from '../../img/tools.svg';
 
 const Footer = () => {
       return (
-    <footer>
+    <footer className='footer'>
     <div className='links-container'>
         <a href="https://huachitos.cl/comunas">Comunas</a>
         <a href="https://huachitos.cl/favoritos">Favoritos</a>

@@ -1,6 +1,8 @@
  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap'); 
 
-
+*{
+  border: 2px solid red;
+}
 
 #root {
   max-width: 390px;
@@ -67,6 +69,10 @@ p{
 }
 .cat-section__heading{
   margin-top: 0px;
+}
+
+.dog-section{
+  padding-bottom: 20px;
 }
 
 .dog-section__content{
