@@ -1,4 +1,17 @@
 import React from 'react'
+
+import Footer from './components/Footer/Footer'
+
+function App() {
+  return (
+    <div className="App">
+     
+      <Footer />
+    </div>
+  );
+}
+
+export default App;import React from 'react'
 import NavBar from './components/NavBar/NavBar'
 import PetSlider from "./components/PetSlider/PetSlider";
 import CardCategory from './components/CardCategory/CardCategory'
