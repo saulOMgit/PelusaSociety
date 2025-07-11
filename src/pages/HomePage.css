@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap');
 
 #root {
-  max-width: 390px;
+  width: 390px;
   margin: 0 auto;
   text-align: center;
-  background-color: #FFFBF8;
+  /* background-color: #FFFBF8; */
+  overflow-x: hidden;
 }
 
 .categories {
