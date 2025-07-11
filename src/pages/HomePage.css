@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap');
+
+#root {
+  max-width: 390px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #FFFBF8;
+}
+
+.categories {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+body {
+  background-color: #FFFBF8;
+  color: #003640;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Evita scroll horizontal en móviles */
+}
+
+.introduction {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 12px 12px 32px;
+}
+
+h1 {
+  font-family: 'Instrument Serif';
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+
+p {
+  text-align: left;
+}
+
+.introduction__photo {
+  width: 100%;
+  max-width: 367px;
+  height: auto;
+}
+
+.election-team {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 12px;
+}
+
+.election-team__paragrahp {
+  margin-bottom: 8px;
+}
+
+.cat-section__content {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px 12px 32px;
+}
+
+.cat-section__instructions-paragraph {
+  margin-bottom: 0px;
+}
+
+.cat-section__subtitle {
+  margin-bottom: 0px;
+}
+
+.cat-section__heading {
+  margin-top: 0px;
+}
+
+.dog-section {
+  padding-bottom: 20px;
+}
+
+.dog-section__content {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px 12px 32px;
+}
+
+.dog-section__instructions-paragrahp {
+  margin-bottom: 0px;
+}
+
+.dog-section__subtitle {
+  margin-bottom: 0px;
+}
+
+.dog-section__heading {
+  margin-top: 0px;
+}
