@@ -82,24 +82,30 @@ const PetSlider = ({ tipoMascota }) => {
     const slider = sliderRef.current;
     if (!slider) return;
 
+    let touchMoved = false;
+
     const handleTouchStart = (e) => {
-      e.preventDefault();
       setIsDragging(true);
-      setStartX(e.touches[0].pageX - slider.offsetLeft);
-      setScrollLeft(slider.scrollLeft);
+      setStartX(e.touches[0].pageX - sliderRef.current.offsetLeft);
+      setScrollLeft(sliderRef.current.scrollLeft);
+      touchMoved = false; // Reseteamos al iniciar
     };
 
     const handleTouchMove = (e) => {
-      if (!isDragging) return;
-      const x = e.touches[0].pageX - slider.offsetLeft;
+      const x = e.touches[0].pageX - sliderRef.current.offsetLeft;
       const walk = (x - startX) * 2;
-      slider.scrollLeft = scrollLeft - walk;
+      if (Math.abs(walk) > 5) {
+        touchMoved = true;
+        e.preventDefault(); // Solo si se está arrastrando realmente
+        sliderRef.current.scrollLeft = scrollLeft - walk;
+      }
     };
 
     const handleTouchEnd = () => {
-      if (!isDragging) return;
       setIsDragging(false);
-      setTimeout(() => snapToCard(), 50); // Da tiempo al scroll antes de hacer snap
+      if (touchMoved) {
+        snapToCard();
+      }
     };
 
     slider.addEventListener('touchstart', handleTouchStart, { passive: false });
