@@ -81,34 +81,6 @@
   object-fit: cover;
 }
 
-/* Info de la mascota */
-.pet-card-info {
-  text-align: center;
-}
-
-.pet-card-info h3 {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.pet-card-details {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.pet-card-details span {
-  background: white;
-  padding: 5px 12px;
-  border-radius: 15px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #333;
-}
-
 /* Botones de navegación */
 .pet-slider-nav {
   position: absolute;
@@ -142,3 +114,18 @@
   right: -20px;
 }
 
+/* Quitar parpadeo al tocar en móviles */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pet-card *,
+.pet-slider-track * {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button:focus {
+  outline: none;
+}

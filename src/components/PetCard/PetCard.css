@@ -147,6 +147,8 @@ body {
     font-size: 20px;
     font-weight: 600;
     margin: 0 0 8px 0;
+    text-align: left;
+    width: 100%;
 }
 
 /* Tags container */
