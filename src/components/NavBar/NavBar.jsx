@@ -3,7 +3,8 @@ import './NavBar.css'
 import img from '../../assets/azul.svg'
 import ButtonFavorites from '../ButtonFavorites/ButtonFavorites'
 
-const NavBar = () => {
+const NavBar = () => { 
+
   return (
     <>
     <header className="navbar">
@@ -11,7 +12,8 @@ const NavBar = () => {
             <div className="logo__container">
              <img src={img} alt="logotipo" className="logo"/>
             </div>
-            <ButtonFavorites />
+            <ButtonFavorites 
+            onClick={() => }/>
         </div>
     </header>
     </>
