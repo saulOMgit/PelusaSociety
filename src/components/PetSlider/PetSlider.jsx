@@ -49,15 +49,11 @@ const PetSlider = ({ tipoMascota }) => {
 
   // Calcular y ajustar al índice de carta más cercano
   const snapToCard = useCallback(() => {
-    const track = sliderRef.current;
-    const card = track.querySelector('.pet-card');
-    if (!card) return;
-
-    const cardStyle = window.getComputedStyle(card);
-    const cardWidth = card.offsetWidth + parseInt(cardStyle.marginRight, 10);
-    const newIndex = Math.round(track.scrollLeft / cardWidth);
-    setCurrentIndex(Math.max(0, Math.min(newIndex, petData.length - 1)));
-  }, [petData.length]);
+  const cardWidth = 240; // Ancho fijo: tarjeta (220px) + margen derecho (20px)
+  const track = sliderRef.current;
+  const newIndex = Math.round(track.scrollLeft / cardWidth);
+  setCurrentIndex(Math.max(0, Math.min(newIndex, petData.length - 1)));
+}, [petData.length]);
 
   // Drag con ratón
   const handleMouseDown = (e) => {
@@ -103,7 +99,7 @@ const PetSlider = ({ tipoMascota }) => {
     const handleTouchEnd = () => {
       if (!isDragging) return;
       setIsDragging(false);
-      snapToCard();
+      setTimeout(() => snapToCard(), 50); // Da tiempo al scroll antes de hacer snap
     };
 
     slider.addEventListener('touchstart', handleTouchStart, { passive: false });
@@ -119,18 +115,13 @@ const PetSlider = ({ tipoMascota }) => {
 
   // Scroll sincronizado al índice actual
   useEffect(() => {
-    if (sliderRef.current) {
-      const card = sliderRef.current.querySelector('.pet-card');
-      if (!card) return;
-
-      const cardStyle = window.getComputedStyle(card);
-      const cardWidth = card.offsetWidth + parseInt(cardStyle.marginRight, 10);
-
-      sliderRef.current.scrollTo({
-        left: currentIndex * cardWidth,
-        behavior: 'smooth'
-      });
-    }
+  if (sliderRef.current) {
+    const cardWidth = 240; // Mismo ancho fijo
+    sliderRef.current.scrollTo({
+      left: currentIndex * cardWidth,
+      behavior: 'smooth'
+    });
+  }
   }, [currentIndex]);
 
   // Resetear índice cuando cambia el tipo
