@@ -12,8 +12,7 @@ const NavBar = () => {
             <div className="logo__container">
              <img src={img} alt="logotipo" className="logo"/>
             </div>
-            <ButtonFavorites 
-            onClick={() => }/>
+            <ButtonFavorites />
         </div>
     </header>
     </>
