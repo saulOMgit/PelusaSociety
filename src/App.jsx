@@ -8,42 +8,84 @@ import img1 from './assets/cat.png'
 import img2 from './assets/dog.png'
 import img3 from './assets/society.png'
 import PetCard from "./components/PetCard/PetCard";
+import pepitaImg from './assets/pepita.png';
+import bassImg from  './assets/bass.png';
+import selvaImg from  './assets/selva.png';
+import beckhamImg from  './assets/beckham.png';
+import bombonImg from  './assets/bombon.png';
+import pomeloImg from  './assets/pomelo.png';
 
 
-
-
-
-const pets = [
+const dogs = [
   {
-    name: "Pepita",
-    image: "/public/dog-prueba.png",
-    age: "4 años",
-    gender: "Hembra",
-    breed: "Pug",
-    type: 'dog',
-    size: 'Mediano',
-    energy: 'Baja energía',
-    description: 'A Pepita le encanta tomar el sol en el parque. Esta pelusa está esperando a ser adoptada.',
-
+    id: "pepita",
+    nombre: "Pepita",
+    tipo: "Perro",
+    edad: "1 año",
+    genero: "Hembra",
+    imagen: pepitaImg,
+    vacunas: 1,
+    esterilizado: 0,
+    desc_fisica: "Pepita es una pug gordita, le gusta que la vistan y la bañen."
   },
   {
-    name: "Max",
-    image: "/public/dog-prueba.png",
-    age: "2 años",
-    gender: "Macho",
-    breed: "Golden Retriever",
-    type: 'cat',
-    size: 'Grande',
-    energy: 'Alta energía'
+    id: "bass",
+    nombre: "Bass",
+    tipo: "Perro",
+    edad: "2 años",
+    genero: "Macho",
+    imagen: bassImg,
+    vacunas: 1,
+    esterilizado: 1,
+    desc_fisica: "Un perro de tamaño grande y con energía."
   },
   {
-    name: "Luna",
-    image: "https://i.pinimg.com/736x/a4/5a/d9/a45ad937cfed4145cf87e0d7e71f3ef2.jpg",
-    age: "3 años",
-    gender: "Hembra",
-    breed: "Border Collie",
-    type: "dog"
-  }
+    id: "selva",
+    nombre: "Selva",
+    tipo: "Perro",
+    edad: "9 meses",
+    genero: "Hembra",
+    imagen: selvaImg,
+    vacunas: 0,
+    esterilizado: 1,
+    desc_fisica: "Criada en nuestro centro desde bebé, muy cariñosa y bien educada."
+  },
+];
+
+const cats = [
+  {
+    id: "beckham",
+    nombre: "Beckham",
+    tipo: "Gato",
+    edad: "3 años",
+    genero: "Macho",
+    imagen: beckhamImg,
+    vacunas: 1,
+    esterilizado: 1,
+    desc_fisica: "Gato atigrado perteneciente a nuestra diseñadora Sara, no está disponible pero para que veáis lo guapo que es."
+  },
+  {
+    id: "bombon",
+    nombre: "Bombón",
+    tipo: "Gato",
+    edad: "4 años",
+    genero: "Macho",
+    imagen: bombonImg,
+    vacunas: 1,
+    esterilizado: 1,
+    desc_fisica: "Un gato famoso ya que apareció en la famosa cuenta de Twitter 'Gatitos gorditos'."
+  },
+  {
+    id: "pomelo",
+    nombre: "Pomelo",
+    tipo: "Gato",
+    edad: "9 meses",
+    genero: "Hembra",
+    imagen: pomeloImg,
+    vacunas: 1,
+    esterilizado: 0,
+    desc_fisica: "Una gata joven con mucha energía."
+  },
 ];
 
 function App() {
@@ -102,7 +144,7 @@ function App() {
             <h3 className='cat-section__subtitle'>¡Haz el match perfecto!</h3>
             <p className='cat-section__instructions-paragraph'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
           </div>
-          <PetSlider tipoMascota="Gato" />
+          <PetSlider tipoMascota="Gato" muestra={cats} />
         </div>
         <div className='dog-section'>
           <div className='dog-section__content'>
@@ -111,7 +153,7 @@ function App() {
             <h3 className='dog-section__subtitle'>¡Haz el match perfecto!</h3>
             <p className='dog-section__instructions-paragrahp'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
           </div>
-          <PetSlider tipoMascota="Perro" />
+          <PetSlider tipoMascota="Perro" muestra={dogs} />
         </div>
         <div className="App">
           <Footer />
