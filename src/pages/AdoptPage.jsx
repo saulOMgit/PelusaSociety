@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import './AdoptPage.css';
 
 const AdoptPage = () => {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  
   const {
     register,
     handleSubmit,
@@ -12,101 +14,141 @@ const AdoptPage = () => {
 
   const onSubmit = (data) => {
     console.log('Datos del formulario:', data);
-    // Aquí iría la lógica para enviar los datos
-    alert('¡Solicitud de adopción enviada exitosamente!');
+    // Mostrar mensaje de confirmación
+    setShowConfirmation(true);
+    // Ocultar mensaje después de 5 segundos
+    setTimeout(() => {
+      setShowConfirmation(false);
+    }, 5000);
+    // Resetear formulario
     reset();
   };
 
   return (
     <div className="adopt-page">
       {/* Header */}
-      <header className="adopt-header">
-        <div className="logo">
-          <h1>Pelusa Society</h1>
-        </div>
+      <header className="adopt-page__header">
+        <h1 className="adopt-page__logo">Pelusa Society</h1>
       </header>
 
+      {/* Mensaje de confirmación */}
+      {showConfirmation && (
+        <div className="adopt-page__confirmation">
+          <div className="adopt-page__confirmation-content">
+            <span className="adopt-page__confirmation-icon">✅</span>
+            <p className="adopt-page__confirmation-text">
+              ¡Solicitud de adopción enviada exitosamente! Nos pondremos en contacto contigo pronto.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Main Content */}
-      <main className="adopt-main">
-        <div className="adopt-container">
-          <div className="adopt-intro">
-            <h2>¡Adopta una mascota!</h2>
-            <p>
-              Completa este formulario para comenzar el proceso de adopción. 
-              Nos pondremos en contacto contigo para coordinar una visita y 
-              conocer a tu nueva mascota.
+      <main className="adopt-page__main">
+        <div className="adopt-page__container">
+          
+          {/* Título y descripción */}
+          <div className="adopt-page__intro">
+            <h2 className="adopt-page__title">Solicitud de adopción</h2>
+            <p className="adopt-page__description">
+              Qué bien que te hayas decidido por (nombre de la mascota)! Ahora vamos a 
+              cumplimentar el formulario de solicitud para asegurarnos de que haces el match 
+              perfecto. Además hemos añadido un campo extra al final por si quieres adoptar 
+              más de una mascota. En caso afirmativo, deberás indicarnos su nombre y preferir.
+            </p>
+            <p className="adopt-page__note">
+              Recordatorio: todos los campos con asterisco (*) son obligatorios.
             </p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="adopt-form">
+            
             {/* Información Personal */}
-            <section className="form-section">
-              <h3>Información Personal</h3>
+            <section className="adopt-form__section">
+              <h3 className="adopt-form__section-title">
+                <span className="adopt-form__section-icon">👤</span>
+                Información personal
+              </h3>
               
-              <div className="form-group">
-                <label htmlFor="fullName">Nombre Completo *</label>
+              <div className="adopt-form__field">
+                <label htmlFor="fullName" className="adopt-form__label">
+                  Nombre completo*
+                </label>
                 <input
                   type="text"
                   id="fullName"
+                  placeholder="Campo a rellenar"
+                  className={`adopt-form__input ${errors.fullName ? 'adopt-form__input--error' : ''}`}
                   {...register('fullName', {
                     required: 'El nombre completo es obligatorio',
+                    pattern: {
+                      value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+$/,
+                      message: 'El nombre solo puede contener letras y espacios'
+                    },
                     minLength: {
                       value: 2,
                       message: 'El nombre debe tener al menos 2 caracteres'
                     }
                   })}
-                  className={errors.fullName ? 'error' : ''}
                 />
                 {errors.fullName && (
-                  <span className="error-message">{errors.fullName.message}</span>
+                  <span className="adopt-form__error">{errors.fullName.message}</span>
                 )}
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="email">Correo Electrónico *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    {...register('email', {
-                      required: 'El correo electrónico es obligatorio',
-                      pattern: {
-                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: 'Correo electrónico inválido'
-                      }
-                    })}
-                    className={errors.email ? 'error' : ''}
-                  />
-                  {errors.email && (
-                    <span className="error-message">{errors.email.message}</span>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="phone">Teléfono *</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    {...register('phone', {
-                      required: 'El teléfono es obligatorio',
-                      pattern: {
-                        value: /^[0-9+\-\s()]+$/,
-                        message: 'Formato de teléfono inválido'
-                      }
-                    })}
-                    className={errors.phone ? 'error' : ''}
-                  />
-                  {errors.phone && (
-                    <span className="error-message">{errors.phone.message}</span>
-                  )}
-                </div>
+              <div className="adopt-form__field">
+                <label htmlFor="phone" className="adopt-form__label">
+                  Teléfono*
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  placeholder="Campo a rellenar"
+                  className={`adopt-form__input ${errors.phone ? 'adopt-form__input--error' : ''}`}
+                  {...register('phone', {
+                    required: 'El teléfono es obligatorio',
+                    pattern: {
+                      value: /^[+]?[0-9\s\-()]{9,15}$/,
+                      message: 'Formato de teléfono inválido (9-15 dígitos)'
+                    }
+                  })}
+                />
+                {errors.phone && (
+                  <span className="adopt-form__error">{errors.phone.message}</span>
+                )}
               </div>
 
-              <div className="form-group">
-                <label htmlFor="address">Dirección Completa *</label>
-                <textarea
+              <div className="adopt-form__field">
+                <label htmlFor="email" className="adopt-form__label">
+                  Correo electrónico*
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Campo a rellenar"
+                  className={`adopt-form__input ${errors.email ? 'adopt-form__input--error' : ''}`}
+                  {...register('email', {
+                    required: 'El correo electrónico es obligatorio',
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: 'Formato de correo electrónico inválido'
+                    }
+                  })}
+                />
+                {errors.email && (
+                  <span className="adopt-form__error">{errors.email.message}</span>
+                )}
+              </div>
+
+              <div className="adopt-form__field">
+                <label htmlFor="address" className="adopt-form__label">
+                  Dirección completa*
+                </label>
+                <input
+                  type="text"
                   id="address"
-                  rows="3"
+                  placeholder="Campo a rellenar"
+                  className={`adopt-form__input ${errors.address ? 'adopt-form__input--error' : ''}`}
                   {...register('address', {
                     required: 'La dirección es obligatoria',
                     minLength: {
@@ -114,262 +156,260 @@ const AdoptPage = () => {
                       message: 'La dirección debe ser más específica'
                     }
                   })}
-                  className={errors.address ? 'error' : ''}
                 />
                 {errors.address && (
-                  <span className="error-message">{errors.address.message}</span>
+                  <span className="adopt-form__error">{errors.address.message}</span>
                 )}
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="age">Edad *</label>
-                  <input
-                    type="number"
-                    id="age"
-                    min="18"
-                    max="100"
-                    {...register('age', {
-                      required: 'La edad es obligatoria',
-                      min: {
-                        value: 18,
-                        message: 'Debes ser mayor de 18 años'
-                      },
-                      max: {
-                        value: 100,
-                        message: 'Edad inválida'
-                      }
-                    })}
-                    className={errors.age ? 'error' : ''}
-                  />
-                  {errors.age && (
-                    <span className="error-message">{errors.age.message}</span>
-                  )}
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="occupation">Ocupación *</label>
-                  <input
-                    type="text"
-                    id="occupation"
-                    {...register('occupation', {
-                      required: 'La ocupación es obligatoria'
-                    })}
-                    className={errors.occupation ? 'error' : ''}
-                  />
-                  {errors.occupation && (
-                    <span className="error-message">{errors.occupation.message}</span>
-                  )}
-                </div>
-              </div>
-            </section>
-
-            {/* Información de la Mascota */}
-            <section className="form-section">
-              <h3>Preferencias de Mascota</h3>
-              
-              <div className="form-group">
-                <label htmlFor="petType">Tipo de Mascota *</label>
-                <select
-                  id="petType"
-                  {...register('petType', {
-                    required: 'Selecciona el tipo de mascota'
+              <div className="adopt-form__field">
+                <label htmlFor="age" className="adopt-form__label">
+                  Edad*
+                </label>
+                <input
+                  type="number"
+                  id="age"
+                  min="18"
+                  max="100"
+                  placeholder="Campo a rellenar"
+                  className={`adopt-form__input ${errors.age ? 'adopt-form__input--error' : ''}`}
+                  {...register('age', {
+                    required: 'La edad es obligatoria',
+                    min: {
+                      value: 18,
+                      message: 'Debes ser mayor de 18 años'
+                    },
+                    max: {
+                      value: 100,
+                      message: 'Edad inválida'
+                    }
                   })}
-                  className={errors.petType ? 'error' : ''}
-                >
-                  <option value="">Selecciona una opción</option>
-                  <option value="gato">Gato</option>
-                  <option value="perro">Perro</option>
-                  <option value="cualquiera">Cualquiera</option>
-                </select>
-                {errors.petType && (
-                  <span className="error-message">{errors.petType.message}</span>
+                />
+                {errors.age && (
+                  <span className="adopt-form__error">{errors.age.message}</span>
                 )}
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="petAge">Edad Preferida</label>
-                  <select
-                    id="petAge"
-                    {...register('petAge')}
-                  >
-                    <option value="">Sin preferencia</option>
-                    <option value="cachorro">Cachorro/Gatito (0-1 año)</option>
-                    <option value="joven">Joven (1-3 años)</option>
-                    <option value="adulto">Adulto (3-7 años)</option>
-                    <option value="senior">Senior (7+ años)</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="petSize">Tamaño Preferido (para perros)</label>
-                  <select
-                    id="petSize"
-                    {...register('petSize')}
-                  >
-                    <option value="">Sin preferencia</option>
-                    <option value="pequeño">Pequeño</option>
-                    <option value="mediano">Mediano</option>
-                    <option value="grande">Grande</option>
-                  </select>
-                </div>
+              <div className="adopt-form__field">
+                <label htmlFor="occupation" className="adopt-form__label">
+                  Ocupación*
+                </label>
+                <input
+                  type="text"
+                  id="occupation"
+                  placeholder="Campo a rellenar"
+                  className={`adopt-form__input ${errors.occupation ? 'adopt-form__input--error' : ''}`}
+                  {...register('occupation', {
+                    required: 'La ocupación es obligatoria',
+                    minLength: {
+                      value: 2,
+                      message: 'La ocupación debe tener al menos 2 caracteres'
+                    }
+                  })}
+                />
+                {errors.occupation && (
+                  <span className="adopt-form__error">{errors.occupation.message}</span>
+                )}
               </div>
             </section>
 
             {/* Información del Hogar */}
-            <section className="form-section">
-              <h3>Información del Hogar</h3>
+            <section className="adopt-form__section">
+              <h3 className="adopt-form__section-title">
+                <span className="adopt-form__section-icon">🏠</span>
+                Información del hogar
+              </h3>
               
-              <div className="form-group">
-                <label htmlFor="housingType">Tipo de Vivienda *</label>
+              <div className="adopt-form__field">
+                <label htmlFor="housingType" className="adopt-form__label">
+                  Selecciona una opción*
+                </label>
                 <select
                   id="housingType"
+                  className={`adopt-form__select ${errors.housingType ? 'adopt-form__select--error' : ''}`}
                   {...register('housingType', {
                     required: 'Selecciona el tipo de vivienda'
                   })}
-                  className={errors.housingType ? 'error' : ''}
                 >
                   <option value="">Selecciona una opción</option>
                   <option value="casa">Casa</option>
                   <option value="apartamento">Apartamento</option>
+                  <option value="piso">Piso</option>
                   <option value="otro">Otro</option>
                 </select>
                 {errors.housingType && (
-                  <span className="error-message">{errors.housingType.message}</span>
+                  <span className="adopt-form__error">{errors.housingType.message}</span>
                 )}
               </div>
 
-              <div className="form-group checkbox-group">
-                <label>
+              <div className="adopt-form__checkbox-group">
+                <label className="adopt-form__checkbox">
                   <input
                     type="checkbox"
+                    className="adopt-form__checkbox-input"
                     {...register('hasYard')}
                   />
-                  Tengo patio o jardín
+                  <span className="adopt-form__checkbox-label">Tengo jardín o patio</span>
                 </label>
               </div>
 
-              <div className="form-group checkbox-group">
-                <label>
+              <div className="adopt-form__checkbox-group">
+                <label className="adopt-form__checkbox">
                   <input
                     type="checkbox"
+                    className="adopt-form__checkbox-input"
                     {...register('hasOtherPets')}
                   />
-                  Tengo otras mascotas
+                  <span className="adopt-form__checkbox-label">Tengo otras mascotas</span>
                 </label>
               </div>
 
-              <div className="form-group checkbox-group">
-                <label>
+              <div className="adopt-form__checkbox-group">
+                <label className="adopt-form__checkbox">
                   <input
                     type="checkbox"
+                    className="adopt-form__checkbox-input"
                     {...register('hasChildren')}
                   />
-                  Tengo niños en casa
+                  <span className="adopt-form__checkbox-label">Tengo niños en casa</span>
                 </label>
               </div>
             </section>
 
             {/* Experiencia y Motivación */}
-            <section className="form-section">
-              <h3>Experiencia y Motivación</h3>
+            <section className="adopt-form__section">
+              <h3 className="adopt-form__section-title">
+                <span className="adopt-form__section-icon">❤️</span>
+                Experiencia y motivación
+              </h3>
               
-              <div className="form-group">
-                <label htmlFor="experience">¿Has tenido mascotas antes? *</label>
-                <select
-                  id="experience"
-                  {...register('experience', {
-                    required: 'Selecciona tu experiencia'
+              <div className="adopt-form__field">
+                <label htmlFor="hasPetExperience" className="adopt-form__label">
+                  ¿Has tenido mascotas antes?*
+                </label>
+                <input
+                  type="text"
+                  id="hasPetExperience"
+                  placeholder="Campo a rellenar"
+                  className={`adopt-form__input ${errors.hasPetExperience ? 'adopt-form__input--error' : ''}`}
+                  {...register('hasPetExperience', {
+                    required: 'Este campo es obligatorio'
                   })}
-                  className={errors.experience ? 'error' : ''}
-                >
-                  <option value="">Selecciona una opción</option>
-                  <option value="si">Sí, he tenido mascotas</option>
-                  <option value="no">No, sería mi primera mascota</option>
-                </select>
-                {errors.experience && (
-                  <span className="error-message">{errors.experience.message}</span>
+                />
+                {errors.hasPetExperience && (
+                  <span className="adopt-form__error">{errors.hasPetExperience.message}</span>
                 )}
               </div>
 
-              <div className="form-group">
-                <label htmlFor="motivation">¿Por qué quieres adoptar una mascota? *</label>
+              <div className="adopt-form__field">
+                <label htmlFor="motivation" className="adopt-form__label">
+                  ¿Por qué quieres adoptar?*
+                </label>
                 <textarea
                   id="motivation"
                   rows="4"
-                  placeholder="Cuéntanos tus motivaciones para adoptar..."
+                  placeholder="Cuéntanos tus motivaciones"
+                  className={`adopt-form__textarea ${errors.motivation ? 'adopt-form__textarea--error' : ''}`}
                   {...register('motivation', {
                     required: 'Por favor, comparte tu motivación',
+                    pattern: {
+                      value: /^[a-zA-ZÀ-ÿ\u00f1\u00d1\s.,!?¿¡0-9]+$/,
+                      message: 'El mensaje contiene caracteres no válidos'
+                    },
                     minLength: {
                       value: 20,
-                      message: 'Por favor, proporciona más detalles'
+                      message: 'Por favor, proporciona más detalles (mínimo 20 caracteres)'
                     }
                   })}
-                  className={errors.motivation ? 'error' : ''}
                 />
                 {errors.motivation && (
-                  <span className="error-message">{errors.motivation.message}</span>
+                  <span className="adopt-form__error">{errors.motivation.message}</span>
                 )}
               </div>
 
-              <div className="form-group">
-                <label htmlFor="timeAvailable">¿Cuánto tiempo puedes dedicar diariamente a tu mascota? *</label>
-                <select
+              <div className="adopt-form__field">
+                <label htmlFor="timeAvailable" className="adopt-form__label">
+                  ¿Cuánto tiempo puedes dedicar diariamente a tu mascota?*
+                </label>
+                <input
+                  type="text"
                   id="timeAvailable"
+                  placeholder="Campo a rellenar"
+                  className={`adopt-form__input ${errors.timeAvailable ? 'adopt-form__input--error' : ''}`}
                   {...register('timeAvailable', {
-                    required: 'Selecciona el tiempo disponible'
+                    required: 'Este campo es obligatorio'
                   })}
-                  className={errors.timeAvailable ? 'error' : ''}
-                >
-                  <option value="">Selecciona una opción</option>
-                  <option value="1-2">1-2 horas</option>
-                  <option value="3-4">3-4 horas</option>
-                  <option value="5-6">5-6 horas</option>
-                  <option value="todo-el-dia">Todo el día</option>
-                </select>
+                />
                 {errors.timeAvailable && (
-                  <span className="error-message">{errors.timeAvailable.message}</span>
+                  <span className="adopt-form__error">{errors.timeAvailable.message}</span>
+                )}
+              </div>
+
+              <div className="adopt-form__field">
+                <label htmlFor="additionalPet" className="adopt-form__label">
+                  ¿Quieres adoptar a alguna mascota más?*
+                </label>
+                <input
+                  type="text"
+                  id="additionalPet"
+                  placeholder="Campo a rellenar"
+                  className={`adopt-form__input ${errors.additionalPet ? 'adopt-form__input--error' : ''}`}
+                  {...register('additionalPet', {
+                    required: 'Este campo es obligatorio'
+                  })}
+                />
+                {errors.additionalPet && (
+                  <span className="adopt-form__error">{errors.additionalPet.message}</span>
                 )}
               </div>
             </section>
 
             {/* Términos y Condiciones */}
-            <section className="form-section">
-              <div className="form-group checkbox-group">
-                <label>
+            <section className="adopt-form__section">
+              <div className="adopt-form__checkbox-group">
+                <label className="adopt-form__checkbox">
                   <input
                     type="checkbox"
+                    className={`adopt-form__checkbox-input ${errors.acceptTerms ? 'adopt-form__checkbox-input--error' : ''}`}
                     {...register('acceptTerms', {
                       required: 'Debes aceptar los términos y condiciones'
                     })}
-                    className={errors.acceptTerms ? 'error' : ''}
                   />
-                  Acepto los términos y condiciones de adopción *
+                  <span className="adopt-form__checkbox-label">
+                    Acepto los términos y condiciones de adopción. *
+                  </span>
                 </label>
                 {errors.acceptTerms && (
-                  <span className="error-message">{errors.acceptTerms.message}</span>
+                  <span className="adopt-form__error">{errors.acceptTerms.message}</span>
                 )}
               </div>
 
-              <div className="form-group checkbox-group">
-                <label>
+              <div className="adopt-form__checkbox-group">
+                <label className="adopt-form__checkbox">
                   <input
                     type="checkbox"
+                    className="adopt-form__checkbox-input"
                     {...register('acceptContact')}
                   />
-                  Acepto ser contactado para seguimiento post-adopción
+                  <span className="adopt-form__checkbox-label">
+                    Acepto ser contactado para el seguimiento post-adopción.
+                  </span>
                 </label>
               </div>
             </section>
 
             {/* Botón de Envío */}
-            <div className="form-submit">
-              <button type="submit" className="submit-btn">
-                Enviar Solicitud de Adopción
+            <div className="adopt-form__submit">
+              <button type="submit" className="adopt-form__submit-btn">
+                Enviar
               </button>
             </div>
           </form>
+
+          {/* Aviso legal */}
+          <footer className="adopt-page__footer">
+            <p className="adopt-page__legal">Aviso legal</p>
+          </footer>
         </div>
       </main>
     </div>
