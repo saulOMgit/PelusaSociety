@@ -142,27 +142,3 @@
   right: -20px;
 }
 
-/* Responsive */
-@media (max-width: 480px) {
-  .pet-slider-container {
-    padding: 15px;
-  }
-  
-  .pet-slider-nav {
-    width: 35px;
-    height: 35px;
-  }
-  
-  .pet-slider-nav.prev {
-    left: -15px;
-  }
-  
-  .pet-slider-nav.next {
-    right: -15px;
-  }
-  
-  .pet-card {
-    width: 240px;
-    margin-right: 15px;
-  }
-}
