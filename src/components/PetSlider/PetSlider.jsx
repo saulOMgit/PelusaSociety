@@ -103,7 +103,7 @@ const PetSlider = ({ tipoMascota }) => {
     const handleTouchEnd = () => {
       if (!isDragging) return;
       setIsDragging(false);
-      setTimeout(() => snapToCard(), 50); // Da tiempo al scroll antes de hacer snap
+      snapToCard();
     };
 
     slider.addEventListener('touchstart', handleTouchStart, { passive: false });
