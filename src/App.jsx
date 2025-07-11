@@ -1,4 +1,3 @@
-import React, { useRef } from 'react' //useRef es un hook que sirve para crear referencias mutables a un elemento del DOM
 import Footer from './components/Footer/Footer'
 import NavBar from './components/NavBar/NavBar'
 import PetSlider from "./components/PetSlider/PetSlider";
@@ -123,4 +122,3 @@ function App() {
 
 
 export default App;
-
