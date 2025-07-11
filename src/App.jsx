@@ -8,12 +8,12 @@ import img1 from './assets/cat.png'
 import img2 from './assets/dog.png'
 import img3 from './assets/society.png'
 import PetCard from "./components/PetCard/PetCard";
-import pepitaImg from './assets/pepita.png';
-import bassImg from  './assets/bass.png';
-import selvaImg from  './assets/selva.png';
-import beckhamImg from  './assets/beckham.png';
-import bombonImg from  './assets/bombon.png';
-import pomeloImg from  './assets/pomelo.png';
+import pepitaImg from './assets/pepita.webp';
+import bassImg from  './assets/bass.webp';
+import selvaImg from  './assets/selva.webp';
+import beckhamImg from  './assets/beckham.webp';
+import bombonImg from  './assets/bombon.webp';
+import pomeloImg from  './assets/pomelo.webp';
 
 
 const dogs = [
