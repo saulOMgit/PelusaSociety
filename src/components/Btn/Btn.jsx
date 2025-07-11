@@ -1,5 +1,5 @@
 import "./Btn.css";
-
+import PawIcon from '../../assets/PawIcon.svg'; 
 export const Btn = ({ onClick, petData }) => {
 
    const handleClick = () => {
@@ -10,7 +10,7 @@ export const Btn = ({ onClick, petData }) => {
 
   return (
     <button className="btn" onClick={handleClick}>
-      <img src="../../../public/PawIcon.svg" alt="Icono de huella" className="btn__icon" />
+      <img src={PawIcon} alt="Icono de huella" className="btn__icon" />
       <div className="btn__label">¡Adopta!</div>
     </button>
   );
