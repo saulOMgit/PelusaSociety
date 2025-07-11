@@ -104,8 +104,8 @@ const PetCard = React.memo(({
                     <div className={`back-info ${imageContainerBackgroundClass}`}>
                         <h2 className="pet-name">{nombre}</h2>
                         <div className="tags">
-                            {esterilizado && <span className="tag">Esterilizado</span>}
-                            {vacunas && <span className="tag">Vacunado</span>}
+                            {esterilizado ? <span className="tag">Esterilizado</span> : ''}
+                            {vacunas ? <span className="tag">Vacunado</span> : ''}
                         </div>
                         <p className="description-text">{desc_fisica}</p>
                     </div>
