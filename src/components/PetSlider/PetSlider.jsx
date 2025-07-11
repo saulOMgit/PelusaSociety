@@ -3,7 +3,7 @@ import './PetSlider.css';
 import { getPets } from '../../services/PetService';
 import PetCard from '../PetCard/PetCard';
 
-const PetSlider = ({ tipoMascota }) => {
+const PetSlider = ({ tipoMascota, muestra }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -29,7 +29,7 @@ const PetSlider = ({ tipoMascota }) => {
             esterilizado: p.esterilizado,
             desc_fisica: p.desc_fisica.replace(/<p>|<\/p>/g, ''),
           }));
-        setPetData(mappedPets);
+        setPetData([...muestra, ...mappedPets]);
       } catch (error) {
         console.error("No se pudieron cargar las mascotas desde la API.", error);
       }
