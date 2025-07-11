@@ -1,42 +1,89 @@
+ @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap'); 
+
+
 #root {
-  max-width: 1280px;
+  max-width: 390px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.categories {
+  display: flex;
+  flex-direction: row; 
+  gap: 16px;
+  margin-left: 12px;
+  margin-right: 12px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body{
+  background-color: #FFFBF8;
+  color: #003640;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.introduction{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 12px 12px 32px;
+  
+
+}
+h1 {
+  font-family: 'Instrument Serif';
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 0px;
+
+}
+p{
+  text-align: left;
+}
+.introduction__photo{
+  width: 367px;
 }
 
-.card {
-  padding: 2em;
+.election-team{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 12px;
 }
 
-.read-the-docs {
-  color: #888;
+.election-team__paragrahp{
+  margin-bottom: 8px;
+}
+
+.cat-section__content{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px 12px 32px;
+}
+
+.cat-section__instructions-paragraph{
+  margin-bottom: 0px;
+}
+.cat-section__subtitle{
+  margin-bottom: 0px;
+}
+.cat-section__heading{
+  margin-top: 0px;
+}
+
+.dog-section{
+  padding-bottom: 20px;
+}
+
+.dog-section__content{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px 12px 32px;
+}
+
+.dog-section__instructions-paragrahp{
+  margin-bottom: 0px;
+}
+.dog-section__subtitle{
+  margin-bottom: 0px;
+}
+.dog-section__heading{
+  margin-top: 0px;
 }

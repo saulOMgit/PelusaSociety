@@ -1,0 +1,26 @@
+
+.footer {
+    width: 390px;
+    background-color: #FFFBF8;
+    margin: 0;
+    padding: 24px 12px 24px 12px;
+    box-sizing: border-box;
+    border-top: solid 1px #003640;
+    bottom: 0;
+}
+
+.instagram, .api{
+    width: 15px;
+}
+
+.links-container {
+    display: flex;
+    flex-wrap: wrap;
+   
+}
+
+a{
+    color: #003640;
+    text-decoration: none;
+    padding: 10px;
+} 
