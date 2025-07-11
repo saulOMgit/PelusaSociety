@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import './PetCard.css'
 import Btn from '../Btn/Btn'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw, faHeart } from '@fortawesome/free-solid-svg-icons';
 
-const PetCard = ({
+// Función de comparación optimizada
+const petCardPropsAreEqual = (prevProps, nextProps) => {
+  // Lista de props primitivas a comparar
+  const propsToCompare = [
+    'nombre', 'tipo', 'edad', 'genero', 'imagen', 
+    'desc_fisica', 'vacunas', 'esterilizado', 'isLiked'
+  ];
+  
+  // Comparación rápida de props primitivas
+  for (const prop of propsToCompare) {
+    if (prevProps[prop] !== nextProps[prop]) {
+      return false;
+    }
+  }
+  
+  return true;
+};
+
+const PetCard = React.memo(({
     nombre,
     tipo,
     edad,
@@ -15,42 +33,47 @@ const PetCard = ({
     vacunas,
     esterilizado,
     onToggleLike,
-    isLiked: initialLiked = false,
+    isLiked = false, // ✅ Usar directamente la prop, no estado local
     onAdopt
 }) => {
-
-    const [isLiked, setIsLiked] = useState(initialLiked);
+    // Solo necesitamos estado para el flip de la carta
     const [isFlipped, setIsFlipped] = useState(false);
 
-    const handleLikeClick = (e) => {
-        e.stopPropagation(); //evita que se voltee al hacer click en corazon
-        const newLikeState = !isLiked;
-        setIsLiked(newLikeState);
-        if (onToggleLike) {
-            onToggleLike(nombre, newLikeState);
-        }
-    };
-
-    const handleAdoptClick = (petData) => {
-        // e.stopPropagation();
-        if (onAdopt) {
-            onAdopt(petData);
-        }
-    };
-
-    const handleCardClick = () => {
-        setIsFlipped(!isFlipped);
-    };
-
-    const handleBackClick = (e) => {
+    // ✅ Handlers memoizados
+    const handleLikeClick = useCallback((e) => {
         e.stopPropagation();
-        setIsFlipped(false)
-    };
+        // Llamar directamente al callback del padre con el estado contrario
+        if (onToggleLike) {
+            onToggleLike(nombre, !isLiked);
+        }
+    }, [onToggleLike, nombre, isLiked]);
 
+    const handleAdoptClick = useCallback(() => {
+        if (onAdopt) {
+            onAdopt({ nombre, imagen });
+        }
+    }, [onAdopt, nombre, imagen]);
 
+    const handleCardClick = useCallback(() => {
+        setIsFlipped(prev => !prev);
+    }, []);
 
-    const imageContainerBackgroundClass =
-        tipo === 'Perro' ? 'dog-image-background' : tipo === 'Gato' ? 'cat-image-background' : '';
+    const handleBackClick = useCallback((e) => {
+        e.stopPropagation();
+        setIsFlipped(false);
+    }, []);
+
+    // ✅ Clase CSS memoizada
+    const imageContainerBackgroundClass = useMemo(() => {
+        return tipo === 'Perro' ? 'dog-image-background' : 
+               tipo === 'Gato' ? 'cat-image-background' : '';
+    }, [tipo]);
+
+    // ✅ Objeto petData memoizado para evitar recreación
+    const petData = useMemo(() => ({
+        nombre,
+        imagen
+    }), [nombre, imagen]);
 
     return (
         <div className="adoption-card">
@@ -81,8 +104,8 @@ const PetCard = ({
                     <div className={`back-info ${imageContainerBackgroundClass}`}>
                         <h2 className="pet-name">{nombre}</h2>
                         <div className="tags">
-                            {esterilizado ? <span className="tag">Esterilizado</span> : ''}
-                            {vacunas ? <span className="tag">Vacunado</span> : ''}
+                            {esterilizado && <span className="tag">Esterilizado</span>}
+                            {vacunas && <span className="tag">Vacunado</span>}
                         </div>
                         <p className="description-text">{desc_fisica}</p>
                     </div>
@@ -91,15 +114,13 @@ const PetCard = ({
             <div className="button-container">
                 <Btn
                     onClick={handleAdoptClick}
-                    petData={{ nombre, imagen}}
+                    petData={petData}
                 />
-                {/* <button className="adopt-button" onClick={handleAdoptClick}>
-                    <FontAwesomeIcon icon={faPaw} className="paw-icon" />
-                    ¡Adopta!
-                </button> */}
             </div>
         </div>
-    )
-}
+    );
+}, petCardPropsAreEqual);
 
-export default PetCard
+PetCard.displayName = 'PetCard';
+
+export default PetCard;
