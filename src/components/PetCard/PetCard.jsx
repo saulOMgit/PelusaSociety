@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './PetCard.css'
+import Btn from '../Btn/Btn'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -30,10 +31,10 @@ const PetCard = ({
         }
     };
 
-    const handleAdoptClick = (e) => {
-        e.stopPropagation();
+    const handleAdoptClick = (petData) => {
+        // e.stopPropagation();
         if (onAdopt) {
-            onAdopt(nombre);
+            onAdopt(petData);
         }
     };
 
@@ -46,7 +47,7 @@ const PetCard = ({
         setIsFlipped(false)
     };
 
-    
+
 
     const imageContainerBackgroundClass =
         tipo === 'Perro' ? 'dog-image-background' : tipo === 'Gato' ? 'cat-image-background' : '';
@@ -75,7 +76,7 @@ const PetCard = ({
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="card-back">
                     <div className={`back-info ${imageContainerBackgroundClass}`}>
                         <h2 className="pet-name">{nombre}</h2>
@@ -87,12 +88,15 @@ const PetCard = ({
                     </div>
                 </div>
             </div>
-
             <div className="button-container">
-                <button className="adopt-button" onClick={handleAdoptClick}>
+                <Btn
+                    onClick={handleAdoptClick}
+                    petData={{ nombre, imagen}}
+                />
+                {/* <button className="adopt-button" onClick={handleAdoptClick}>
                     <FontAwesomeIcon icon={faPaw} className="paw-icon" />
                     ¡Adopta!
-                </button>
+                </button> */}
             </div>
         </div>
     )

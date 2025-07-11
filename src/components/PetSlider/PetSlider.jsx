@@ -140,8 +140,8 @@ const PetSlider = ({ tipoMascota }) => {
     console.log(`${nombre} ${isLiked ? 'añadido a' : 'eliminado de'} favoritos`);
   };
 
-  const handleAdopt = (nombre) => {
-    console.log(`Iniciando proceso de adopción para ${nombre}`);
+  const handleAdopt = (petData) => {
+    console.log(`Iniciando proceso de adopción para ${petData.nombre}`);
   };
 
   return (
