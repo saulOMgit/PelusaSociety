@@ -13,7 +13,6 @@ body {
     margin: 0 auto;
 }
 
-/* Main card container */
 .adoption-card {
     width: 220px;
     height: 292px;
@@ -21,42 +20,43 @@ body {
     overflow: hidden;
     border-radius: 8px; 
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Usamos flexbox para apilar card-inner y button-container */
+    display: flex;
     flex-direction: column;
 }
 
-
-
-.card-inner {
+.adoption-card__inner {
     position: relative;
     width: 100%;
-    height: 236px; /* **IMPORTANTE: Le damos la altura fija que tenía la imagen** */
+    height: 236px;
     transition: transform 0.8s;
     transform-style: preserve-3d;
     cursor: pointer; 
 }
-.card-inner.flipped {
+
+.adoption-card__inner--flipped {
     transform: rotateY(180deg);
 }
-.card-front, .card-back {
+
+.adoption-card__front,
+.adoption-card__back {
     position: absolute;
     width: 100%;
-    height: 100%; /* Ocupan todo el card-inner */
+    height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 0; 
-    overflow: hidden; /* Importante para que el contenido de la imagen no se desborde */
-    
+    overflow: hidden;
 }
 
-.card-front{
+.adoption-card__front {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
     z-index: 2;
 }
-.card-back {
+
+.adoption-card__back {
     transform: rotateY(180deg);
     border-radius: 8px;
     display: flex;
@@ -67,8 +67,7 @@ body {
     width: 100%;
 }
 
-/* Image container with relative positioning for overlays */
-.image-container {
+.adoption-card__image-container {
     position: relative;
     width: 100%;
     height: 100%;
@@ -79,26 +78,23 @@ body {
     overflow: hidden;
 }
 
-.dog-image-background {
+.adoption-card__image-container--dog {
     background-color: #EAC2CC;
 }
 
-.cat-image-background {
+.adoption-card__image-container--cat {
     background-color: #ED7744;
 }
 
-.pet-image {
+.adoption-card__pet-image {
     width: 100%;
     height: 236px;
     object-fit: cover;
     display: block;
     border-radius: 10px;
-
 }
 
-
-
-.heart-button {
+.adoption-card__heart-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -109,12 +105,15 @@ body {
     transition: all 0.2s ease;
 }
 
-.heart-button:hover {
+.adoption-card__heart-button:hover {
     transform: scale(1.05);
 }
 
+.adoption-card__heart-button:focus {
+    outline: none;
+}
 
-.heart-icon {
+.adoption-card__heart-icon {
     width: 24px;
     height: 24px;
     color: #ffffff;
@@ -122,19 +121,13 @@ body {
     transition: all 0.2s ease;
 }
 
-.heart-icon.liked {
+.adoption-card__heart-icon--liked {
     color: #ef4444;
     border: none;
     opacity: 1;
 }
 
-.heart-button:focus {
-    outline: none;
-}
-
-
-/* Text overlay at bottom of image */
-.text-overlay {
+.adoption-card__text-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -142,21 +135,22 @@ body {
     padding: 10px;
 }
 
-.pet-name {
+.adoption-card__pet-name {
     color: #003640;
     font-size: 20px;
     font-weight: 600;
     margin: 0 0 8px 0;
+    text-align: left;
+    width: 100%;
 }
 
-/* Tags container */
-.tags {
+.adoption-card__tags {
     display: flex;
     gap: 4px;
     flex-wrap: wrap;
 }
 
-.tag {
+.adoption-card__tag {
     background: #FFFBF8;
     color: #003640;
     padding: 1px 7px;
@@ -165,15 +159,13 @@ body {
     font-weight: 500;
 }
 
-/* Button container */
-.button-container {
+.adoption-card__button-container {
     padding-top: 16px;
     display: flex;
     justify-content: center;
 }
 
-/* Adopt button styling */
-.adopt-button {
+.adoption-card__adopt-button {
     background-color: #9FCFDF;
     color: #003640;
     font-weight: 600;
@@ -190,39 +182,37 @@ body {
     width: 127px;
 }
 
-.adopt-button:hover {
+.adoption-card__adopt-button:hover {
     background: #aee3f5;
     border: none;
 }
 
-.paw-icon {
+.adoption-card__paw-icon {
     font-size: 24px;
 }
 
-/* --- Estilos de la Parte Trasera (back-info) --- */
-.back-info{
+.adoption-card__back-info {
     padding: 12px;
     flex: 1;
-    
 }
 
-.back-info .pet-name {
+.adoption-card__back-info .adoption-card__pet-name {
     color: #003640; 
     font-size: 20px;
     margin-top: 0;
     margin-bottom: 8px;
 }
 
-.back-info .tags {
+.adoption-card__back-info .adoption-card__tags {
     margin-bottom: 15px; 
 }
 
-.back-info .tags .tag {
+.adoption-card__back-info .adoption-card__tag {
     background: #FFFBF8; 
     color: #003640;
 }
 
-.description-text {
+.adoption-card__description-text {
     font-size: 14px;
     line-height: 1.5;
     color: #003640; 
