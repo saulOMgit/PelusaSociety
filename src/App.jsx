@@ -9,11 +9,9 @@ import img2 from './assets/dog.png'
 import img3Light from './assets/society.png'
 import img3Dark from './assets/societyLight.png'
 import PetCard from "./components/PetCard/PetCard";
-import useLocalStorage from 'use-local-storage'
 
-
-
-
+import useTheme from './hooks/useTheme';
+import Dropdown from './components/Btn/Dropdown';
 
 
 const pets = [
@@ -52,9 +50,8 @@ const pets = [
 function App() {
     const catRef = useRef(null);
     const dogRef = useRef(null);
-
-    const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+      
+    const [theme] = useTheme(); // Obtén theme y la función para alternarlo
 
 
     const handleScrollTo = (category) => {
@@ -73,14 +70,6 @@ function App() {
     console.log(`${petName} is ${isLiked ? 'liked' : 'unliked'}`);
   };
 
-  useEffect(() => {
-        document.body.setAttribute('data-theme', theme);
-    }, [theme]);
-
-  const switchTheme = () =>{
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-  }
 
   return (
     <>
@@ -129,12 +118,7 @@ function App() {
           </div>
           <PetSlider tipoMascota="Perro" />
         </div>
-        <span>Dark mode</span>
-        <button onClick={switchTheme}>
-          switch to {theme === 'light' ? 'dark' : 'light'} theme
-        </button>
-
-
+        <Dropdown></Dropdown>
 
         <div className="App">
           <Footer />
