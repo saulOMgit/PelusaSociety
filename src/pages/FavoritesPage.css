@@ -7,14 +7,23 @@
 
   body {
     background-color: #FFFBF8;
+    margin: 0;
   }
+
+.favorites-page {
+ top: 0;
+ display:flex;
+ flex-direction: column;
+ gap: 20px;
+}
 
 .favorites-intro {
     width: 390px;
-    height: 171px;
+    height: auto;
     padding: 12px 20px;
     display:flex;
     flex-direction: column;
+    text-align: left;
     gap: 16px;
     box-sizing: border-box;
     font-family: "DM Sans", sans-serif;
@@ -23,15 +32,18 @@
 h2 {
     font-size: 24px;
     font-weight: 600;
+    margin: 0;
 }
 
 p {
     font-size: 16px;
     font-weight: 400;
+    margin: 0;
 }
 
 .favorites-grid {
     display:flex;
     flex-direction: column;
     grid-template-columns: auto;
+    margin-bottom: 32px;
 }
