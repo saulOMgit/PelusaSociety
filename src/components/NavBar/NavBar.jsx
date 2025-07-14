@@ -2,6 +2,7 @@ import React from 'react'
 import './NavBar.css'
 import img from '../../assets/azul.svg'
 import ButtonFavorites from '../ButtonFavorites/ButtonFavorites'
+import BtnSelectorLanguages from '../BtnSelectorLanguages/BtnSelectorLanguages'
 
 const NavBar = () => { 
 
@@ -13,6 +14,7 @@ const NavBar = () => {
              <img src={img} alt="logotipo" className="logo"/>
             </div>
             <ButtonFavorites />
+             <BtnSelectorLanguages />
         </div>
     </header>
     </>
