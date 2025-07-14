@@ -1,0 +1,35 @@
+{
+  "intro": {
+    "heading": "¡Hola!",
+    "paragraph": "Somos Pelusa Society, una protectora de animales que busca conectar animales abandonados con hogares que los cuiden y los quieran ❤️‍🩹"
+  },
+  "team": {
+    "heading": "Escoge team",
+    "paragraph": "¿Qué peludito será el nuevo miembro de tu familia?"
+  },
+  "categories": {
+    "cat": "Gatos",
+    "dog": "Perros"
+  },
+  
+  "cats": {
+    "title": "Gatos 🐱",
+    "description": "Estos michis buscan un hogar tranquilo y seguro con alguna manta suavecita, ¿será el tuyo?"
+  },
+  "dogs": {
+    "title": "Perros 🐶",
+    "description": "Tenemos todo tipo de peludos, desde abueletes hasta cachorros. Todos esperando llenar tu vida de mimos y aventuras."
+  },
+  "match": {
+    "title": "¡Haz el match perfecto!",
+    "instructions": "¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!"
+  },
+
+  "footer": {
+    "Comunas": "Comunas",
+    "Preguntasfrecuentes": "Preguntas Frecuentes",
+    "Terminosdelacomunidad": "Términos de la Comunidad",
+    "Politicasdeprivacidad": "Políticas de Privacidad",
+    "Contacto": "Contacto" 
+  }
+}
