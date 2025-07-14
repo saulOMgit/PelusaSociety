@@ -39,7 +39,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     fetchPets();
   }, [tipoMascota, muestra]);
 
-  // ✅ Callbacks memoizados - CLAVE para que funcione React.memo
+  // ✅ Callbacks memoizados
   const handleToggleLike = useCallback((nombre, isLiked) => {
     console.log(`${nombre} ${isLiked ? 'añadido a' : 'eliminado de'} favoritos`);
     setLikedPets(prev => {
@@ -55,7 +55,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
 
   const handleAdopt = useCallback((petData) => {
     console.log(`Iniciando proceso de adopción para ${petData.nombre}`);
-    // Aquí iría tu lógica de adopción
+    // Aquí iría la lógica de adopción
   }, []);
 
   // Funciones de navegación
@@ -210,4 +210,4 @@ const PetSlider = ({ tipoMascota, muestra }) => {
   );
 };
 
-export default PetSlider;
+export default React.memo(PetSlider);
