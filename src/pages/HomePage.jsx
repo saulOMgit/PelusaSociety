@@ -1,10 +1,12 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import NavBar from '../components/NavBar/NavBar';
 import PetSlider from "../components/PetSlider/PetSlider";
 import CardCategory from '../components/CardCategory/CardCategory';
 import PetCard from "../components/PetCard/PetCard";
 import './HomePage.css';
+
 
 import img1 from '../assets/cat.png';
 import img2 from '../assets/dog.png';
@@ -91,6 +93,7 @@ const cats = [
 export default function HomePage() {
   const catRef = useRef(null);
   const dogRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleScrollTo = (category) => {
     if (category === 'cat' && catRef.current) {
@@ -102,6 +105,7 @@ export default function HomePage() {
 
   const handleAdopt = (petName) => {
     console.log(`Adopting ${petName}!`);
+    navigate('/adopt', { state: { petData } });
   };
 
   const handleToggleLike = (petName, isLiked) => {
@@ -146,7 +150,7 @@ export default function HomePage() {
             <h3 className='cat-section__subtitle'>¡Haz el match perfecto!</h3>
             <p className='cat-section__instructions-paragraph'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
           </div>
-          <PetSlider tipoMascota="Gato" muestra={cats} />
+          <PetSlider tipoMascota="Gato" muestra={cats} onAdopt={handleAdopt}/>
         </div>
 
         <div className='dog-section'>
@@ -156,7 +160,7 @@ export default function HomePage() {
             <h3 className='dog-section__subtitle'>¡Haz el match perfecto!</h3>
             <p className='dog-section__instructions-paragrahp'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
           </div>
-          <PetSlider tipoMascota="Perro" muestra={dogs} />
+          <PetSlider tipoMascota="Perro" muestra={dogs} onAdopt={handleAdopt}/>
         </div>
 
         <Footer />

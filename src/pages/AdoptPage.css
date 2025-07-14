@@ -1,0 +1,541 @@
+/* AdoptPage.css - Mobile First con metodología BEM */
+
+/* Variables CSS */
+:root {
+  --primary-teal: #4A9B8E;
+  --primary-orange: #FF6B35;
+  --primary-pink: #E8A5C4;
+  --text-dark: #2C3E50;
+  --text-medium: #5A6C7D;
+  --text-light: #7F8C8D;
+  --background-light: #F8F9FA;
+  --background-section: #E8F4F8;
+  --white: #FFFFFF;
+  --error-color: #E74C3C;
+  --success-color: #27AE60;
+  --border-color: #D1D9E6;
+  --border-focus: #4A9B8E;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--background-light);
+}
+
+/* BLOQUE: adopt-page */
+.adopt-page {
+  min-height: 100vh;
+  background-color: var(--background-light);
+}
+
+/* ELEMENTO: adopt-page__header */
+.adopt-page__header {
+  background: var(--white);
+  padding: 1rem;
+  box-shadow: var(--shadow-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ELEMENTO: adopt-page__logo */
+.adopt-page__logo {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+/* ELEMENTO: adopt-page__main */
+.adopt-page__main {
+  padding: 1rem;
+}
+
+/* ELEMENTO: adopt-page__container */
+.adopt-page__container {
+  max-width: 100%;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-medium);
+  overflow: hidden;
+}
+
+/* ELEMENTO: adopt-page__intro */
+.adopt-page__intro {
+  padding: 1.5rem 1rem;
+  background: var(--white);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* ELEMENTO: adopt-page__title */
+.adopt-page__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+/* ELEMENTO: adopt-page__description */
+.adopt-page__description {
+  font-size: 0.9rem;
+  color: var(--text-medium);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+/* ELEMENTO: adopt-page__note */
+.adopt-page__note {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+/* ELEMENTO: adopt-page__confirmation */
+.adopt-page__confirmation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--success-color);
+  color: var(--white);
+  padding: 1rem;
+  box-shadow: var(--shadow-medium);
+  animation: slideDown 0.3s ease-out;
+}
+
+/* ELEMENTO: adopt-page__confirmation-content */
+.adopt-page__confirmation-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ELEMENTO: adopt-page__confirmation-icon */
+.adopt-page__confirmation-icon {
+  font-size: 1.2rem;
+}
+
+/* ELEMENTO: adopt-page__confirmation-text */
+.adopt-page__confirmation-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ELEMENTO: adopt-page__footer */
+.adopt-page__footer {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  background: var(--background-light);
+}
+
+/* ELEMENTO: adopt-page__legal */
+.adopt-page__legal {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+/* BLOQUE: adopt-form */
+.adopt-form {
+  padding: 1rem;
+}
+
+/* ELEMENTO: adopt-form__section */
+.adopt-form__section {
+  margin-bottom: 2rem;
+  padding: 1.5rem 1rem;
+  background: var(--background-section);
+  border-radius: var(--border-radius);
+}
+
+/* MODIFICADOR: adopt-form__section--last */
+.adopt-form__section:last-of-type {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+}
+
+/* ELEMENTO: adopt-form__section-title */
+.adopt-form__section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ELEMENTO: adopt-form__section-icon */
+.adopt-form__section-icon {
+  font-size: 1.2rem;
+}
+
+/* ELEMENTO: adopt-form__field */
+.adopt-form__field {
+  margin-bottom: 1.25rem;
+}
+
+/* ELEMENTO: adopt-form__label */
+.adopt-form__label {
+  display: block;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+/* ELEMENTO: adopt-form__input */
+.adopt-form__input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: var(--transition);
+  background-color: var(--white);
+}
+
+/* ESTADO: adopt-form__input:focus */
+.adopt-form__input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(74, 155, 142, 0.2);
+}
+
+/* MODIFICADOR: adopt-form__input--error */
+.adopt-form__input--error {
+  border-color: var(--error-color);
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+/* ELEMENTO: adopt-form__select */
+.adopt-form__select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: var(--transition);
+  background-color: var(--white);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* ESTADO: adopt-form__select:focus */
+.adopt-form__select:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(74, 155, 142, 0.2);
+}
+
+/* MODIFICADOR: adopt-form__select--error */
+.adopt-form__select--error {
+  border-color: var(--error-color);
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+/* ELEMENTO: adopt-form__textarea */
+.adopt-form__textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: var(--transition);
+  background-color: var(--white);
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* ESTADO: adopt-form__textarea:focus */
+.adopt-form__textarea:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 2px rgba(74, 155, 142, 0.2);
+}
+
+/* MODIFICADOR: adopt-form__textarea--error */
+.adopt-form__textarea--error {
+  border-color: var(--error-color);
+  box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.2);
+}
+
+/* ELEMENTO: adopt-form__checkbox-group */
+.adopt-form__checkbox-group {
+  margin-bottom: 1rem;
+}
+
+/* ELEMENTO: adopt-form__checkbox */
+.adopt-form__checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ELEMENTO: adopt-form__checkbox-input */
+.adopt-form__checkbox-input {
+  margin: 0;
+  transform: scale(1.2);
+  accent-color: var(--primary-teal);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* MODIFICADOR: adopt-form__checkbox-input--error */
+.adopt-form__checkbox-input--error {
+  outline: 2px solid var(--error-color);
+  outline-offset: 2px;
+}
+
+/* ELEMENTO: adopt-form__checkbox-label */
+.adopt-form__checkbox-label {
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+/* ELEMENTO: adopt-form__error */
+.adopt-form__error {
+  display: block;
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+}
+
+/* ELEMENTO: adopt-form__submit */
+.adopt-form__submit {
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+/* ELEMENTO: adopt-form__submit-btn */
+.adopt-form__submit-btn {
+  background: var(--primary-teal);
+  color: var(--white);
+  border: none;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-light);
+  min-width: 120px;
+}
+
+/* ESTADO: adopt-form__submit-btn:hover */
+.adopt-form__submit-btn:hover {
+  background: #3a8a7d;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+/* ESTADO: adopt-form__submit-btn:active */
+.adopt-form__submit-btn:active {
+  transform: translateY(0);
+}
+
+/* ESTADO: adopt-form__submit-btn:focus */
+.adopt-form__submit-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 155, 142, 0.3);
+}
+
+/* Placeholder styling */
+.adopt-form__input::placeholder,
+.adopt-form__textarea::placeholder {
+  color: var(--text-light);
+  opacity: 0.8;
+}
+
+/* Estados hover para inputs */
+.adopt-form__input:hover,
+.adopt-form__select:hover,
+.adopt-form__textarea:hover {
+  border-color: var(--primary-teal);
+}
+
+/* Animaciones */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.adopt-form__section {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* RESPONSIVE DESIGN - Tablet */
+@media (min-width: 768px) {
+  .adopt-page__main {
+    padding: 2rem;
+  }
+  
+  .adopt-page__container {
+    max-width: 700px;
+  }
+  
+  .adopt-page__logo {
+    font-size: 2rem;
+  }
+  
+  .adopt-page__title {
+    font-size: 1.75rem;
+  }
+  
+  .adopt-page__intro {
+    padding: 2rem;
+  }
+  
+  .adopt-form {
+    padding: 2rem;
+  }
+  
+  .adopt-form__section {
+    padding: 2rem;
+  }
+  
+  .adopt-form__section-title {
+    font-size: 1.25rem;
+  }
+  
+  .adopt-form__input,
+  .adopt-form__select,
+  .adopt-form__textarea {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  
+  .adopt-form__label {
+    font-size: 1rem;
+  }
+  
+  .adopt-form__checkbox-label {
+    font-size: 1rem;
+  }
+  
+  .adopt-form__submit-btn {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* RESPONSIVE DESIGN - Desktop */
+@media (min-width: 1024px) {
+  .adopt-page__container {
+    max-width: 800px;
+  }
+  
+  .adopt-page__intro {
+    padding: 2.5rem;
+  }
+  
+  .adopt-form {
+    padding: 2.5rem;
+  }
+  
+  .adopt-form__section {
+    padding: 2.5rem;
+  }
+  
+  /* Grid layout para campos en desktop */
+  .adopt-form__field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+/* Mejoras de accesibilidad */
+.adopt-form__input:focus-visible,
+.adopt-form__select:focus-visible,
+.adopt-form__textarea:focus-visible,
+.adopt-form__submit-btn:focus-visible {
+  outline: 2px solid var(--primary-teal);
+  outline-offset: 2px;
+}
+
+/* Estados disabled */
+.adopt-form__input:disabled,
+.adopt-form__select:disabled,
+.adopt-form__textarea:disabled {
+  background-color: #f5f5f5;
+  color: var(--text-light);
+  cursor: not-allowed;
+}
+
+/* Estilos para campos requeridos */
+.adopt-form__label:has(+ .adopt-form__input:required)::after,
+.adopt-form__label:has(+ .adopt-form__select:required)::after,
+.adopt-form__label:has(+ .adopt-form__textarea:required)::after {
+  content: " *";
+  color: var(--error-color);
+  font-weight: bold;
+}
+
+/* Mejoras para pantallas muy pequeñas */
+@media (max-width: 320px) {
+  .adopt-page__main {
+    padding: 0.5rem;
+  }
+  
+  .adopt-form {
+    padding: 0.75rem;
+  }
+  
+  .adopt-form__section {
+    padding: 1rem;
+  }
+  
+  .adopt-form__submit-btn {
+    width: 100%;
+    padding: 1rem;
+  }
+}
