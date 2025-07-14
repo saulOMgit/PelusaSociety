@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useFavorites } from '../../context/FavoritesContext'
 import './PetCard.css'
 import Btn from '../Btn/Btn'
 
@@ -6,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const PetCard = ({
+    id,
     nombre,
     tipo,
     edad,
@@ -14,40 +16,45 @@ const PetCard = ({
     desc_fisica,
     vacunas,
     esterilizado,
-    onToggleLike,
-    isLiked: initialLiked = false,
     onAdopt
 }) => {
 
-    const [isLiked, setIsLiked] = useState(initialLiked);
+    const { favorites, dispatch } = useFavorites();
+
     const [isFlipped, setIsFlipped] = useState(false);
+
+    const isLiked = favorites.some(pet => pet.id === id);
+
 
     const handleLikeClick = (e) => {
         e.stopPropagation(); //evita que se voltee al hacer click en corazon
-        const newLikeState = !isLiked;
-        setIsLiked(newLikeState);
-        if (onToggleLike) {
-            onToggleLike(nombre, newLikeState);
-        }
+
+        dispatch({
+            type: "TOGGLE_FAVORITE",
+            payload: {
+                id,
+                nombre,
+                tipo,
+                edad,
+                genero,
+                imagen,
+                desc_fisica,
+                vacunas,
+                esterilizado
+            }
+        });
     };
 
     const handleAdoptClick = (petData) => {
         // e.stopPropagation();
-        if (onAdopt) {
-            onAdopt(petData);
-        }
+        if (onAdopt) onAdopt(petData);
     };
 
-    const handleCardClick = () => {
-        setIsFlipped(!isFlipped);
-    };
-
+    const handleCardClick = () => setIsFlipped(!isFlipped);
     const handleBackClick = (e) => {
         e.stopPropagation();
-        setIsFlipped(false)
+        setIsFlipped(false);
     };
-
-
 
     const imageContainerBackgroundClass =
         tipo === 'Perro' ? 'dog-image-background' : tipo === 'Gato' ? 'cat-image-background' : '';
