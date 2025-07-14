@@ -39,7 +39,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     fetchPets();
   }, [tipoMascota, muestra]);
 
-  // ✅ Callbacks memoizados - CLAVE para que funcione React.memo
+  // ✅ Callbacks memoizados
   const handleToggleLike = useCallback((nombre, isLiked) => {
     console.log(`${nombre} ${isLiked ? 'añadido a' : 'eliminado de'} favoritos`);
     setLikedPets(prev => {
@@ -53,9 +53,9 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     });
   }, []);
 
+  // Placeholder hasta que esté el proceso de adopción
   const handleAdopt = useCallback((petData) => {
     console.log(`Iniciando proceso de adopción para ${petData.nombre}`);
-    // Aquí iría tu lógica de adopción
   }, []);
 
   // Funciones de navegación
@@ -157,12 +157,32 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     setCurrentIndex(0);
   }, [petData]);
 
+  // ✅ Función para generar clases BEM de las cards
+  const getCardClasses = useCallback((index) => {
+    let classes = 'pet-slider__card';
+    
+    if (index === currentIndex) {
+      classes += ' pet-slider__card--active';
+    }
+    
+    if (index === currentIndex + 1) {
+      classes += ' pet-slider__card--next';
+    }
+    
+    return classes;
+  }, [currentIndex]);
+
+  // ✅ Clase BEM para el track
+  const getTrackClasses = useCallback(() => {
+    return `pet-slider__track ${isDragging ? 'pet-slider__track--dragging' : ''}`;
+  }, [isDragging]);
+
   return (
-    <div className="pet-slider-container">
-      <div className="pet-slider-wrapper">
+    <div className="pet-slider">
+      <div className="pet-slider__wrapper">
         <div
           ref={sliderRef}
-          className={`pet-slider-track ${isDragging ? 'dragging' : ''}`}
+          className={getTrackClasses()}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -171,7 +191,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
           {petData.map((pet, index) => (
             <div
               key={pet.id}
-              className={`pet-card ${index === currentIndex ? 'active' : ''} ${index === currentIndex + 1 ? 'next' : ''}`}
+              className={getCardClasses(index)}
             >
               <PetCard
                 nombre={pet.nombre}
@@ -192,7 +212,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
 
         <button
           onClick={prevSlide}
-          className="pet-slider-nav prev"
+          className="pet-slider__nav-button pet-slider__nav-button--prev"
           aria-label="Mascota anterior"
         >
           ←
@@ -200,7 +220,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
 
         <button
           onClick={nextSlide}
-          className="pet-slider-nav next"
+          className="pet-slider__nav-button pet-slider__nav-button--next"
           aria-label="Siguiente mascota"
         >
           →

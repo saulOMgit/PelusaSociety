@@ -1,20 +1,16 @@
-/* Contenedor principal */
-.pet-slider-container {
+.pet-slider {
   max-width: 350px;
   margin: 0 auto;
   padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-
-/* Slider wrapper */
-.pet-slider-wrapper {
+.pet-slider__wrapper {
   position: relative;
   margin-bottom: 20px;
 }
 
-/* Track del slider */
-.pet-slider-track {
+.pet-slider__track {
   display: flex;
   overflow-x: auto;
   scrollbar-width: none;
@@ -24,17 +20,16 @@
   scroll-behavior: smooth;
 }
 
-.pet-slider-track.dragging {
+.pet-slider__track--dragging {
   cursor: grabbing;
   scroll-behavior: auto;
 }
 
-.pet-slider-track::-webkit-scrollbar {
+.pet-slider__track::-webkit-scrollbar {
   display: none;
 }
 
-/* Tarjetas de mascotas */
-.pet-card {
+.pet-slider__card {
   flex: 0 0 auto;
   width: 220px;
   margin-right: 20px;
@@ -44,16 +39,16 @@
   transform-origin: left center;
 }
 
-.pet-card.active {
+.pet-slider__card--active {
   opacity: 1;
   transform: scale(1);
 }
 
-.pet-card.next {
+.pet-slider__card--next {
   opacity: 0.6;
 }
 
-.pet-card-inner {
+.pet-slider__card-inner {
   display: flex;
   flex-direction: column;
   background: #f8b4d1;
@@ -65,8 +60,7 @@
   height: 100%;
 }
 
-/* Imagen de la mascota */
-.pet-card-image {
+.pet-slider__image {
   width: 100%;
   height: 200px;
   border-radius: 15px;
@@ -75,14 +69,13 @@
   background: #ddd;
 }
 
-.pet-card-image img {
+.pet-slider__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Botones de navegación */
-.pet-slider-nav {
+.pet-slider__nav-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -101,31 +94,30 @@
   font-size: 18px;
 }
 
-.pet-slider-nav:hover {
+.pet-slider__nav-button:hover {
   background: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.pet-slider-nav.prev {
+.pet-slider__nav-button:focus {
+  outline: none;
+}
+
+.pet-slider__nav-button--prev {
   left: -20px;
 }
 
-.pet-slider-nav.next {
+.pet-slider__nav-button--next {
   right: -20px;
 }
 
-/* Quitar parpadeo al tocar en móviles */
-
+/* Para quitar el parpadeo en pantallas táctiles */
 * {
   -webkit-tap-highlight-color: transparent;
 }
 
-.pet-card *,
-.pet-slider-track * {
+.pet-slider__card *,
+.pet-slider__track * {
   user-select: none;
   -webkit-user-select: none;
-}
-
-button:focus {
-  outline: none;
 }
