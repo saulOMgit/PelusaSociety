@@ -80,11 +80,11 @@ body {
 }
 
 .dog-image-background {
-    background-color: #EAC2CC;
+    background-color: var(--dog-card);
 }
 
 .cat-image-background {
-    background-color: #ED7744;
+    background-color: var(--cat-card);
 }
 
 .pet-image {

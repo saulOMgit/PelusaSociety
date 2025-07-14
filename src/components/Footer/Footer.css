@@ -1,11 +1,11 @@
 
 .footer {
     width: 390px;
-    background-color: #FFFBF8;
+    background-color: var(--background);
     margin: 0;
     padding: 24px 12px 24px 12px;
     box-sizing: border-box;
-    border-top: solid 1px #003640;
+    border-top: solid 1px var(--text-color);
     bottom: 0;
 }
 
@@ -20,7 +20,7 @@
 }
 
 a{
-    color: #003640;
+    color: var(--text-color);
     text-decoration: none;
     padding: 10px;
 } 

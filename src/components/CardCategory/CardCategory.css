@@ -40,9 +40,9 @@
 }
 
 .card-category--cat {
-    background-color: #ed7744;
+    background-color: var(--cat-card);
 }
 
 .card-category--dog {
-    background-color: #eac2cc;
+    background-color: var(--dog-card);
 }

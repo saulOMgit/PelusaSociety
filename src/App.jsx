@@ -1,4 +1,4 @@
-import { useRef } from 'react' //useRef es un hook que sirve para crear referencias mutables a un elemento del DOM
+import { useRef, useEffect } from 'react' //useRef es un hook que sirve para crear referencias mutables a un elemento del DOM
 import Footer from './components/Footer/Footer'
 import NavBar from './components/NavBar/NavBar'
 import PetSlider from "./components/PetSlider/PetSlider";
@@ -6,8 +6,11 @@ import CardCategory from './components/CardCategory/CardCategory'
 import './App.css'
 import img1 from './assets/cat.png'
 import img2 from './assets/dog.png'
-import img3 from './assets/society.png'
+import img3Light from './assets/society.png'
+import img3Dark from './assets/societyLight.png'
 import PetCard from "./components/PetCard/PetCard";
+import useLocalStorage from 'use-local-storage'
+
 
 
 
@@ -50,6 +53,10 @@ function App() {
     const catRef = useRef(null);
     const dogRef = useRef(null);
 
+    const defaultDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const [theme, setTheme] = useLocalStorage('theme', defaultDark ? 'dark' : 'light');
+
+
     const handleScrollTo = (category) => {
         if (category === 'cat' && catRef.current) {
             catRef.current.scrollIntoView({behavior: 'smooth'});
@@ -66,15 +73,24 @@ function App() {
     console.log(`${petName} is ${isLiked ? 'liked' : 'unliked'}`);
   };
 
+  useEffect(() => {
+        document.body.setAttribute('data-theme', theme);
+    }, [theme]);
+
+  const switchTheme = () =>{
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+  }
+
   return (
     <>
-      <NavBar />
-      <div className="app-container">
-
+     
+      <div className="app-container" data-theme={theme}>
+       <NavBar theme={theme}/>
         <div className='introduction'>
           <h1 className='introduction__heading'>¡Hola!</h1>
           <p className='introduction__paragrahp'>Somos Pelusa Society, una protectora de animales que busca conectar animales abandonados con hogares que los cuiden y los quieran ❤️‍🩹</p>
-          <img className='introduction__photo' src={img3} />
+          <img className='introduction__photo' src={theme === 'light' ? img3Light : img3Dark} />
         </div>
         <div className='election-team'>
           <h1 className='election-team__heading'>Escoge team</h1>
@@ -113,6 +129,13 @@ function App() {
           </div>
           <PetSlider tipoMascota="Perro" />
         </div>
+        <span>Dark mode</span>
+        <button onClick={switchTheme}>
+          switch to {theme === 'light' ? 'dark' : 'light'} theme
+        </button>
+
+
+
         <div className="App">
           <Footer />
         </div>

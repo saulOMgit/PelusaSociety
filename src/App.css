@@ -10,7 +10,7 @@
   --background-form: #e7f2f7;
 }
 [data-theme='dark'] {
-  --background: #003640;
+  --background: #001b20;
   --text-color: #FFFBF8;
   --text-color-button: #003640; 
   --dog-card: #F2D9DF;
@@ -19,14 +19,6 @@
   --background-form: #e7f2f7;
 }
 
-
-
-#root {
-  width: 390px;
-  margin: 0 auto;
-  text-align: center;
-
-}
 
 .categories {
   display: flex;
@@ -37,8 +29,12 @@
 }
 
 body{
-  background-color: #FFFBF8;
-  color: #003640;
+  background-color: var(--background);
+  color: var(--text-color);
+  width: 390px;
+  margin: 0 auto;
+  text-align: center;
+
 }
 
 .introduction{

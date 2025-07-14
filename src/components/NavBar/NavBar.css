@@ -8,11 +8,12 @@
 .navbar {
     width: 390px;
     height: 88px;
-    background-color: #FFFBF8;
+    color: var(--text-color);
+    background-color: var(--background);
     margin: 0;
     padding: 24px 12px 24px 12px;
     box-sizing: border-box;
-    border-bottom: solid 1px #003640;
+    border-bottom: solid 1px var(--text-color);
     top: 0;
     position: sticky;
     z-index: 11;
@@ -55,7 +56,7 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
     font-weight: 600px;
-    color: #003640;
+    color: var(--text-color);
     background-color: transparent;
     padding: 4px;
     border: none;
