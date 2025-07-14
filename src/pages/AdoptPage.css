@@ -8,7 +8,7 @@
   --text-dark: #2C3E50;
   --text-medium: #5A6C7D;
   --text-light: #7F8C8D;
-  --background-light: #F8F9FA;
+  --background-light: #FFFBF8;
   --background-section: #E8F4F8;
   --white: #FFFFFF;
   --error-color: #E74C3C;
@@ -47,23 +47,24 @@ body {
 }
 
 /* ELEMENTO: adopt-page__header */
-.adopt-page__header {
+/* .adopt-page__header {
   background: var(--white);
   padding: 1rem;
   box-shadow: var(--shadow-light);
   position: sticky;
   top: 0;
   z-index: 100;
-}
+  background-color: pink;
+} */
 
 /* ELEMENTO: adopt-page__logo */
-.adopt-page__logo {
+/* .adopt-page__logo {
   text-align: center;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-dark);
   margin: 0;
-}
+} */
 
 /* ELEMENTO: adopt-page__main */
 .adopt-page__main {
@@ -85,6 +86,7 @@ body {
   padding: 1.5rem 1rem;
   background: var(--white);
   border-bottom: 1px solid var(--border-color);
+  
 }
 
 /* ELEMENTO: adopt-page__title */
@@ -93,6 +95,7 @@ body {
   font-weight: 600;
   color: var(--text-dark);
   margin-bottom: 1rem;
+  
 }
 
 /* ELEMENTO: adopt-page__description */
