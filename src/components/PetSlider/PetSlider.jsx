@@ -10,6 +10,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
   const [scrollLeft, setScrollLeft] = useState(0);
   const sliderRef = useRef(null);
   const [petData, setPetData] = useState([]);
+  const [likedPets, setLikedPets] = useState(new Set());
 
   // Obtener mascotas filtradas por tipo
   useEffect(() => {
@@ -36,48 +37,69 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     };
 
     fetchPets();
-  }, [tipoMascota]);
+  }, [tipoMascota, muestra]);
+
+  // ✅ Callbacks memoizados - CLAVE para que funcione React.memo
+  const handleToggleLike = useCallback((nombre, isLiked) => {
+    console.log(`${nombre} ${isLiked ? 'añadido a' : 'eliminado de'} favoritos`);
+    setLikedPets(prev => {
+      const newSet = new Set(prev);
+      if (isLiked) {
+        newSet.add(nombre);
+      } else {
+        newSet.delete(nombre);
+      }
+      return newSet;
+    });
+  }, []);
+
+  const handleAdopt = useCallback((petData) => {
+    console.log(`Iniciando proceso de adopción para ${petData.nombre}`);
+    // Aquí iría tu lógica de adopción
+  }, []);
 
   // Funciones de navegación
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % petData.length);
-  };
+  }, [petData.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + petData.length) % petData.length);
-  };
+  }, [petData.length]);
 
   // Calcular y ajustar al índice de carta más cercano
   const snapToCard = useCallback(() => {
-  const cardWidth = 240; // Ancho fijo: tarjeta (220px) + margen derecho (20px)
-  const track = sliderRef.current;
-  const newIndex = Math.round(track.scrollLeft / cardWidth);
-  setCurrentIndex(Math.max(0, Math.min(newIndex, petData.length - 1)));
-}, [petData.length]);
+    const cardWidth = 240;
+    const track = sliderRef.current;
+    if (!track) return;
+    
+    const newIndex = Math.round(track.scrollLeft / cardWidth);
+    setCurrentIndex(Math.max(0, Math.min(newIndex, petData.length - 1)));
+  }, [petData.length]);
 
   // Drag con ratón
-  const handleMouseDown = (e) => {
+  const handleMouseDown = useCallback((e) => {
     e.preventDefault();
     setIsDragging(true);
     setStartX(e.pageX - sliderRef.current.offsetLeft);
     setScrollLeft(sliderRef.current.scrollLeft);
-  };
+  }, []);
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = useCallback((e) => {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - sliderRef.current.offsetLeft;
     const walk = (x - startX) * 2;
     sliderRef.current.scrollLeft = scrollLeft - walk;
-  };
+  }, [isDragging, startX, scrollLeft]);
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     if (!isDragging) return;
     setIsDragging(false);
     snapToCard();
-  };
+  }, [isDragging, snapToCard]);
 
-  // Drag con táctil (arreglado con listeners manuales)
+  // Drag con táctil
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -88,7 +110,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
       setIsDragging(true);
       setStartX(e.touches[0].pageX - sliderRef.current.offsetLeft);
       setScrollLeft(sliderRef.current.scrollLeft);
-      touchMoved = false; // Reseteamos al iniciar
+      touchMoved = false;
     };
 
     const handleTouchMove = (e) => {
@@ -96,7 +118,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
       const walk = (x - startX) * 2;
       if (Math.abs(walk) > 5) {
         touchMoved = true;
-        e.preventDefault(); // Solo si se está arrastrando realmente
+        e.preventDefault();
         sliderRef.current.scrollLeft = scrollLeft - walk;
       }
     };
@@ -121,28 +143,19 @@ const PetSlider = ({ tipoMascota, muestra }) => {
 
   // Scroll sincronizado al índice actual
   useEffect(() => {
-  if (sliderRef.current) {
-    const cardWidth = 240; // Mismo ancho fijo
-    sliderRef.current.scrollTo({
-      left: currentIndex * cardWidth,
-      behavior: 'smooth'
-    });
-  }
+    if (sliderRef.current) {
+      const cardWidth = 240;
+      sliderRef.current.scrollTo({
+        left: currentIndex * cardWidth,
+        behavior: 'smooth'
+      });
+    }
   }, [currentIndex]);
 
   // Resetear índice cuando cambia el tipo
   useEffect(() => {
     setCurrentIndex(0);
   }, [petData]);
-
-  // Placeholder para lógica de favoritos/adopción
-  const handleToggleLike = (nombre, isLiked) => {
-    console.log(`${nombre} ${isLiked ? 'añadido a' : 'eliminado de'} favoritos`);
-  };
-
-  const handleAdopt = (petData) => {
-    console.log(`Iniciando proceso de adopción para ${petData.nombre}`);
-  };
 
   return (
     <div className="pet-slider-container">
@@ -171,7 +184,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
                 esterilizado={pet.esterilizado}
                 onToggleLike={handleToggleLike}
                 onAdopt={handleAdopt}
-                isLiked={false}
+                isLiked={likedPets.has(pet.nombre)}
               />
             </div>
           ))}
@@ -197,4 +210,4 @@ const PetSlider = ({ tipoMascota, muestra }) => {
   );
 };
 
-export default PetSlider;
+export default React.memo(PetSlider);
