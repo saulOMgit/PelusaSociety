@@ -5,6 +5,10 @@
     font-style: normal;
   }
 
+  body {
+    background-color: #FFFBF8;
+  }
+
 .favorites-intro {
     width: 390px;
     height: 171px;
