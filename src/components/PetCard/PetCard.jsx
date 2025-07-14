@@ -63,7 +63,7 @@ const PetCard = React.memo(({
         setIsFlipped(false);
     }, []);
 
-    // ✅ Clases BEM memoizadas
+    // Clases BEM memoizadas
     const imageContainerClass = useMemo(() => {
         let baseClass = 'adoption-card__image-container';
         if (tipo === 'Perro') {
@@ -92,7 +92,7 @@ const PetCard = React.memo(({
         return baseClass;
     }, [tipo]);
 
-    // ✅ Objeto petData memoizado para evitar recreación
+    // Objeto petData memoizado para evitar recreación
     const petData = useMemo(() => ({
         nombre,
         imagen
