@@ -28,6 +28,11 @@
   box-sizing: border-box;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s, color 0s 600000s !important;
+}
+
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
@@ -215,6 +220,7 @@ body {
   font-family: inherit;
   transition: var(--transition);
   background-color: var(--white);
+  color: var(--text-medium);
 }
 
 /* ESTADO: adopt-form__input:focus */
@@ -247,6 +253,7 @@ body {
   padding-right: 2.5rem;
   appearance: none;
   cursor: pointer;
+  color: var(--text-medium);
 }
 
 /* ESTADO: adopt-form__select:focus */
@@ -274,6 +281,7 @@ body {
   background-color: var(--white);
   resize: vertical;
   min-height: 100px;
+  color: var(--text-medium);
 }
 
 /* ESTADO: adopt-form__textarea:focus */
@@ -392,6 +400,7 @@ body {
   from {
     transform: translateY(-100%);
   }
+
   to {
     transform: translateY(0);
   }
@@ -402,6 +411,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -417,50 +427,50 @@ body {
   .adopt-page__main {
     padding: 2rem;
   }
-  
+
   .adopt-page__container {
     max-width: 700px;
   }
-  
+
   .adopt-page__logo {
     font-size: 2rem;
   }
-  
+
   .adopt-page__title {
     font-size: 1.75rem;
   }
-  
+
   .adopt-page__intro {
     padding: 2rem;
   }
-  
+
   .adopt-form {
     padding: 2rem;
   }
-  
+
   .adopt-form__section {
     padding: 2rem;
   }
-  
+
   .adopt-form__section-title {
     font-size: 1.25rem;
   }
-  
+
   .adopt-form__input,
   .adopt-form__select,
   .adopt-form__textarea {
     font-size: 1rem;
     padding: 1rem;
   }
-  
+
   .adopt-form__label {
     font-size: 1rem;
   }
-  
+
   .adopt-form__checkbox-label {
     font-size: 1rem;
   }
-  
+
   .adopt-form__submit-btn {
     padding: 1rem 3rem;
     font-size: 1.1rem;
@@ -469,22 +479,23 @@ body {
 
 /* RESPONSIVE DESIGN - Desktop */
 @media (min-width: 1024px) {
+
   .adopt-page__container {
     max-width: 800px;
   }
-  
+
   .adopt-page__intro {
     padding: 2.5rem;
   }
-  
+
   .adopt-form {
     padding: 2.5rem;
   }
-  
+
   .adopt-form__section {
     padding: 2.5rem;
   }
-  
+
   /* Grid layout para campos en desktop */
   .adopt-form__field-row {
     display: grid;
@@ -525,15 +536,15 @@ body {
   .adopt-page__main {
     padding: 0.5rem;
   }
-  
+
   .adopt-form {
     padding: 0.75rem;
   }
-  
+
   .adopt-form__section {
     padding: 1rem;
   }
-  
+
   .adopt-form__submit-btn {
     width: 100%;
     padding: 1rem;

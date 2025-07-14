@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom'
+import NavBar from '../components/NavBar/NavBar';
+import Footer from '../components/Footer/Footer';
 import './AdoptPage.css';
 
 const AdoptPage = () => {
@@ -26,10 +28,8 @@ const AdoptPage = () => {
 
     return (
         <div className="adopt-page">
-            {/* Header */}
-            <header className="adopt-page__header">
-                <h1 className="adopt-page__logo">Pelusa Society</h1>
-            </header>
+            {/* NavBar */}
+            <NavBar />
 
             {/* Mensaje de confirmación */}
             {showConfirmation && (
@@ -405,15 +405,14 @@ const AdoptPage = () => {
                             </button>
                         </div>
                     </form>
-
-                    {/* Aviso legal */}
-                    <footer className="adopt-page__footer">
-                        <p className="adopt-page__legal">Aviso legal</p>
-                    </footer>
                 </div>
             </main>
+
+            {/* Footer */}
+            <Footer />
         </div>
     );
 };
 
 export default AdoptPage;
+
