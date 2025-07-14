@@ -1,51 +1,17 @@
 {
-  "intro": {
-    "heading": "Hi!",
-    "paragraph": "We are Pelusa Society, an animal rescue organization that connects abandoned pets with loving homes ❤️‍🩹"
-  },
-  "team": {
-    "heading": "Choose your team",
-    "paragraph": "Which furry friend will be the newest member of your family?"
-  },
-  "categories": {
-    "cat": "Cats",
-    "dog": "Dogs"
-  },
- 
-  "cats": {
-    "title": "Cats 🐱",
-    "description": "These kitties are looking for a calm and safe home with a soft blanket—could it be yours?"
-  },
-  "dogs": {
-    "title": "Dogs 🐶",
-    "description": "We have all kinds of furry friends, from seniors to puppies. All waiting to fill your life with cuddles and adventures."
-  },
-  "match": {
-  "title": "Make the perfect match!",
-  "instructions": "Here you can see all our fluffballs! Swipe right to see the next one, left to go back. And if you've decided, press the adopt button!"
-  },
+  "homepage": {
+    "greeting": "Hello!",
+    "introText": "We are Pelusa Society, an animal shelter that connects abandoned animals with homes that care for and love them ❤️‍🩹",
+    "societyAlt": "Pelusa Society logo",
+    "chooseTeam": "Choose your team",
+    "choosePet": "Which furry friend will be the new member of your family?",
+    "cats": "Cats",
+    "dogs": "Dogs",
+    "catSectionDesc": "These kitties are looking for a calm and safe home with a soft blanket — will it be yours?",
+    "dogSectionDesc": "We have all kinds of furry friends, from seniors to puppies. All waiting to fill your life with cuddles and adventures.",
+    "matchPerfect": "Make the perfect match!",
+    "catInstructions": "Here you can see all our furry friends! Swipe right to see the next one, left to go back. And if you’ve decided, press the adopt button!",
+    "dogInstructions": "Here you can see all our furry friends! Swipe right to see the next one, left to go back. And if you’ve decided, press the adopt button!"
+  }
+}
 
-  "pets": [
-    {
-      "name": "Pepita",
-      "image": "/public/dog-prueba.png",
-      "age": "4 years",
-      "gender": "Female",
-      "breed": "Pug",
-      "type": "dog",
-      "size": "Medium",
-      "energy": "Low energy",
-      "description": "Pepita loves sunbathing in the park. This fluffball is waiting to be adopted."
-    }
-    
-    
-  ],
-  "footer": {
-  "Comunas": "Districts",
-  "Preguntasfrecuentes": "Frequently Asked Questions",
-  "Terminosdelacomunidad": "Community Guidelines",
-  "Politicasdeprivacidad": "Privacy Policy",
-  "Contacto": "Contact"
-}
-  
-}

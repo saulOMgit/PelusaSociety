@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import Footer from '../components/Footer/Footer';
 import NavBar from '../components/NavBar/NavBar';
 import PetSlider from "../components/PetSlider/PetSlider";
@@ -89,6 +90,7 @@ const cats = [
 ];
 
 export default function HomePage() {
+  const { t } = useTranslation();
   const catRef = useRef(null);
   const dogRef = useRef(null);
 
@@ -108,31 +110,31 @@ export default function HomePage() {
     console.log(`${petName} is ${isLiked ? 'liked' : 'unliked'}`);
   };
 
-  return (
+    return (
     <>
       <NavBar />
       <div className="home-container">
 
         <div className='introduction'>
-          <h1 className='introduction__heading'>¡Hola!</h1>
-          <p className='introduction__paragrahp'>Somos Pelusa Society, una protectora de animales que busca conectar animales abandonados con hogares que los cuiden y los quieran ❤️‍🩹</p>
-          <img className='introduction__photo' src={img3} alt="Society" />
+          <h1 className='introduction__heading'>{t('homepage.greeting')}</h1>
+          <p className='introduction__paragrahp'>{t('homepage.introText')}</p>
+          <img className='introduction__photo' src={img3} alt={t('homepage.societyAlt')} />
         </div>
 
         <div className='election-team'>
-          <h1 className='election-team__heading'>Escoge team</h1>
-          <p className='election-team__paragrahp'>¿Qué peludito será el nuevo miembro de tu familia?</p>
+          <h1 className='election-team__heading'>{t('homepage.chooseTeam')}</h1>
+          <p className='election-team__paragrahp'>{t('homepage.choosePet')}</p>
         </div>
 
         <div className="categories">
           <CardCategory
-            title='Gatos'
+            title={t('homepage.cats')}
             image={img1}
             category='cat'
             onClick={() => handleScrollTo('cat')}
           />
           <CardCategory
-            title='Perros'
+            title={t('homepage.dogs')}
             image={img2}
             category='dog'
             onClick={() => handleScrollTo('dog')}
@@ -141,20 +143,20 @@ export default function HomePage() {
 
         <div className='cat-section'>
           <div className='cat-section__content'>
-            <h1 ref={catRef} className='cat-section__heading'>Gatos 🐱</h1>
-            <p className='cat-section__paragraph'>Estos michis buscan un hogar tranquilo y seguro con alguna manta suavecita, ¿será el tuyo?</p>
-            <h3 className='cat-section__subtitle'>¡Haz el match perfecto!</h3>
-            <p className='cat-section__instructions-paragraph'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
+            <h1 ref={catRef} className='cat-section__heading'>{t('homepage.cats')} 🐱</h1>
+            <p className='cat-section__paragraph'>{t('homepage.catSectionDesc')}</p>
+            <h3 className='cat-section__subtitle'>{t('homepage.matchPerfect')}</h3>
+            <p className='cat-section__instructions-paragraph'>{t('homepage.catInstructions')}</p>
           </div>
           <PetSlider tipoMascota="Gato" muestra={cats} />
         </div>
 
         <div className='dog-section'>
           <div className='dog-section__content'>
-            <h1 ref={dogRef} className='dog-section__heading'>Perros 🐶</h1>
-            <p className='dog-section__paragrahp'>Tenemos todo tipo de peludos, desde abueletes hasta cachorros. Todos esperando llenar tu vida de mimos y aventuras.</p>
-            <h3 className='dog-section__subtitle'>¡Haz el match perfecto!</h3>
-            <p className='dog-section__instructions-paragrahp'>¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!</p>
+            <h1 ref={dogRef} className='dog-section__heading'>{t('homepage.dogs')} 🐶</h1>
+            <p className='dog-section__paragrahp'>{t('homepage.dogSectionDesc')}</p>
+            <h3 className='dog-section__subtitle'>{t('homepage.matchPerfect')}</h3>
+            <p className='dog-section__instructions-paragrahp'>{t('homepage.dogInstructions')}</p>
           </div>
           <PetSlider tipoMascota="Perro" muestra={dogs} />
         </div>
