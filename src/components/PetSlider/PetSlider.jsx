@@ -210,4 +210,4 @@ const PetSlider = ({ tipoMascota, muestra }) => {
   );
 };
 
-export default PetSlider;
+export default React.memo(PetSlider);
