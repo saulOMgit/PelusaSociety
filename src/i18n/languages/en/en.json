@@ -12,6 +12,14 @@
     "matchPerfect": "Make the perfect match!",
     "catInstructions": "Here you can see all our furry friends! Swipe right to see the next one, left to go back. And if you’ve decided, press the adopt button!",
     "dogInstructions": "Here you can see all our furry friends! Swipe right to see the next one, left to go back. And if you’ve decided, press the adopt button!"
-  }
+  },
+
+  "footer": {
+  "Comunas": "Districts",
+  "Preguntasfrecuentes": "FAQ",
+  "Terminosdelacomunidad": "Community-terms",
+  "Politicasdeprivacidad": "Privacy-policy",
+  "Contacto": "Contact"
+}
 }
 
