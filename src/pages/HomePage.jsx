@@ -122,6 +122,7 @@ export default function HomePage() {
     console.log(`${petName} is ${isLiked ? 'liked' : 'unliked'}`);
   };
 
+  console.log("Current theme in Homepage:", theme);
     return (
     <>
       <NavBar theme={theme} />
