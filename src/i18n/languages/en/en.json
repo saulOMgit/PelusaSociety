@@ -1,0 +1,25 @@
+{
+  "homepage": {
+    "greeting": "Hello!",
+    "introText": "We are Pelusa Society, an animal shelter that connects abandoned animals with homes that care for and love them ❤️‍🩹",
+    "societyAlt": "Pelusa Society logo",
+    "chooseTeam": "Choose your team",
+    "choosePet": "Which furry friend will be the new member of your family?",
+    "cats": "Cats",
+    "dogs": "Dogs",
+    "catSectionDesc": "These kitties are looking for a calm and safe home with a soft blanket — will it be yours?",
+    "dogSectionDesc": "We have all kinds of furry friends, from seniors to puppies. All waiting to fill your life with cuddles and adventures.",
+    "matchPerfect": "Make the perfect match!",
+    "catInstructions": "Here you can see all our furry friends! Swipe right to see the next one, left to go back. And if you’ve decided, press the adopt button!",
+    "dogInstructions": "Here you can see all our furry friends! Swipe right to see the next one, left to go back. And if you’ve decided, press the adopt button!"
+  },
+
+  "footer": {
+  "Comunas": "Districts",
+  "Preguntasfrecuentes": "FAQ",
+  "Terminosdelacomunidad": "Community-terms",
+  "Politicasdeprivacidad": "Privacy-policy",
+  "Contacto": "Contact"
+}
+}
+

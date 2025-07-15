@@ -33,7 +33,7 @@ const PetCard = React.memo(({
     vacunas,
     esterilizado,
     onToggleLike,
-    isLiked = false, // ✅ Usar directamente la prop, no estado local
+    isLiked = false,
     onAdopt
 }) => {
     // Solo necesitamos estado para el flip de la carta
@@ -63,13 +63,36 @@ const PetCard = React.memo(({
         setIsFlipped(false);
     }, []);
 
-    // ✅ Clase CSS memoizada
-    const imageContainerBackgroundClass = useMemo(() => {
-        return tipo === 'Perro' ? 'dog-image-background' : 
-               tipo === 'Gato' ? 'cat-image-background' : '';
+    // Clases BEM memoizadas
+    const imageContainerClass = useMemo(() => {
+        let baseClass = 'adoption-card__image-container';
+        if (tipo === 'Perro') {
+            baseClass += ' adoption-card__image-container--dog';
+        } else if (tipo === 'Gato') {
+            baseClass += ' adoption-card__image-container--cat';
+        }
+        return baseClass;
     }, [tipo]);
 
-    // ✅ Objeto petData memoizado para evitar recreación
+    const cardInnerClass = useMemo(() => {
+        return `adoption-card__inner ${isFlipped ? 'adoption-card__inner--flipped' : ''}`;
+    }, [isFlipped]);
+
+    const heartIconClass = useMemo(() => {
+        return `adoption-card__heart-icon ${isLiked ? 'adoption-card__heart-icon--liked' : ''}`;
+    }, [isLiked]);
+
+    const backInfoClass = useMemo(() => {
+        let baseClass = 'adoption-card__back-info';
+        if (tipo === 'Perro') {
+            baseClass += ' adoption-card__image-container--dog';
+        } else if (tipo === 'Gato') {
+            baseClass += ' adoption-card__image-container--cat';
+        }
+        return baseClass;
+    }, [tipo]);
+
+    // Objeto petData memoizado para evitar recreación
     const petData = useMemo(() => ({
         nombre,
         imagen
@@ -77,41 +100,41 @@ const PetCard = React.memo(({
 
     return (
         <div className="adoption-card">
-            <div className={`card-inner ${isFlipped ? 'flipped' : ''}`} onClick={handleCardClick}>
-                <div className="card-front">
-                    <div className={`image-container ${imageContainerBackgroundClass}`}>
+            <div className={cardInnerClass} onClick={handleCardClick}>
+                <div className="adoption-card__front">
+                    <div className={imageContainerClass}>
                         <img
                             src={imagen}
                             alt={`${nombre}`}
-                            className="pet-image"
+                            className="adoption-card__pet-image"
                         />
 
-                        <button onClick={handleLikeClick} className="heart-button">
-                            <FontAwesomeIcon icon={faHeart} className={`heart-icon ${isLiked ? 'liked' : ''}`} />
+                        <button onClick={handleLikeClick} className="adoption-card__heart-button">
+                            <FontAwesomeIcon icon={faHeart} className={heartIconClass} />
                         </button>
 
-                        <div className="text-overlay">
-                            <h2 className="pet-name">{nombre}</h2>
-                            <div className="tags">
-                                <span className="tag">{edad}</span>
-                                <span className="tag">{genero}</span>
+                        <div className="adoption-card__text-overlay">
+                            <h2 className="adoption-card__pet-name">{nombre}</h2>
+                            <div className="adoption-card__tags">
+                                <span className="adoption-card__tag">{edad}</span>
+                                <span className="adoption-card__tag">{genero}</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="card-back">
-                    <div className={`back-info ${imageContainerBackgroundClass}`}>
-                        <h2 className="pet-name">{nombre}</h2>
-                        <div className="tags">
-                            {esterilizado ? <span className="tag">Esterilizado</span> : ''}
-                            {vacunas ? <span className="tag">Vacunado</span> : ''}
+                <div className="adoption-card__back">
+                    <div className={backInfoClass}>
+                        <h2 className="adoption-card__pet-name">{nombre}</h2>
+                        <div className="adoption-card__tags">
+                            {esterilizado ? <span className="adoption-card__tag">Esterilizado</span> : ''}
+                            {vacunas ? <span className="adoption-card__tag">Vacunado</span> : ''}
                         </div>
-                        <p className="description-text">{desc_fisica}</p>
+                        <p className="adoption-card__description-text">{desc_fisica}</p>
                     </div>
                 </div>
             </div>
-            <div className="button-container">
+            <div className="adoption-card__button-container">
                 <Btn
                     onClick={handleAdoptClick}
                     petData={petData}
