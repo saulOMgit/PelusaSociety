@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import './PetSlider.css';
 import { getPets } from '../../services/PetService';
 import PetCard from '../PetCard/PetCard';
@@ -9,7 +9,6 @@ const PetSlider = ({ tipoMascota, muestra }) => {
   const [dragState, setDragState] = useState({ startX: 0, scrollLeft: 0 });
   const sliderRef = useRef(null);
   const [petData, setPetData] = useState([]);
-  const [likedPets, setLikedPets] = useState(new Set());
 
   // Obtener mascotas filtradas por tipo
   useEffect(() => {
@@ -37,19 +36,6 @@ const PetSlider = ({ tipoMascota, muestra }) => {
 
     fetchPets();
   }, [tipoMascota, muestra]);
-
-  // Callbacks memoizados
-  const handleToggleLike = useCallback((nombre, isLiked) => {
-    setLikedPets(prev => {
-      const newSet = new Set(prev);
-      isLiked ? newSet.add(nombre) : newSet.delete(nombre);
-      return newSet;
-    });
-  }, []);
-
-  const handleAdopt = useCallback((petData) => {
-    console.log(`Iniciando proceso de adopción para ${petData.nombre}`);
-  }, []);
 
   // Navegación simplificada
   const navigate = useCallback((direction) => {
@@ -150,18 +136,21 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     }
   }, [currentIndex]);
 
-  // Reset índice cuando cambia el tipo
+  // Reinicia índice cuando cambia el tipo
   useEffect(() => setCurrentIndex(0), [petData]);
 
   // Generadores de clases BEM
-  const getCardClasses = (index) => {
+  const getCardClasses = useCallback((index) => {
     const classes = ['pet-slider__card'];
     if (index === currentIndex) classes.push('pet-slider__card--active');
     if (index === currentIndex + 1) classes.push('pet-slider__card--next');
     return classes.join(' ');
-  };
+  }, [currentIndex]);
 
-  const trackClasses = `pet-slider__track ${isDragging ? 'pet-slider__track--dragging' : ''}`;
+  const trackClasses = useMemo(() => 
+    `pet-slider__track ${isDragging ? 'pet-slider__track--dragging' : ''}`,
+    [isDragging]
+  );
 
   return (
     <div className="pet-slider">
