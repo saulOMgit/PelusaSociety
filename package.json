@@ -20,6 +20,8 @@
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.60.0",
+    "react-router-dom": "^7.6.3",
     "react-i18next": "^15.6.0",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",

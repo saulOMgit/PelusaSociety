@@ -1,11 +1,12 @@
 import "./Btn.css";
-import PawIcon from '../../assets/PawIcon.svg'; 
-export const Btn = ({ onClick, petData }) => {
+import PawIcon from '../../assets/PawIcon.svg';
+import { useNavigate } from 'react-router-dom';
 
-   const handleClick = () => {
-    if (onClick) {
-      onClick(petData); // Pasa los datos de la mascota al manejador de eventos
-    }
+export const Btn = ({ petData }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/adopt', { state: { petData } }); // Redirige a AdoptPage con los datos de la mascota
   };
 
   return (
