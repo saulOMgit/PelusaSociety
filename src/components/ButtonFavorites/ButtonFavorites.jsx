@@ -1,14 +1,18 @@
 import React from 'react'
 import './ButtonFavorites.css'
-import icon from '../../assets/fav.png'
+import iconLight from '../../assets/favDark.png'
+import iconDark from '../../assets/fLight.png'
 
-const ButtonFavorites = ({ onClick }) => {
+const ButtonFavorites = ({ onClick, theme }) => {
+    console.log("Current theme in ButtonFavorites", theme);
+
   return (
 
         <div className="buttonFavorites__container" onClick={onClick}>
-            <img src={icon} alt="icono favoritos" className="icon"/>
+            <img src={theme === 'light' ? iconLight : iconDark} alt="icono favoritos" className="icon"/>
             <button className="buttonFavorites">Favoritos</button>
         </div>
+        
   )
 }
 

@@ -9,13 +9,19 @@ import './HomePage.css';
 
 import img1 from '../assets/cat.png';
 import img2 from '../assets/dog.png';
-import img3 from '../assets/society.png';
+import img3Light from '../assets/society.png'
+import img3Dark from '../assets/societyLight.png'
 import pepitaImg from '../assets/pepita.webp';
 import bassImg from  '../assets/bass.webp';
 import selvaImg from  '../assets/selva.webp';
 import beckhamImg from  '../assets/beckham.webp';
 import bombonImg from  '../assets/bombon.webp';
 import pomeloImg from  '../assets/pomelo.webp';
+
+import useTheme from '../hooks/useTheme';
+import Dropdown from '../components/Btn/Dropdown';
+
+import '../components/styles/Variables.css'
 
 const dogs = [
   {
@@ -94,6 +100,8 @@ export default function HomePage() {
   const catRef = useRef(null);
   const dogRef = useRef(null);
 
+  const [theme] = useTheme(); // Obtén theme y la función para alternarlo
+
   const handleScrollTo = (category) => {
     if (category === 'cat' && catRef.current) {
       catRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -112,13 +120,13 @@ export default function HomePage() {
 
     return (
     <>
-      <NavBar />
-      <div className="home-container">
+      <NavBar theme={theme} />
+      <div className="home-container" data-theme={theme} >
 
         <div className='introduction'>
           <h1 className='introduction__heading'>{t('homepage.greeting')}</h1>
           <p className='introduction__paragrahp'>{t('homepage.introText')}</p>
-          <img className='introduction__photo' src={img3} alt={t('homepage.societyAlt')} />
+          <img className='introduction__photo' src={theme === 'light' ? img3Light : img3Dark}  alt={t('homepage.societyAlt')} />
         </div>
 
         <div className='election-team'>
@@ -160,7 +168,7 @@ export default function HomePage() {
           </div>
           <PetSlider tipoMascota="Perro" muestra={dogs} />
         </div>
-
+        <Dropdown></Dropdown>
         <Footer />
       </div>
     </>
