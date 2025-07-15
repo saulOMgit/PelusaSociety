@@ -105,9 +105,9 @@ export default function HomePage() {
   };
 
   return (
-    <>
+    <div className="page__container">
       <NavBar />
-      <div className="home-container">
+      <div className="page__content home-container">
 
         <div className='introduction'>
           <h1 className='introduction__heading'>¡Hola!</h1>
@@ -157,6 +157,6 @@ export default function HomePage() {
 
         <Footer />
       </div>
-    </>
+    </div>
   );
 }

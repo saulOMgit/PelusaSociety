@@ -10,11 +10,20 @@
     margin: 0;
   }
 
+
 .favorites__page {
  top: 0;
  display:flex;
  flex-direction: column;
  gap: 20px;
+}
+
+.favorites__page--alert {
+    width: 390px;
+    height: auto;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    text-align: left;
 }
 
 .favorites__intro {
