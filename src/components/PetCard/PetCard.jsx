@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
+import { useFavorites } from '../../context/FavoritesContext'
 import './PetCard.css'
 import Btn from '../Btn/Btn'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaw, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 // Función de comparación optimizada
 const petCardPropsAreEqual = (prevProps, nextProps) => {
@@ -24,6 +25,7 @@ const petCardPropsAreEqual = (prevProps, nextProps) => {
 };
 
 const PetCard = React.memo(({
+    id,
     nombre,
     tipo,
     edad,
@@ -32,36 +34,50 @@ const PetCard = React.memo(({
     desc_fisica,
     vacunas,
     esterilizado,
-    onToggleLike,
-    isLiked = false,
     onAdopt
 }) => {
-    // Solo necesitamos estado para el flip de la carta
+
+    const { favorites, dispatch } = useFavorites();
+    const isLiked = favorites.some((pet) => pet.id === id); // usa la prop "id"
+
+
     const [isFlipped, setIsFlipped] = useState(false);
 
-    // ✅ Handlers memoizados
-    const handleLikeClick = useCallback((e) => {
-        e.stopPropagation();
-        // Llamar directamente al callback del padre con el estado contrario
-        if (onToggleLike) {
-            onToggleLike(nombre, !isLiked);
-        }
-    }, [onToggleLike, nombre, isLiked]);
+    //const isLiked = favorites.some(pet => pet.id === id);
 
-    const handleAdoptClick = useCallback(() => {
-        if (onAdopt) {
-            onAdopt({ nombre, imagen });
-        }
-    }, [onAdopt, nombre, imagen]);
+
+    const handleLikeClick = (e) => {
+        e.stopPropagation(); //evita que se voltee al hacer click en corazon
+
+        dispatch({
+            type: "TOGGLE_FAVORITE",
+            payload: {
+                id,
+                nombre,
+                tipo,
+                edad,
+                genero,
+                imagen,
+                desc_fisica,
+                vacunas,
+                esterilizado
+            }
+        });
+    };
+
+    const handleAdoptClick = (petData) => {
+        // e.stopPropagation();
+        if (onAdopt) onAdopt(petData);
+    };
 
     const handleCardClick = useCallback(() => {
         setIsFlipped(prev => !prev);
     }, []);
 
-    const handleBackClick = useCallback((e) => {
+    /*const handleBackClick = useCallback((e) => {
         e.stopPropagation();
         setIsFlipped(false);
-    }, []);
+    }, []);*/
 
     // Clases BEM memoizadas
     const imageContainerClass = useMemo(() => {

@@ -178,9 +178,6 @@ const PetSlider = ({ tipoMascota, muestra }) => {
             <div key={pet.id} className={getCardClasses(index)}>
               <PetCard
                 {...pet}
-                onToggleLike={handleToggleLike}
-                onAdopt={handleAdopt}
-                isLiked={likedPets.has(pet.nombre)}
               />
             </div>
           ))}
