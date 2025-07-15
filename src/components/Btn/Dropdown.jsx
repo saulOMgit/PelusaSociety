@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronUp, Moon, Sun, Globe, PawPrint, LanguagesIcon, Check } from 'lucide-react';
 import './Dropdown.css'
-import '../../hooks/useTheme'
 import useTheme from "../../hooks/useTheme";
+import { useTranslation } from 'react-i18next'; // <-- Add this line
+import BtnSelectorLanguages from "../BtnSelectorLanguages/BtnSelectorLanguages";
 
 const Dropdown = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +12,8 @@ const Dropdown = () => {
 
     const [theme, toggleTheme] = useTheme();
     const isDarkTheme = theme === 'dark';
+
+    const { i18n } = useTranslation();
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -23,11 +26,16 @@ const Dropdown = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const language = ['English', 'Spanish'];
-    const changeLanguage = (selectedLanguage) => {
-        setCurrentLanguage(selectedLanguage);
-        setIsOpen(false)
-    }
+    const handleChangeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+        setIsOpen(false); // Close dropdown after selection
+    };
+
+    const supportedLanguages = [
+        { code: 'es', name: 'Español', icon: '/src/img/spanish.svg' }, // Adjust paths as needed
+        { code: 'en', name: 'English', icon: '/src/img/english.svg' }
+        // Add more languages as needed
+    ];
 
     return (
         <div className="page-wrapper">
@@ -64,13 +72,13 @@ const Dropdown = () => {
                                                 <span className="dropdown__section-title">Idiomas</span>
                                             </div>
                                             <div className="dropdown__language-list">
-                                                {language.map((language) => (
-                                                    <button key={language}
-                                                        onClick={() => changeLanguage(language)}
-                                                        className={`dropdown__language-item ${currentLanguage === language ? 'dropdown__language-item--active' : ''}`}
+                                                {supportedLanguages.map((lang) => (
+                                                    <button key={lang.code}
+                                                        onClick={() => handleChangeLanguage(lang.code)}
+                                                        className={`dropdown__language-item ${i18n.language === lang.code ? 'dropdown__language-item--active' : ''}`}
                                                     >
-                                                        <span className="dropdown__language-name">{language}</span>
-                                                        {currentLanguage === language && (
+                                                        <span className="dropdown__language-name">{lang.name}</span>
+                                                        {i18n.language === lang.code && (
                                                             <div className="dropdown__checkmark">
                                                                 <Check size={18}/>
                                                             </div>
