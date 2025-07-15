@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Footer from '../components/Footer/Footer';
 import NavBar from '../components/NavBar/NavBar';
@@ -101,7 +101,7 @@ export default function HomePage() {
   const { t } = useTranslation();
   const catRef = useRef(null);
   const dogRef = useRef(null);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [theme] = useTheme(); // Obtén theme y la función para alternarlo
 
@@ -115,13 +115,17 @@ export default function HomePage() {
 
   const handleAdopt = (petName) => {
     console.log(`Adopting ${petName}!`);
+    navigate('/adopt', { state: { petData } });
   };
 
-  console.log("Current theme in Homepage:", theme);
+  const handleToggleLike = (petName, isLiked) => {
+    console.log(`${petName} is ${isLiked ? 'liked' : 'unliked'}`);
+  };
+
     return (
-    <div className="page__container">
+    <>
       <NavBar theme={theme} />
-      <div className="page__content home-container" data-theme={theme} >
+      <div className="home-container" data-theme={theme} >
 
         <div className='introduction'>
           <h1 className='introduction__heading'>{t('homepage.greeting')}</h1>
@@ -171,6 +175,6 @@ export default function HomePage() {
         <Dropdown></Dropdown>
         <Footer />
       </div>
-    </div>
+    </>
   );
 }
