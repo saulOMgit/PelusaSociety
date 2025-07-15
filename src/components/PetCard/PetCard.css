@@ -79,11 +79,11 @@ body {
 }
 
 .adoption-card__image-container--dog {
-    background-color: #EAC2CC;
+    background-color: var(--dog-card);
 }
 
 .adoption-card__image-container--cat {
-    background-color: #ED7744;
+    background-color: var(--cat-card);
 }
 
 .adoption-card__pet-image {

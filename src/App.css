@@ -1,12 +1,30 @@
  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap'); 
 
+:root{
+  --background: #FFFBF8;
+  --text-color: #003640;
+  --text-color-button: #003640; 
+  --dog-card: #EAC2CC;
+  --cat-card: #ED7744;
+  --button: #9FCFDF;
+  --background-form: #e7f2f7;
+  --dropdown-button: #003640;
+  --dropdown-color: #FFFBF8;
+}
+[data-theme='dark'] {
+  --background: #001b20;
+  --text-color: #FFFBF8;
+  --text-color-button: #003640; 
+  --dog-card: #F2D9DF;
+  --cat-card: #F3A97E;
+  --button: #9FCFDF;
+  --background-form: #e7f2f7;
+  --dropdown-button: #FFFBF8;
+  --dropdown-color: #003640;
 
-#root {
-  max-width: 390px;
-  margin: 0 auto;
-  text-align: center;
 
 }
+
 
 .categories {
   display: flex;
@@ -17,8 +35,12 @@
 }
 
 body{
-  background-color: #FFFBF8;
-  color: #003640;
+  background-color: var(--background);
+  color: var(--text-color);
+  width: 390px;
+  margin: 0 auto;
+  text-align: center;
+
 }
 
 .introduction{
