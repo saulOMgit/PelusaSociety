@@ -2,7 +2,8 @@ import React from 'react'
 import './NavBar.css'
 import imgLight from '../../assets/azul.svg'
 import imgDark from '../../assets/negativo.svg'
-import icon from '../../assets/fav.png'
+import iconLight from '../../assets/fav.png'
+import iconDark from '../../assets/fLight.png'
 
 const NavBar = ({theme}) => {
   return (
@@ -13,7 +14,7 @@ const NavBar = ({theme}) => {
              <img src={theme === 'light' ? imgLight : imgDark} alt="logotipo" className="logo"/>
             </div>
             <div className="buttonFavorites__container">
-                <img src={icon} alt="icono favoritos" className="icon"/>
+                <img src={theme === 'light' ? iconLight : iconDark} alt="icono favoritos" className="icon"/>
                 <button className="buttonFavorites">Favoritos</button>
             </div>
         </div>
