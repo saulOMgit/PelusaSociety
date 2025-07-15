@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
 import './AdoptPage.css';
+import useTheme from '../hooks/useTheme';
 
 const AdoptPage = () => {
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -26,10 +27,12 @@ const AdoptPage = () => {
         reset();
     };
 
+      const [theme] = useTheme(); // Obtén theme y la función para alternarlo
+
     return (
         <div className="adopt-page">
             {/* NavBar */}
-            <NavBar />
+            <NavBar theme={theme}/>
 
             {/* Mensaje de confirmación */}
             {showConfirmation && (
