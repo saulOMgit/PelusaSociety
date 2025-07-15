@@ -5,11 +5,14 @@ import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
 import './AdoptPage.css';
 import useTheme from '../hooks/useTheme';
+import Dropdown from '../components/Btn/Dropdown';
+
 
 const AdoptPage = () => {
     const [showConfirmation, setShowConfirmation] = useState(false);
     const location = useLocation();
     const petData = location.state?.petData || { nombre: 'una mascota' };
+   
 
     const {
         register,
@@ -410,7 +413,7 @@ const AdoptPage = () => {
                     </form>
                 </div>
             </main>
-
+            <Dropdown></Dropdown>                   
             {/* Footer */}
             <Footer />
         </div>
