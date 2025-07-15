@@ -4,7 +4,6 @@ import iconLight from '../../assets/favDark.png'
 import iconDark from '../../assets/fLight.png'
 
 const ButtonFavorites = ({ onClick, theme }) => {
-    console.log("Current theme in ButtonFavorites", theme);
 
   return (
 

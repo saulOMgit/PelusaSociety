@@ -6,7 +6,7 @@
   align-items: center;
   padding: 8px 12px;
   height: 40px;
-  background-color: #93c5fd; /* azul claro */
+  background-color: var(--button); /* azul claro */
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   border-radius: 100px;
@@ -44,7 +44,7 @@
 .btn__label {
   font-size: 16px;
   font-weight: bold;
-  color: #083344; /* azul oscuro */
+  color: var(--text-color-button); /* azul oscuro */
 }
 
 @media (max-width: 768px) {
