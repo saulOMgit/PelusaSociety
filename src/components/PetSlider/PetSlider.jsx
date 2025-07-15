@@ -135,10 +135,10 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     setCurrentIndex(0);
   }, [petData]);
 
-  // Placeholder para lógica de favoritos/adopción
+  /* Placeholder para lógica de favoritos/adopción
   const handleToggleLike = (nombre, isLiked) => {
     console.log(`${nombre} ${isLiked ? 'añadido a' : 'eliminado de'} favoritos`);
-  };
+  }; */
 
   const handleAdopt = (petData) => {
     console.log(`Iniciando proceso de adopción para ${petData.nombre}`);
@@ -169,7 +169,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
                 desc_fisica={pet.desc_fisica}
                 vacunas={pet.vacunas}
                 esterilizado={pet.esterilizado}
-                onToggleLike={handleToggleLike}
+                //onToggleLike={handleToggleLike}
                 onAdopt={handleAdopt}
                 isLiked={false}
               />
