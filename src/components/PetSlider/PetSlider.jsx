@@ -161,6 +161,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
               className={`pet-card ${index === currentIndex ? 'active' : ''} ${index === currentIndex + 1 ? 'next' : ''}`}
             >
               <PetCard
+                id={pet.id}
                 nombre={pet.nombre}
                 tipo={pet.tipo}
                 edad={pet.edad}

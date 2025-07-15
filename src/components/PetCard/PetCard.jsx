@@ -20,10 +20,12 @@ const PetCard = ({
 }) => {
 
     const { favorites, dispatch } = useFavorites();
+    const isLiked = favorites.some((pet) => pet.id === id); // usa la prop "id"
+
 
     const [isFlipped, setIsFlipped] = useState(false);
 
-    const isLiked = favorites.some(pet => pet.id === id);
+    //const isLiked = favorites.some(pet => pet.id === id);
 
 
     const handleLikeClick = (e) => {

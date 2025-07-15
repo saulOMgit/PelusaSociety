@@ -10,14 +10,14 @@
     margin: 0;
   }
 
-.favorites-page {
+.favorites__page {
  top: 0;
  display:flex;
  flex-direction: column;
  gap: 20px;
 }
 
-.favorites-intro {
+.favorites__intro {
     width: 390px;
     height: auto;
     padding: 12px 20px;
@@ -41,9 +41,10 @@ p {
     margin: 0;
 }
 
-.favorites-grid {
+.favorites__grid {
     display:flex;
     flex-direction: column;
     grid-template-columns: auto;
     margin-bottom: 32px;
+    gap: 16px;
 }

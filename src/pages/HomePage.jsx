@@ -104,10 +104,6 @@ export default function HomePage() {
     console.log(`Adopting ${petName}!`);
   };
 
-  /*const handleToggleLike = (petName, isLiked) => {
-    console.log(`${petName} is ${isLiked ? 'liked' : 'unliked'}`);
-  };*/
-
   return (
     <>
       <NavBar />
