@@ -117,6 +117,7 @@ export default function HomePage() {
     console.log(`Adopting ${petName}!`);
   };
 
+  console.log("Current theme in Homepage:", theme);
     return (
     <div className="page__container">
       <NavBar theme={theme} />
