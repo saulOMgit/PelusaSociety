@@ -58,7 +58,7 @@ const Dropdown = () => {
                                     <button onClick={toggleTheme}
                                         className="dropdown__item">
                                         <div className="dropdown__item-icon">
-                                            {isDarkTheme ? (<Sun className="dropdow__icon-svg" />)
+                                            {isDarkTheme ? (<Sun className="dropdow__icon-svg" size={16} />)
                                                 : (<Moon className="dropdown__icon-svg " />)}
                                         </div>
                                         <span className="dropdown__item-text">
