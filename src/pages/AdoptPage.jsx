@@ -5,6 +5,7 @@ import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
 import './AdoptPage.css';
 import useTheme from '../hooks/useTheme';
+import BtnSubmit from '../components/btnSubmit/BtnSubmit';
 
 const AdoptPage = () => {
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -402,11 +403,7 @@ const AdoptPage = () => {
                         </section>
 
                         {/* Botón de Envío */}
-                        <div className="adopt-form__submit">
-                            <button type="submit" className="adopt-form__submit-btn">
-                                Enviar
-                            </button>
-                        </div>
+                        <BtnSubmit />
                     </form>
                 </div>
             </main>
