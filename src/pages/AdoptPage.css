@@ -329,39 +329,6 @@ body {
   padding: 1.5rem 0;
 }
 
-/* ELEMENTO: adopt-form__submit-btn */
-.adopt-form__submit-btn {
-  background: var(--button);
-  color: var(--text-color-button);
-  border: none;
-  padding: 0.875rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: var(--shadow-light);
-  min-width: 120px;
-}
-
-/* ESTADO: adopt-form__submit-btn:hover */
-.adopt-form__submit-btn:hover {
-  background: #89b3c1;
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-light);
-}
-
-/* ESTADO: adopt-form__submit-btn:active */
-.adopt-form__submit-btn:active {
-  transform: translateY(0);
-}
-
-/* ESTADO: adopt-form__submit-btn:focus */
-.adopt-form__submit-btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(74, 155, 142, 0.3);
-}
-
 /* Placeholder styling */
 .adopt-form__input::placeholder,
 .adopt-form__textarea::placeholder {
@@ -457,11 +424,6 @@ body {
   
   .adopt-form__checkbox-label {
     font-size: 1rem;
-  }
-  
-  .adopt-form__submit-btn {
-    padding: 1rem 3rem;
-    font-size: 1.1rem;
   }
   
   .adopt-page__confirmation {
@@ -646,10 +608,6 @@ body {
     padding: 1rem;
   }
   
-  .adopt-form__submit-btn {
-    width: 100%;
-    padding: 1rem;
-  }
 }
 
 /* Mejoras para modo oscuro (opcional) */
@@ -665,9 +623,6 @@ body {
     animation: none;
   }
   
-  .adopt-form__submit-btn:hover {
-    transform: none;
-  }
 }
 
 

@@ -7,9 +7,11 @@ import './AdoptPage.css';
 import useTheme from '../hooks/useTheme';
 import Dropdown from '../components/Btn/Dropdown';
 
+import BtnSubmit from '../components/btnSubmit/BtnSubmit';
+import Modal from '../components/modal/Modal';
 
 const AdoptPage = () => {
-    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
     const location = useLocation();
     const petData = location.state?.petData || { nombre: 'una mascota' };
    
@@ -23,11 +25,7 @@ const AdoptPage = () => {
 
     const onSubmit = (data) => {
         console.log('Datos del formulario:', { ...data, petData });
-        setShowConfirmation(true);
-        setTimeout(() => {
-            setShowConfirmation(false);
-        }, 5000);
-        reset();
+        setOpenModal(true);
     };
 
       const [theme] = useTheme(); // Obtén theme y la función para alternarlo
@@ -36,18 +34,6 @@ const AdoptPage = () => {
         <div className="adopt-page">
             {/* NavBar */}
             <NavBar theme={theme}/>
-
-            {/* Mensaje de confirmación */}
-            {showConfirmation && (
-                <div className="adopt-page__confirmation">
-                    <div className="adopt-page__confirmation-content">
-                        <span className="adopt-page__confirmation-icon">✅</span>
-                        <p className="adopt-page__confirmation-text">
-                            ¡Solicitud de adopción enviada exitosamente! Nos pondremos en contacto contigo pronto.
-                        </p>
-                    </div>
-                </div>
-            )}
 
             {/* Main Content */}
             <main className="adopt-page__main">
@@ -405,11 +391,9 @@ const AdoptPage = () => {
                         </section>
 
                         {/* Botón de Envío */}
-                        <div className="adopt-form__submit">
-                            <button type="submit" className="adopt-form__submit-btn">
-                                Enviar
-                            </button>
-                        </div>
+                        <BtnSubmit />
+
+                        <Modal open={openModal} onClose={() => setOpenModal(false)}/>
                     </form>
                 </div>
             </main>
