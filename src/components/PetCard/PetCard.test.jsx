@@ -27,12 +27,12 @@ jest.mock('@fortawesome/react-fontawesome', () => ({
 describe('PetCard - Tests Básicos', () => {
   const petData = {
     id: 1,
-    nombre: 'Buddy',
+    nombre: 'Jacinto',
     tipo: 'Perro',
     edad: '2 años',
     genero: 'Macho',
-    imagen: 'https://ejemplo.com/buddy.jpg',
-    desc_fisica: 'Un perro muy amigable',
+    imagen: 'https://ejemplo.com/jacinto.jpg',
+    desc_fisica: 'Un perrito gordito',
     vacunas: true,
     esterilizado: true,
     onAdopt: jest.fn()
@@ -44,7 +44,7 @@ describe('PetCard - Tests Básicos', () => {
 
   test('renderiza el nombre de la mascota', () => {
     render(<PetCard {...petData} />);
-    expect(screen.getAllByText('Buddy')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Jacinto')[0]).toBeInTheDocument();
   });
 
   test('renderiza la edad y sexo', () => {
@@ -55,7 +55,7 @@ describe('PetCard - Tests Básicos', () => {
 
   test('renderiza la imagen con alt text correcto', () => {
     render(<PetCard {...petData} />);
-    const image = screen.getByAltText('Buddy');
+    const image = screen.getByAltText('Jacinto');
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute('src', petData.imagen);
   });
@@ -77,7 +77,7 @@ describe('PetCard - Tests Básicos', () => {
     
     expect(screen.getByText('Esterilizado')).toBeInTheDocument();
     expect(screen.getByText('Vacunado')).toBeInTheDocument();
-    expect(screen.getByText('Un perro muy amigable')).toBeInTheDocument();
+    expect(screen.getByText('Un perrito gordito')).toBeInTheDocument();
   });
 
   test('llama a onAdopt cuando se hace clic en adoptar', () => {
@@ -87,8 +87,8 @@ describe('PetCard - Tests Básicos', () => {
     fireEvent.click(adoptButton);
     
     expect(petData.onAdopt).toHaveBeenCalledWith({
-      nombre: 'Buddy',
-      imagen: 'https://ejemplo.com/buddy.jpg'
+      nombre: 'Jacinto',
+      imagen: 'https://ejemplo.com/jacinto.jpg'
     });
   });
 
@@ -102,7 +102,7 @@ describe('PetCard - Tests Básicos', () => {
       type: 'TOGGLE_FAVORITE',
       payload: expect.objectContaining({
         id: 1,
-        nombre: 'Buddy'
+        nombre: 'Jacinto'
       })
     });
   });
