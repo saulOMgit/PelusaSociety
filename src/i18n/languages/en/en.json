@@ -20,6 +20,16 @@
   "Terminosdelacomunidad": "Community-terms",
   "Politicasdeprivacidad": "Privacy-policy",
   "Contacto": "Contact"
-}
+},
+
+  "FavoritesPage": {
+    "title": "Favorites",
+    "paragraph": "We know you'd take all our furballs home...",
+    "alertParagraph": "You haven't added any furballs to favorites yet 😢"
+  },
+  "ButtonFavorites": {
+    "button": "Favorites" 
+  }
+
 }
 
