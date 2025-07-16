@@ -74,11 +74,6 @@ const PetCard = React.memo(({
         setIsFlipped(prev => !prev);
     }, []);
 
-    /*const handleBackClick = useCallback((e) => {
-        e.stopPropagation();
-        setIsFlipped(false);
-    }, []);*/
-
     // Clases BEM memoizadas
     const imageContainerClass = useMemo(() => {
         let baseClass = 'adoption-card__image-container';
