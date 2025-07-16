@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { ChevronUp, Moon, Sun, Globe, PawPrint, LanguagesIcon, Check } from 'lucide-react';
 import './Dropdown.css'
 import useTheme from "../../hooks/useTheme";
-import { useTranslation } from 'react-i18next'; // <-- Add this line
+import { useTranslation } from 'react-i18next'; 
 import BtnSelectorLanguages from "../BtnSelectorLanguages/BtnSelectorLanguages";
 
 const Dropdown = () => {
@@ -45,7 +45,7 @@ const Dropdown = () => {
                         className={`dropdown__button ${isOpen ? 'dropdow_button--active' : ''}`}>
                         <div className="dropdown__icon">
                             {isDarkTheme ? (<PawPrint
-                                size={24} // Puedes ajustar el tamaño aquí (por defecto es 24) 
+                                size={24} 
                                 className="dropdown__svg"
                             />) : (<PawPrint size={24} className="dropdown__svg" />)}
                         </div>

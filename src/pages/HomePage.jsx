@@ -5,7 +5,6 @@ import Footer from '../components/Footer/Footer';
 import NavBar from '../components/NavBar/NavBar';
 import PetSlider from "../components/PetSlider/PetSlider";
 import CardCategory from '../components/CardCategory/CardCategory';
-import PetCard from "../components/PetCard/PetCard";
 import './HomePage.css';
 
 
