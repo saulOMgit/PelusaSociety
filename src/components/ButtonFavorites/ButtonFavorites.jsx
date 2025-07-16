@@ -12,7 +12,7 @@ const ButtonFavorites = ({ theme }) => {
 
         <div className="buttonFavorites__container" onClick={() => navigate('/favoritos')}>
             <img src={theme === 'light' ? iconLight : iconDark} alt="icono favoritos" className="icon"/>
-            <button className="buttonFavorites">{t('ButtonFavorites.button')}q</button>
+            <button className="buttonFavorites">{t('ButtonFavorites.button')}</button>
         </div>
         
   )
