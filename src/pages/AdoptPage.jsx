@@ -20,7 +20,6 @@ const AdoptPage = () => {
         register,
         handleSubmit,
         formState: { errors },
-        reset
     } = useForm();
 
     const onSubmit = (data) => {
