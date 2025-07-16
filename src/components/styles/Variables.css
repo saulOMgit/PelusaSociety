@@ -8,6 +8,24 @@
   --background-form: #e7f2f7;
   --dropdown-button: #003640;
   --dropdown-color: #FFFBF8;
+
+  --primary-teal: #4A9B8E;
+  --primary-orange: #FF6B35;
+  --primary-pink: #E8A5C4;
+  --text-dark: #2C3E50;
+  --text-medium: #5A6C7D;
+  --text-light: #7F8C8D;
+  --background-light: #F8F9FA;
+  --background-section: #E8F4F8;
+  --white: #FFFFFF;
+  --error-color: #E74C3C;
+  --success-color: #27AE60;
+  --border-color: #D1D9E6;
+  --border-focus: #4A9B8E;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.50);
+  --border-radius: 8px;
+  --transition: all 0.3s ease;
 }
 [data-theme='dark'] {
   --background: #001b20;
@@ -19,6 +37,14 @@
   --background-form: #e7f2f7;
   --dropdown-button: #FFFBF8;
   --dropdown-color: #003640;
+
+    --text-dark: #E2E8F0;
+    --text-medium: #CBD5E0;
+    --text-light: #A0AEC0;
+    --background-light: #1A202C;
+    --background-section: #445065;
+    --white: #2D3748;
+    --border-color: #4A5568;
 
 
 }

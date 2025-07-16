@@ -5,12 +5,16 @@ import NavBar from '../components/NavBar/NavBar';
 import Footer from '../components/Footer/Footer';
 import PetCard from '../components/PetCard/PetCard';
 
+import useTheme from '../hooks/useTheme';
+import Dropdown from '../components/Btn/Dropdown';
+
 const FavoritesPage = () => {
     const { favorites } = useFavorites();
+    const [theme] = useTheme();
 
     return(
-        <div className="page__container">
-        <NavBar />
+        <div className="page__container" data-theme={theme}>
+        <NavBar  theme={theme}/>
         <div className="page__content favorites__page">
             <div className="favorites__intro">
                 <h2>Favoritos</h2>
@@ -26,6 +30,7 @@ const FavoritesPage = () => {
                 </div>
             )}
         </div>
+        <Dropdown></Dropdown>
         <Footer />
         </div>
     );

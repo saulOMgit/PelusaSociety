@@ -14,7 +14,7 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
     font-weight: 600px;
-    color: #003640;
+    color: var(--text-color);
     background-color: transparent;
     padding: 4px;
     border: none;

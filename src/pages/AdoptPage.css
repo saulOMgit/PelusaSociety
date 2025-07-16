@@ -1,26 +1,5 @@
 /* AdoptPage.css - Mobile First con metodología BEM y estilos responsivos completos */
 
-/* Variables CSS */
-:root {
-  --primary-teal: #4A9B8E;
-  --primary-orange: #FF6B35;
-  --primary-pink: #E8A5C4;
-  --text-dark: #2C3E50;
-  --text-medium: #5A6C7D;
-  --text-light: #7F8C8D;
-  --background-light: #F8F9FA;
-  --background-section: #E8F4F8;
-  --white: #FFFFFF;
-  --error-color: #E74C3C;
-  --success-color: #27AE60;
-  --border-color: #D1D9E6;
-  --border-focus: #4A9B8E;
-  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
-  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
-  --border-radius: 8px;
-  --transition: all 0.3s ease;
-}
-
 /* Reset básico */
 * {
   margin: 0;
@@ -38,7 +17,7 @@ body {
 /* BLOQUE: adopt-page */
 .adopt-page {
   min-height: 100vh;
-  background-color: var(--background-light);
+  background-color: var(--background);
   width: 100%;
   max-width: 390px;
   margin: 0 auto;
@@ -353,8 +332,8 @@ body {
 
 /* ELEMENTO: adopt-form__submit-btn */
 .adopt-form__submit-btn {
-  background: var(--primary-teal);
-  color: var(--white);
+  background: var(--button);
+  color: var(--text-color-button);
   border: none;
   padding: 0.875rem 2rem;
   font-size: 1rem;
@@ -368,9 +347,9 @@ body {
 
 /* ESTADO: adopt-form__submit-btn:hover */
 .adopt-form__submit-btn:hover {
-  background: #3a8a7d;
+  background: #89b3c1;
   transform: translateY(-1px);
-  box-shadow: var(--shadow-medium);
+  box-shadow: var(--shadow-light);
 }
 
 /* ESTADO: adopt-form__submit-btn:active */
@@ -675,17 +654,7 @@ body {
 }
 
 /* Mejoras para modo oscuro (opcional) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text-dark: #E2E8F0;
-    --text-medium: #CBD5E0;
-    --text-light: #A0AEC0;
-    --background-light: #1A202C;
-    --background-section: #2D3748;
-    --white: #2D3748;
-    --border-color: #4A5568;
-  }
-}
+
 
 /* Mejoras para reducir movimiento (accesibilidad) */
 @media (prefers-reduced-motion: reduce) {

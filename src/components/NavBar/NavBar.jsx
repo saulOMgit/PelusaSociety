@@ -3,7 +3,6 @@ import './NavBar.css'
 import imgLight from '../../assets/azul.svg'
 import imgDark from '../../assets/negativo.svg'
 import ButtonFavorites from '../ButtonFavorites/ButtonFavorites'
-import BtnSelectorLanguages from '../BtnSelectorLanguages/BtnSelectorLanguages'
 
 const NavBar = ({theme}) => { 
 
@@ -15,7 +14,7 @@ const NavBar = ({theme}) => {
              <img src={theme === 'light' ? imgLight : imgDark} alt="logotipo" className="logo"/>
             </div>
             <ButtonFavorites theme={theme}/>
-             <BtnSelectorLanguages />
+             
         </div>
     </header>
     </>
