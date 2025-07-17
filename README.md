@@ -1,5 +1,8 @@
 # 🐾 Pelusa Society - Adopción responsable de perros y gatos
 
+![inicio](public/index.png) ![formulario](public/adopt.png)
+
+
 **Pelusa Society** es un proyecto web desarrollado en React para la adopción de perros y gatos. 
 Utiliza sliders interactivos optimizados para controles táctiles de móvil.
 
@@ -18,26 +21,31 @@ En nuestro equipo tuvimos la suerte de contar con datos de usuarios recogidos co
 
 <details>
   <summary>Encuesta sobre adopción de animales a través de Internet</summary>
+  
 <p><b>🎯 Objetivo</b>: Detectar posibles fricciones o necesidades en la experiencia digital de adopción de animales.<br>
 📊 <strong>Muestra</strong>: 93 personas.<br>
 🔠 <b>Metodología</b>: Encuesta online anónima. Edad media: 25-45 años.<br>
 🗓️ <b>Fecha</b>: Diciembre 2024.<br>
-🔎 <h3>Preguntas relevantes:</h3><br>
+  
+<h3> 🔎 Preguntas relevantes:</h3><br>
 <b>¿Desde qué dispositivo realizaste (o realizarías) la solicitud de adopción de una mascota?</b><br>
 Desde el móvil (smartphone) – 82%<br>
 Desde un ordenador (portátil o sobremesa) – 12%<br>
 Desde una tablet – 4%<br>
 No recuerdo / No estoy segura – 2%<br>
+
 <b>¿Con qué frecuencia consultas perfiles de animales en adopción desde el móvil?</b><br>
 A diario – 25%<br>
 Varias veces por semana – 34%<br>
 Una vez por semana – 28%<br>
 Rara vez – 13%<br>
+
 <b>¿Te resultó fácil hacer todo el proceso desde el móvil?</b><br>
 Sí, muy fácil – 68%<br>
 Sí, aunque algunos pasos no estaban adaptados – 21%<br>
 No, preferí cambiarme al ordenador – 11%<br>
-📌 Conclusión:<br>
+  
+**📌 Conclusión:**<br>
 El tráfico mobile <b>supera el 96% a nivel global</b>. En el contexto específico de formularios más largos o procesos serios como adopciones, hay tan solo una pequeña resistencia que ronda entre el 10% y el 20% y que sigue prefiriendo el escritorio. La prioridad clara debería ser <b>el diseño mobile-first</b> para satisfacer la demanda de la gran mayoría de personas que adoptan.</p><br>
 </details>
 
