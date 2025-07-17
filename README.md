@@ -1,6 +1,6 @@
 # 🐾 Pelusa Society - Adopción responsable de perros y gatos
 
-![inicio](public/index.png) ![formulario](public/adopt.png)
+![formulario](public/adopt.png) ![slider](public/slider.png)
 
 
 **Pelusa Society** es un proyecto web desarrollado en React para la adopción de perros y gatos. 
