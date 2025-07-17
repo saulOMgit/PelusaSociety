@@ -14,7 +14,7 @@ Se trata de un proyecto de clase para el **bootcamp** impartido por **Factoría 
 
 ## 📱 Un diseño Mobile-First
 
-En nuestro equipo tuvimos la suerte de contar con datos de usuarios recogidos con una encuesta. Esta información nos indicó que **la gran mayoría de personas que adoptan mascotas lo hacen a través del móvil**. Por ello, decidimos centrar todos nuestros recursos y nuestro tiempo en **una aplicación móvil de la mayor calidad que pudiéramos alcanzar**. La web es escalable a futuro teniendo en cuenta el pequeño porcentaje más reticente a utilizar el móvil, pero nuestra primera prioridad fue **que la web resultara atractiva para el abrumador porcentaje de usuarios de móvil**.
+En nuestro equipo tuvimos la suerte de contar con datos de usuarios recogidos con una encuesta. Esta información nos indicó que **la gran mayoría de personas que adoptan mascotas lo hacen a través de móvil**. Por ello, decidimos centrar todos nuestros recursos y nuestro tiempo en **una aplicación mobile de la mayor calidad que pudiéramos alcanzar**. La web es escalable a futuro para tener en cuenta el pequeño porcentaje más reticente a utilizar el teléfono, pero nuestra prioridad fue **que la web resultara atractiva para el abrumador porcentaje de usuarios de móvil**.
 
 <details>
   <summary>Encuesta sobre adopción de animales a través de Internet</summary>
@@ -38,7 +38,7 @@ Sí, muy fácil – 68%<br>
 Sí, aunque algunos pasos no estaban adaptados – 21%<br>
 No, preferí cambiarme al ordenador – 11%<br>
 📌 Conclusión:<br>
-Aunque el tráfico mobile <b>supera el 96% a nivel global</b>, en el contexto específico de formularios más largos o procesos serios como adopciones, hay una pequeña resistencia que ronda entre el 10% y el 20% que sigue prefiriendo el escritorio. Aun así, la prioridad clara debería ser <b>el diseño mobile-first</b>, porque es lo que demanda la gran mayoría.</p><br>
+El tráfico mobile <b>supera el 96% a nivel global</b>. En el contexto específico de formularios más largos o procesos serios como adopciones, hay tan solo una pequeña resistencia que ronda entre el 10% y el 20% y que sigue prefiriendo el escritorio. La prioridad clara debería ser <b>el diseño mobile-first</b> para satisfacer la demanda de la gran mayoría de personas que adoptan.</p><br>
 </details>
 
 ## 🛠 Tecnologías Utilizadas
