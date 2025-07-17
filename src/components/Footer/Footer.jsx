@@ -3,7 +3,7 @@ import instagram from '../../img/instagram.svg';
 import instagramWhite from '../../assets/instagramWhite.svg'
 import tools from '../../assets/tools.svg';
 import toolsWhite from '../../assets/toolsWhite.svg'
-import './footer.css'
+import './Footer.css'
 
 const Footer = ({theme}) => {
   const { t } = useTranslation();
