@@ -33,7 +33,7 @@ const FavoritesPage = () => {
             )}
         </div>
         <Dropdown></Dropdown>
-        <Footer />
+        <Footer theme={theme}/>
         </div>
     );
 };

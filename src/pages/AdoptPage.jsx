@@ -403,7 +403,7 @@ const AdoptPage = () => {
             </main>
             <Dropdown></Dropdown>                   
             {/* Footer */}
-            <Footer />
+            <Footer theme={theme} />
         </div>
     );
 };
