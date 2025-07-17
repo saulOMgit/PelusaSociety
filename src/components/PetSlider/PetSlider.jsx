@@ -37,7 +37,7 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     fetchPets();
   }, [tipoMascota, muestra]);
 
-  // Navegación simplificada
+  // Navegación básica
   const navigate = useCallback((direction) => {
     setCurrentIndex(prev => 
       direction === 'next' 
@@ -135,9 +135,6 @@ const PetSlider = ({ tipoMascota, muestra }) => {
       });
     }
   }, [currentIndex]);
-
-  // Reinicia índice cuando cambia el tipo
-  useEffect(() => setCurrentIndex(0), [petData]);
 
   // Generadores de clases BEM
   const getCardClasses = useCallback((index) => {
