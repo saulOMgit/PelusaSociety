@@ -1,13 +1,6 @@
  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap'); 
 
 
-#root {
-  max-width: 390px;
-  margin: 0 auto;
-  text-align: center;
-
-}
-
 .categories {
   display: flex;
   flex-direction: row; 
@@ -17,8 +10,12 @@
 }
 
 body{
-  background-color: #FFFBF8;
-  color: #003640;
+  background-color: var(--background);
+  color: var(--text-color);
+  width: 390px;
+  margin: 0 auto;
+  text-align: center;
+
 }
 
 .introduction{

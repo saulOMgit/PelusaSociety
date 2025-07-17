@@ -1,21 +1,28 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Footer from '../components/Footer/Footer';
 import NavBar from '../components/NavBar/NavBar';
 import PetSlider from "../components/PetSlider/PetSlider";
 import CardCategory from '../components/CardCategory/CardCategory';
-import PetCard from "../components/PetCard/PetCard";
 import './HomePage.css';
+
 
 import img1 from '../assets/cat.png';
 import img2 from '../assets/dog.png';
-import img3 from '../assets/society.png';
+import img3Light from '../assets/society.png'
+import img3Dark from '../assets/societyLight.png'
 import pepitaImg from '../assets/pepita.webp';
 import bassImg from  '../assets/bass.webp';
 import selvaImg from  '../assets/selva.webp';
 import beckhamImg from  '../assets/beckham.webp';
 import bombonImg from  '../assets/bombon.webp';
 import pomeloImg from  '../assets/pomelo.webp';
+
+import useTheme from '../hooks/useTheme';
+import Dropdown from '../components/Btn/Dropdown';
+
+import '../components/styles/Variables.css'
 
 const dogs = [
   {
@@ -93,6 +100,9 @@ export default function HomePage() {
   const { t } = useTranslation();
   const catRef = useRef(null);
   const dogRef = useRef(null);
+  const navigate = useNavigate();
+
+  const [theme] = useTheme(); // Obtén theme y la función para alternarlo
 
   const handleScrollTo = (category) => {
     if (category === 'cat' && catRef.current) {
@@ -104,6 +114,7 @@ export default function HomePage() {
 
   const handleAdopt = (petName) => {
     console.log(`Adopting ${petName}!`);
+    navigate('/adopt', { state: { petData } });
   };
 
   const handleToggleLike = (petName, isLiked) => {
@@ -112,13 +123,13 @@ export default function HomePage() {
 
     return (
     <>
-      <NavBar />
-      <div className="home-container">
+      <NavBar theme={theme} />
+      <div className="home-container" data-theme={theme} >
 
         <div className='introduction'>
           <h1 className='introduction__heading'>{t('homepage.greeting')}</h1>
           <p className='introduction__paragrahp'>{t('homepage.introText')}</p>
-          <img className='introduction__photo' src={img3} alt={t('homepage.societyAlt')} />
+          <img className='introduction__photo' src={theme === 'light' ? img3Light : img3Dark}  alt={t('homepage.societyAlt')} />
         </div>
 
         <div className='election-team'>
@@ -148,7 +159,7 @@ export default function HomePage() {
             <h3 className='cat-section__subtitle'>{t('homepage.matchPerfect')}</h3>
             <p className='cat-section__instructions-paragraph'>{t('homepage.catInstructions')}</p>
           </div>
-          <PetSlider tipoMascota="Gato" muestra={cats} />
+          <PetSlider tipoMascota="Gato" muestra={cats} onAdopt={handleAdopt}/>
         </div>
 
         <div className='dog-section'>
@@ -158,9 +169,9 @@ export default function HomePage() {
             <h3 className='dog-section__subtitle'>{t('homepage.matchPerfect')}</h3>
             <p className='dog-section__instructions-paragrahp'>{t('homepage.dogInstructions')}</p>
           </div>
-          <PetSlider tipoMascota="Perro" muestra={dogs} />
+          <PetSlider tipoMascota="Perro" muestra={dogs} onAdopt={handleAdopt}/>
         </div>
-
+        <Dropdown></Dropdown>
         <Footer />
       </div>
     </>

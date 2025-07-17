@@ -8,11 +8,12 @@
 .navbar {
     width: 390px;
     height: 88px;
-    background-color: #FFFBF8;
+    color: var(--text-color);
+    background-color: var(--background);
     margin: 0;
     padding: 24px 12px 24px 12px;
     box-sizing: border-box;
-    border-bottom: solid 1px #003640;
+    border-bottom: solid 1px var(--text-color);
     top: 0;
     position: sticky;
     z-index: 11;
@@ -37,4 +38,26 @@
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+.buttonFavorites__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.icon {
+    height: 24px;
+    width: 24px;
+    margin-bottom: 0;
+}
+
+.buttonFavorites {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600px;
+    color: var(--text-color);
+    background-color: transparent;
+    padding: 4px;
+    border: none;
 }

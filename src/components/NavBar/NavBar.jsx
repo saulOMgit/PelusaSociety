@@ -1,20 +1,23 @@
 import React from 'react'
 import './NavBar.css'
-import img from '../../assets/azul.svg'
+import imgLight from '../../assets/azul.svg'
+import imgDark from '../../assets/negativo.svg'
 import ButtonFavorites from '../ButtonFavorites/ButtonFavorites'
-import BtnSelectorLanguages from '../BtnSelectorLanguages/BtnSelectorLanguages'
+import { Link } from 'react-router-dom'
 
-const NavBar = () => { 
+const NavBar = ({theme}) => { 
 
   return (
     <>
     <header className="navbar">
         <div className="navbar__container">
             <div className="logo__container">
-             <img src={img} alt="logotipo" className="logo"/>
+              <Link to="/">
+             <img src={theme === 'light' ? imgLight : imgDark} alt="logotipo" className="logo"/>
+             </Link>
             </div>
-            <ButtonFavorites />
-             <BtnSelectorLanguages />
+            <ButtonFavorites theme={theme}/>
+             
         </div>
     </header>
     </>

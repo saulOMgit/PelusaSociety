@@ -20,5 +20,14 @@
    "Terminosdelacomunidad": "Terminos-comunidad",
    "Politicasdeprivacidad": "politicas-privacidad",
    "Contacto": "contacto"
+  },
+  "FavoritesPage":  {
+      "title": "Favoritos",
+      "paragraph": "Sabemos que te llevarías a casa a todas nuestras pelusas, pero aquí puedes ver las que has marcado como finalistas para ser el nuevo miembro de tu familia 😻",
+      "alertParagraph": "Aún no has añadido ninguna pelusa a favoritos 😢"
+  },
+  "ButtonFavorites": {
+    "button": "Favoritos" 
   }
+
 }
