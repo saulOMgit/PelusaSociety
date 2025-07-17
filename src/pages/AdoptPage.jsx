@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom'
 import NavBar from '../components/NavBar/NavBar';
@@ -21,6 +21,11 @@ const AdoptPage = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+    // Scroll to top cuando el componente se monta
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     const onSubmit = (data) => {
         console.log('Datos del formulario:', { ...data, petData });
