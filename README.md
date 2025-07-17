@@ -12,7 +12,7 @@ Se trata de un proyecto de clase para el **bootcamp** impartido por **Factoría 
 
 - **Slider con diseño avanzado**: Interfaz dinámica e intuitiva para descubrir perros o gatos con controles táctiles.
 - **Página de favoritos**: Guarda a tus animales favoritos en una lista antes de decidir cuál adoptas.
-- **Formulario de Adopción**: El formulario para iniciar el proceso de adopción.
+- **Formulario de adopción**: El formulario para iniciar el proceso de adopción una vez seleccionada una mascota.
 - **Modo oscuro y idiomas**: Se puede seleccionar entre modo claro y oscuro y entre castellano e inglés.
 
 ## 📱 Un diseño Mobile-First
