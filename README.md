@@ -18,11 +18,11 @@ En nuestro equipo tuvimos la suerte de contar con datos de usuarios recogidos co
 
 <details>
   <summary>Encuesta sobre adopción de animales a través de Internet</summary>
-<p>**🎯 Objetivo**: Detectar posibles fricciones o necesidades en la experiencia digital de adopción de animales.<br>
-📊 **Muestra**: 93 personas.<br>
+<p><b>🎯 Objetivo</b>: Detectar posibles fricciones o necesidades en la experiencia digital de adopción de animales.<br>
+📊 <strong>Muestra</strong>: 93 personas.<br>
 🔠 **Metodología**: Encuesta online anónima. Edad media: 25-45 años.<br>
 🗓️ **Fecha**: Diciembre 2024.<br>
-🔎 ###Preguntas relevantes:<br>
+🔎 <h3>Preguntas relevantes:</h3><br>
 **¿Desde qué dispositivo realizaste (o realizarías) la solicitud de adopción de una mascota?**<br>
 Desde el móvil (smartphone) – 82%<br>
 Desde un ordenador (portátil o sobremesa) – 12%<br>
