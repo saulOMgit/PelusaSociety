@@ -58,7 +58,7 @@ El tráfico mobile <b>supera el 96% a nivel global</b>. En el contexto específi
 - **Backend**:
   🐶 Conexión con la API Huachitos (https://huachitos.cl/docs)
 
-  ## Estructura del proyecto
+## 🌳 Estructura del proyecto
 ```bash
 PelusaSociety/
 ├── .gitignore
