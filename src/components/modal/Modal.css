@@ -22,7 +22,7 @@
   font-family: "DM Sans", sans-serif;
   width: 372px;
   min-height: 149px;
-  padding: 12px 20px;
+  padding: 20px 12px;
   box-sizing: border-box;
   border-radius: 8px;
   background-color: var(--background);
@@ -31,8 +31,6 @@
   color: var(--text-color);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 16px;
 }
 
 .modal__title {
