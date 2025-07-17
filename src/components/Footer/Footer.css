@@ -9,8 +9,12 @@
     bottom: 0;
 }
 
-.instagram, .api{
-    width: 15px;
+.instagram {
+    width: 22px;
+}
+
+.api {
+    width: 16px;
 }
 
 .footer-container {
