@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import './PetSlider.css';
 import { getPets } from '../../services/PetService';
 import PetCard from '../PetCard/PetCard';
@@ -6,11 +6,9 @@ import PetCard from '../PetCard/PetCard';
 const PetSlider = ({ tipoMascota, muestra }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const [dragState, setDragState] = useState({ startX: 0, scrollLeft: 0 });
   const sliderRef = useRef(null);
   const [petData, setPetData] = useState([]);
-  const [likedPets, setLikedPets] = useState(new Set());
 
   // Obtener mascotas filtradas por tipo
   useEffect(() => {
@@ -39,67 +37,71 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     fetchPets();
   }, [tipoMascota, muestra]);
 
-  // ✅ Callbacks memoizados - CLAVE para que funcione React.memo
-  const handleToggleLike = useCallback((nombre, isLiked) => {
-    console.log(`${nombre} ${isLiked ? 'añadido a' : 'eliminado de'} favoritos`);
-    setLikedPets(prev => {
-      const newSet = new Set(prev);
-      if (isLiked) {
-        newSet.add(nombre);
-      } else {
-        newSet.delete(nombre);
-      }
-      return newSet;
-    });
-  }, []);
-
-  const handleAdopt = useCallback((petData) => {
-    console.log(`Iniciando proceso de adopción para ${petData.nombre}`);
-    // Aquí iría tu lógica de adopción
-  }, []);
-
-  // Funciones de navegación
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % petData.length);
+  // Navegación básica
+  const navigate = useCallback((direction) => {
+    setCurrentIndex(prev => 
+      direction === 'next' 
+        ? (prev + 1) % petData.length
+        : (prev - 1 + petData.length) % petData.length
+    );
   }, [petData.length]);
 
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + petData.length) % petData.length);
-  }, [petData.length]);
-
-  // Calcular y ajustar al índice de carta más cercano
+  // Snap to card
   const snapToCard = useCallback(() => {
-    const cardWidth = 240;
     const track = sliderRef.current;
     if (!track) return;
     
-    const newIndex = Math.round(track.scrollLeft / cardWidth);
-    setCurrentIndex(Math.max(0, Math.min(newIndex, petData.length - 1)));
+    // Calcula el índice más cercano
+    const newIndex = Math.round(track.scrollLeft / 240);
+    const clampedIndex = Math.max(0, Math.min(newIndex, petData.length - 1));
+    
+    // Actualiza el índice
+    setCurrentIndex(clampedIndex);
+    
+    // Siempre hace scroll suave a la posición correcta
+    track.scrollTo({
+      left: clampedIndex * 240,
+      behavior: 'smooth'
+    });
   }, [petData.length]);
 
-  // Drag con ratón
-  const handleMouseDown = useCallback((e) => {
-    e.preventDefault();
+  // Manejo unificado de drag (ratón y táctil)
+  const handleDragStart = useCallback((clientX) => {
     setIsDragging(true);
-    setStartX(e.pageX - sliderRef.current.offsetLeft);
-    setScrollLeft(sliderRef.current.scrollLeft);
+    setDragState({
+      startX: clientX - sliderRef.current.offsetLeft,
+      scrollLeft: sliderRef.current.scrollLeft
+    });
   }, []);
 
-  const handleMouseMove = useCallback((e) => {
+  const handleDragMove = useCallback((clientX) => {
     if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - sliderRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    sliderRef.current.scrollLeft = scrollLeft - walk;
-  }, [isDragging, startX, scrollLeft]);
+    const x = clientX - sliderRef.current.offsetLeft;
+    const walk = (x - dragState.startX) * 2;
+    sliderRef.current.scrollLeft = dragState.scrollLeft - walk;
+  }, [isDragging, dragState]);
 
-  const handleMouseUp = useCallback(() => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    snapToCard();
+  const handleDragEnd = useCallback(() => {
+    if (isDragging) {
+      setIsDragging(false);
+      snapToCard();
+    }
   }, [isDragging, snapToCard]);
 
-  // Drag con táctil
+  // Eventos del ratón
+  const handleMouseDown = useCallback((e) => {
+    e.preventDefault();
+    handleDragStart(e.pageX);
+  }, [handleDragStart]);
+
+  const handleMouseMove = useCallback((e) => {
+    if (isDragging) {
+      e.preventDefault();
+      handleDragMove(e.pageX);
+    }
+  }, [isDragging, handleDragMove]);
+
+  // Eventos táctiles
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -107,27 +109,20 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     let touchMoved = false;
 
     const handleTouchStart = (e) => {
-      setIsDragging(true);
-      setStartX(e.touches[0].pageX - sliderRef.current.offsetLeft);
-      setScrollLeft(sliderRef.current.scrollLeft);
+      handleDragStart(e.touches[0].pageX);
       touchMoved = false;
     };
 
     const handleTouchMove = (e) => {
-      const x = e.touches[0].pageX - sliderRef.current.offsetLeft;
-      const walk = (x - startX) * 2;
-      if (Math.abs(walk) > 5) {
+      handleDragMove(e.touches[0].pageX);
+      if (isDragging && Math.abs(e.touches[0].pageX - dragState.startX) > 5) {
         touchMoved = true;
         e.preventDefault();
-        sliderRef.current.scrollLeft = scrollLeft - walk;
       }
     };
 
     const handleTouchEnd = () => {
-      setIsDragging(false);
-      if (touchMoved) {
-        snapToCard();
-      }
+      if (touchMoved) handleDragEnd();
     };
 
     slider.addEventListener('touchstart', handleTouchStart, { passive: false });
@@ -139,68 +134,62 @@ const PetSlider = ({ tipoMascota, muestra }) => {
       slider.removeEventListener('touchmove', handleTouchMove);
       slider.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [isDragging, startX, scrollLeft, snapToCard]);
+  }, [handleDragStart, handleDragMove, handleDragEnd, isDragging, dragState]);
 
-  // Scroll sincronizado al índice actual
+  // Sincroniza la posición del scroll con el índice activo (solo para navegación por botones)
   useEffect(() => {
-    if (sliderRef.current) {
-      const cardWidth = 240;
+    if (sliderRef.current && !isDragging) {
       sliderRef.current.scrollTo({
-        left: currentIndex * cardWidth,
+        left: currentIndex * 240,
         behavior: 'smooth'
       });
     }
+  }, [currentIndex, isDragging]);
+
+  // Generadores de clases BEM
+  const getCardClasses = useCallback((index) => {
+    const classes = ['pet-slider__card'];
+    if (index === currentIndex) classes.push('pet-slider__card--active');
+    if (index === currentIndex + 1) classes.push('pet-slider__card--next');
+    return classes.join(' ');
   }, [currentIndex]);
 
-  // Resetear índice cuando cambia el tipo
-  useEffect(() => {
-    setCurrentIndex(0);
-  }, [petData]);
+  const trackClasses = useMemo(() => 
+    `pet-slider__track ${isDragging ? 'pet-slider__track--dragging' : ''}`,
+    [isDragging]
+  );
 
   return (
-    <div className="pet-slider-container">
-      <div className="pet-slider-wrapper">
+    <div className="pet-slider">
+      <div className="pet-slider__wrapper">
         <div
           ref={sliderRef}
-          className={`pet-slider-track ${isDragging ? 'dragging' : ''}`}
+          className={trackClasses}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
+          onMouseUp={handleDragEnd}
+          onMouseLeave={handleDragEnd}
         >
           {petData.map((pet, index) => (
-            <div
-              key={pet.id}
-              className={`pet-card ${index === currentIndex ? 'active' : ''} ${index === currentIndex + 1 ? 'next' : ''}`}
-            >
+            <div key={pet.id} className={getCardClasses(index)}>
               <PetCard
-                nombre={pet.nombre}
-                tipo={pet.tipo}
-                edad={pet.edad}
-                genero={pet.genero}
-                imagen={pet.imagen}
-                desc_fisica={pet.desc_fisica}
-                vacunas={pet.vacunas}
-                esterilizado={pet.esterilizado}
-                onToggleLike={handleToggleLike}
-                onAdopt={handleAdopt}
-                isLiked={likedPets.has(pet.nombre)}
+                {...pet}
               />
             </div>
           ))}
         </div>
 
         <button
-          onClick={prevSlide}
-          className="pet-slider-nav prev"
+          onClick={() => navigate('prev')}
+          className="pet-slider__nav-button pet-slider__nav-button--prev"
           aria-label="Mascota anterior"
         >
           ←
         </button>
 
         <button
-          onClick={nextSlide}
-          className="pet-slider-nav next"
+          onClick={() => navigate('next')}
+          className="pet-slider__nav-button pet-slider__nav-button--next"
           aria-label="Siguiente mascota"
         >
           →

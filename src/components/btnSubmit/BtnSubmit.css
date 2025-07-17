@@ -1,0 +1,56 @@
+/* ELEMENTO: adopt-form__submit-btn */
+.adopt-form__submit-btn {
+    background: var(--primary-teal);
+    color: var(--white);
+    border: none;
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-light);
+    min-width: 120px;
+  }
+  
+  /* ESTADO: adopt-form__submit-btn:hover */
+  .adopt-form__submit-btn:hover {
+    background: #3a8a7d;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+  }
+  
+  /* ESTADO: adopt-form__submit-btn:active */
+  .adopt-form__submit-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* ESTADO: adopt-form__submit-btn:focus */
+  .adopt-form__submit-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 155, 142, 0.3);
+  }
+
+  /* RESPONSIVE DESIGN - Tablet (768px - 1023px) */
+  @media (min-width: 768px) {
+     
+  .adopt-form__submit-btn {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+  }
+  }
+
+  /* Mejoras para pantallas muy pequeñas */
+@media (max-width: 320px) {
+    .adopt-form__submit-btn {
+        width: 100%;
+        padding: 1rem;
+      }
+}
+
+/* Mejoras para reducir movimiento (accesibilidad) */
+@media (prefers-reduced-motion: reduce) {
+    .adopt-form__submit-btn:hover {
+        transform: none;
+      }
+}

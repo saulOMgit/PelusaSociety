@@ -1,0 +1,33 @@
+{
+  "homepage": {
+    "greeting": "¡Hola!",
+    "introText": "Somos Pelusa Society, una protectora de animales que busca conectar animales abandonados con hogares que los cuiden y los quieran ❤️‍🩹",
+    "societyAlt": "Logo de Pelusa Society",
+    "chooseTeam": "Escoge team",
+    "choosePet": "¿Qué peludito será el nuevo miembro de tu familia?",
+    "cats": "Gatos",
+    "dogs": "Perros",
+    "catSectionDesc": "Estos michis buscan un hogar tranquilo y seguro con alguna manta suavecita, ¿será el tuyo?",
+    "dogSectionDesc": "Tenemos todo tipo de peludos, desde abueletes hasta cachorros. Todos esperando llenar tu vida de mimos y aventuras.",
+    "matchPerfect": "¡Haz el match perfecto!",
+    "catInstructions": "¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!",
+    "dogInstructions": "¡Aquí podrás ver a todas nuestras pelusas! Desliza a la derecha para ver a la siguiente, a la izquierda para volver a atrás. Y si te has decidido ¡pulsa el botón de adoptar!"
+  },
+  "footer": {
+
+   "Comunas": "Comunas", 
+   "Preguntasfrecuentes": "Preguntas-frecuentes",
+   "Terminosdelacomunidad": "Términos-comunidad",
+   "Politicasdeprivacidad": "Políticas-privacidad",
+   "Contacto": "Contacto"
+  },
+  "FavoritesPage":  {
+      "title": "Favoritos",
+      "paragraph": "Sabemos que te llevarías a casa a todas nuestras pelusas, pero aquí puedes ver las que has marcado como finalistas para ser el nuevo miembro de tu familia 😻",
+      "alertParagraph": "Aún no has añadido ninguna pelusa a favoritos 😢"
+  },
+  "ButtonFavorites": {
+    "button": "Favoritos" 
+  }
+
+}

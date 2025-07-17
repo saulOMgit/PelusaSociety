@@ -1,0 +1,55 @@
+.dm-sans {
+    font-family: "DM Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: auto;
+    font-style: normal;
+  }
+
+  body {
+    background-color: var(--background);
+    margin: 0;
+  }
+
+
+.favorites__page {
+ top: 0;
+ display:flex;
+ flex-direction: column;
+ gap: 20px;
+}
+
+.favorites__page--alert--paragraph {
+    margin-left: 16px;
+}
+
+.favorites__intro {
+    width: 390px;
+    height: auto;
+    padding: 12px 20px;
+    display:flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 16px;
+    box-sizing: border-box;
+    font-family: "DM Sans", sans-serif;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.favorites__grid {
+    display:flex;
+    flex-direction: column;
+    grid-template-columns: auto;
+    margin-bottom: 32px;
+    gap: 16px;
+}

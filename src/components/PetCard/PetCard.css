@@ -79,11 +79,11 @@ body {
 }
 
 .adoption-card__image-container--dog {
-    background-color: #EAC2CC;
+    background-color: var(--dog-card);
 }
 
 .adoption-card__image-container--cat {
-    background-color: #ED7744;
+    background-color: var(--cat-card);
 }
 
 .adoption-card__pet-image {
@@ -166,8 +166,8 @@ body {
 }
 
 .adoption-card__adopt-button {
-    background-color: #9FCFDF;
-    color: #003640;
+    background-color: var(--button);
+    color: var(--text-color-button);
     font-weight: 600;
     border-radius: 50px;
     cursor: pointer;
@@ -183,9 +183,11 @@ body {
 }
 
 .adoption-card__adopt-button:hover {
-    background: #aee3f5;
+  
     border: none;
+
 }
+
 
 .adoption-card__paw-icon {
     font-size: 24px;
