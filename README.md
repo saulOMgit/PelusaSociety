@@ -73,6 +73,8 @@ PelusaSociety/
 │   ├── App.jsx
 │   ├── assets/
 │   ├── components/
+│   │   ├── styles/
+│   │   │   └── Variables.css
 │   │   ├── Btn/
 │   │   │   ├── Btn.css
 │   │   │   └── Btn.jsx
