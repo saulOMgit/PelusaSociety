@@ -11,7 +11,7 @@ import './HomePage.css';
 import img1 from '../assets/cat.png';
 import img2 from '../assets/dog.png';
 import img3Light from '../assets/society.png'
-import img3Dark from '../assets/societyLight.png'
+import img3Dark from '../assets/societyWhite.webp'
 import pepitaImg from '../assets/pepita.webp';
 import bassImg from  '../assets/bass.webp';
 import selvaImg from  '../assets/selva.webp';
@@ -104,13 +104,18 @@ export default function HomePage() {
 
   const [theme] = useTheme(); // Obtén theme y la función para alternarlo
 
-  const handleScrollTo = (category) => {
-    if (category === 'cat' && catRef.current) {
-      catRef.current.scrollIntoView({ behavior: 'smooth' });
-    } else if (category === 'dog' && dogRef.current) {
-      dogRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const scrollWithOffset = (ref, offset = 20) => {
+  const top = ref.current.getBoundingClientRect().top + window.pageYOffset - offset;
+  window.scrollTo({ top, behavior: 'smooth' });
+};
+
+const handleScrollTo = (category) => {
+  if (category === 'cat' && catRef.current) {
+    scrollWithOffset(catRef);
+  } else if (category === 'dog' && dogRef.current) {
+    scrollWithOffset(dogRef);
+  }
+};
 
   const handleAdopt = (petName) => {
     console.log(`Adopting ${petName}!`);
@@ -172,7 +177,7 @@ export default function HomePage() {
           <PetSlider tipoMascota="Perro" muestra={dogs} onAdopt={handleAdopt}/>
         </div>
         <Dropdown></Dropdown>
-        <Footer />
+        <Footer theme={theme}/>
       </div>
     </>
   );

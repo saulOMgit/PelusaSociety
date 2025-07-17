@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import instagram from '../../img/instagram.svg';
-import tools from '../../img/tools.svg';
+import instagramWhite from '../../assets/instagramWhite.svg'
+import tools from '../../assets/tools.svg';
+import toolsWhite from '../../assets/toolsWhite.svg'
 import './footer.css'
 
-const Footer = () => {
+const Footer = ({theme}) => {
   const { t } = useTranslation();
 
   const links = [
@@ -24,11 +26,11 @@ const Footer = () => {
         ))}
 
         <a href="https://www.instagram.com/huachitos.cl/#">
-          <img src={instagram} alt="icono instagram" className="instagram" />
+          <img src={theme === 'light' ? instagram : instagramWhite} alt="icono instagram" className="instagram" />
         </a>
 
         <a href="https://huachitos.cl/docs">
-          <img src={tools} alt="icono api" className="api" />
+          <img src={theme === 'light' ? tools : toolsWhite} alt="icono api" className="api" />
         </a>
       </div>
     </div>
