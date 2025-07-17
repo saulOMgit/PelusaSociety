@@ -102,8 +102,10 @@ PelusaSociety/
 │   ├── index.css
 │   ├── main.jsx
 │   ├── pages/
+│   │   ├── AdoptPage.css
 │   │   ├── AdoptPage.jsx
-│   │   ├── FavouritesPage.jsx
+│   │   ├── FavoritesPage.css
+│   │   ├── FavoritesPage.jsx
 │   │   ├── HomePage.css
 │   │   └── HomePage.jsx
 │   ├── reducers/
