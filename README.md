@@ -18,27 +18,27 @@ En nuestro equipo tuvimos la suerte de contar con datos de usuarios recogidos co
 
 <details>
   <summary>Encuesta sobre adopción de animales a través de Internet</summary>
-:dardo: Objetivo: Detectar posibles fricciones o necesidades en la experiencia digital de adopción de animales.
-:gráfico_de_barras: Muestra: 93 personas.
-:abcd: Metodología: Encuesta online anónima. Edad media: 25-45 años.
-:calendario_de_sobremesa: Fecha: Diciembre 2024.
-:lupa: Preguntas relevantes:
-¿Desde qué dispositivo realizaste (o realizarías) la solicitud de adopción de una mascota?
-Desde el móvil (smartphone) – 82%
-Desde un ordenador (portátil o sobremesa) – 12%
-Desde una tablet – 4%
-No recuerdo / No estoy segura – 2%
-¿Con qué frecuencia consultas perfiles de animales en adopción desde el móvil?
-A diario – 25%
-Varias veces por semana – 34%
-Una vez por semana – 28%
-Rara vez – 13%
-¿Te resultó fácil hacer todo el proceso desde el móvil?
-Sí, muy fácil – 68%
-Sí, aunque algunos pasos no estaban adaptados – 21%
-No, preferí cambiarme al ordenador – 11%
-:chincheta: Conclusión:
-Aunque el tráfico mobile supera el 96% a nivel global, en el contexto específico de formularios más largos o procesos serios como adopciones, hay una pequeña resistencia que ronda entre el 10% y el 20% que sigue prefiriendo el escritorio. Aun así, la prioridad clara debería ser diseño mobile-first, porque es lo que demanda la gran mayoría.
+<p>🎯 Objetivo: Detectar posibles fricciones o necesidades en la experiencia digital de adopción de animales.<br>
+📊 Muestra: 93 personas.<br>
+🔠 Metodología: Encuesta online anónima. Edad media: 25-45 años.<br>
+🗓️ Fecha: Diciembre 2024.<br>
+🔎 Preguntas relevantes:<br>
+¿Desde qué dispositivo realizaste (o realizarías) la solicitud de adopción de una mascota?<br>
+Desde el móvil (smartphone) – 82%<br>
+Desde un ordenador (portátil o sobremesa) – 12%<br>
+Desde una tablet – 4%<br>
+No recuerdo / No estoy segura – 2%<br>
+¿Con qué frecuencia consultas perfiles de animales en adopción desde el móvil?<br>
+A diario – 25%<br>
+Varias veces por semana – 34%<br>
+Una vez por semana – 28%<br>
+Rara vez – 13%<br>
+¿Te resultó fácil hacer todo el proceso desde el móvil?<br>
+Sí, muy fácil – 68%<br>
+Sí, aunque algunos pasos no estaban adaptados – 21%<br>
+No, preferí cambiarme al ordenador – 11%<br>
+:chincheta: Conclusión:<br>
+Aunque el tráfico mobile supera el 96% a nivel global, en el contexto específico de formularios más largos o procesos serios como adopciones, hay una pequeña resistencia que ronda entre el 10% y el 20% que sigue prefiriendo el escritorio. Aun así, la prioridad clara debería ser diseño mobile-first, porque es lo que demanda la gran mayoría.</p><br>
 </details>
 
 ## 🛠 Tecnologías Utilizadas
