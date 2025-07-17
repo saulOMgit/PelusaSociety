@@ -50,9 +50,19 @@ const PetSlider = ({ tipoMascota, muestra }) => {
   const snapToCard = useCallback(() => {
     const track = sliderRef.current;
     if (!track) return;
-  // Cambia la card activa según la posición en el scroll  
+    
+    // Calcula el índice más cercano
     const newIndex = Math.round(track.scrollLeft / 240);
-    setCurrentIndex(Math.max(0, Math.min(newIndex, petData.length - 1)));
+    const clampedIndex = Math.max(0, Math.min(newIndex, petData.length - 1));
+    
+    // Actualiza el índice
+    setCurrentIndex(clampedIndex);
+    
+    // Siempre hace scroll suave a la posición correcta
+    track.scrollTo({
+      left: clampedIndex * 240,
+      behavior: 'smooth'
+    });
   }, [petData.length]);
 
   // Manejo unificado de drag (ratón y táctil)
@@ -126,15 +136,15 @@ const PetSlider = ({ tipoMascota, muestra }) => {
     };
   }, [handleDragStart, handleDragMove, handleDragEnd, isDragging, dragState]);
 
-  // Sincroniza la posición del scroll con el índice activo
+  // Sincroniza la posición del scroll con el índice activo (solo para navegación por botones)
   useEffect(() => {
-    if (sliderRef.current) {
+    if (sliderRef.current && !isDragging) {
       sliderRef.current.scrollTo({
         left: currentIndex * 240,
         behavior: 'smooth'
       });
     }
-  }, [currentIndex]);
+  }, [currentIndex, isDragging]);
 
   // Generadores de clases BEM
   const getCardClasses = useCallback((index) => {
