@@ -58,3 +58,58 @@ El tráfico mobile <b>supera el 96% a nivel global</b>. En el contexto específi
 - **Backend**:
   🐶 Conexión con la API Huachitos (https://huachitos.cl/docs)
 
+  ## Estructura del proyecto
+```bash
+PelusaSociety/
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── public/
+├── README.md
+├── src/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── assets/
+│   ├── components/
+│   │   ├── Btn/
+│   │   │   ├── Btn.css
+│   │   │   └── Btn.jsx
+│   │   ├── ButtonFavorites/
+│   │   │   ├── ButtonFavorites.css
+│   │   │   └── ButtonFavorites.jsx
+│   │   ├── CardCategory/
+│   │   │   ├── CardCategory.css
+│   │   │   └── CardCategory.jsx
+│   │   ├── Footer/
+│   │   │   ├── Footer.css
+│   │   │   └── Footer.jsx
+│   │   ├── NavBar/
+│   │   │   ├── NavBar.css
+│   │   │   └── NavBar.jsx
+│   │   ├── PetCard/
+│   │   │   ├── PetCard.css
+│   │   │   └── PetCard.jsx
+│   │   └── PetSlider/
+│   │       ├── PetSlider.css
+│   │       └── PetSlider.jsx
+│   ├── context/
+│   │   └── ThemeContext.js
+│   ├── img/
+│   │   ├── instagram.svg
+│   │   └── tools.svg
+│   ├── index.css
+│   ├── main.jsx
+│   ├── pages/
+│   │   ├── AdoptPage.jsx
+│   │   ├── FavouritesPage.jsx
+│   │   ├── HomePage.css
+│   │   └── HomePage.jsx
+│   ├── reducers/
+│   │   └── favoritesReducer.js
+│   └── services/
+│       └── PetService.js
+└── vite.config.js
+```
+
